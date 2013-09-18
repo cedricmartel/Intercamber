@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntercamberWeb", "IntercamberWeb\IntercamberWeb.csproj", "{6695F202-3655-45DA-A0B9-A6AB9B1B97DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntercamberBusiness", "IntercamberBusiness\IntercamberBusiness.csproj", "{F9FCBAE1-3351-4BC2-9185-325D89974ADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntercamberDaoGenerator", "IntercamberDaoGenerator\IntercamberDaoGenerator.csproj", "{58009B37-6BC4-44A1-A1C4-8BF3450A672C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6695F202-3655-45DA-A0B9-A6AB9B1B97DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6695F202-3655-45DA-A0B9-A6AB9B1B97DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6695F202-3655-45DA-A0B9-A6AB9B1B97DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6695F202-3655-45DA-A0B9-A6AB9B1B97DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9FCBAE1-3351-4BC2-9185-325D89974ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9FCBAE1-3351-4BC2-9185-325D89974ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9FCBAE1-3351-4BC2-9185-325D89974ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9FCBAE1-3351-4BC2-9185-325D89974ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58009B37-6BC4-44A1-A1C4-8BF3450A672C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58009B37-6BC4-44A1-A1C4-8BF3450A672C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58009B37-6BC4-44A1-A1C4-8BF3450A672C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58009B37-6BC4-44A1-A1C4-8BF3450A672C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

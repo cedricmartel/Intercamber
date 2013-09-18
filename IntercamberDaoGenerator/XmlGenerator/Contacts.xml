@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Intercamber.Dao.Contacts" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <alias>
+        <typeAlias alias="Contacts" type="CML.Intercamber.Business.Model.Contacts"/>
+    </alias>
+
+	<resultMaps>
+        <resultMap id="ContactsResult" class="Contacts">
+			<result property="IdUser" column="IdUser" />
+			<result property="IdUserContact" column="IdUserContact" />
+			<result property="DateAdd" column="DateAdd" />
+        </resultMap>
+    </resultMaps>
+
+	<statements>
+
+        <select id="CML.Intercamber.Contacts.SearchContactss" resultMap="ContactsResult" parameterClass="System.Collections.IDictionary">
+            SELECT *
+            FROM Contacts
+			WHERE 
+				TODO 
+        </select>
+
+        <update id="CML.Intercamber.Contacts.UpdateContacts" parameterClass="Contacts" >
+            UPDATE Contacts
+            SET IdUser = #IdUser#, IdUserContact = #IdUserContact#, DateAdd = #DateAdd#
+            WHERE 
+				TODO
+        </update>
+
+        <insert id="CML.Intercamber.Contacts.InsertContacts" parameterClass="Contacts">
+			INSERT INTO Contacts (IdUser, IdUserContact, DateAdd)
+			VALUES ( #IdUser#, #IdUserContact#, #DateAdd# )
+        </insert>
+
+        <delete id="CML.Intercamber.Contacts.DeleteContacts" parameterClass="string">
+            DELETE FROM Agent 
+			WHERE 
+				TODO 
+        </delete>
+
+    </statements>
+
+</sqlMap>

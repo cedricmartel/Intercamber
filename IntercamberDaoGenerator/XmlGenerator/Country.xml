@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Intercamber.Dao.Country" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <alias>
+        <typeAlias alias="Country" type="CML.Intercamber.Business.Model.Country"/>
+    </alias>
+
+	<resultMaps>
+        <resultMap id="CountryResult" class="Country">
+			<result property="IdCountry" column="IdCountry" />
+			<result property="LblCountry" column="LblCountry" />
+        </resultMap>
+    </resultMaps>
+
+	<statements>
+
+        <select id="CML.Intercamber.Country.SearchCountrys" resultMap="CountryResult" parameterClass="System.Collections.IDictionary">
+            SELECT *
+            FROM Country
+			WHERE 
+				TODO 
+        </select>
+
+        <update id="CML.Intercamber.Country.UpdateCountry" parameterClass="Country" >
+            UPDATE Country
+            SET IdCountry = #IdCountry#, LblCountry = #LblCountry#
+            WHERE 
+				TODO
+        </update>
+
+        <insert id="CML.Intercamber.Country.InsertCountry" parameterClass="Country">
+			INSERT INTO Country (IdCountry, LblCountry)
+			VALUES ( #IdCountry#, #LblCountry# )
+        </insert>
+
+        <delete id="CML.Intercamber.Country.DeleteCountry" parameterClass="string">
+            DELETE FROM Agent 
+			WHERE 
+				TODO 
+        </delete>
+
+    </statements>
+
+</sqlMap>

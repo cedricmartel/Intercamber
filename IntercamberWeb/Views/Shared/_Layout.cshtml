@@ -1,0 +1,70 @@
+﻿@using System.Globalization
+@using System.Threading
+@using System.Web.UI.WebControls
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>Intercamber - @ViewBag.PageTitle</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/intercamber")
+</head>
+<body>
+    <div id="centpourcent">
+        <div id="pageHead">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td rowspan="2" class="header logo" align="center">logo 
+                    </td>
+                    <td class="titreApplication">Intercamber
+                        <span class="languageSelector">
+                            <a href="/Account/ChangeLanguage?id=fr"><img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("fr")?"imgButtonSelected":"")" src="~/Images/Flags/fr.png" /></a>
+                            <a href="/Account/ChangeLanguage?id=es"><img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("es")?"imgButtonSelected":"")" src="~/Images/Flags/es.png" /></a>
+                            <a href="/Account/ChangeLanguage?id=en"><img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("en")?"imgButtonSelected":"")" src="~/Images/Flags/en.png" /></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="%" id="menuTd" class="header menu">menu
+                    </td>
+                    <td align="right" class="header menu">
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                            <text>
+                            <nobr>
+                                UserName
+                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                    <img src="~/Images/ico-disconnect.gif" class="imgButton" />
+                                </a>
+                            </nobr>
+                            @Html.AntiForgeryToken()
+                            </text>
+                            }
+                        }
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div align="left" class="titleDiv" id="pageTitle">
+            @ViewBag.PageTitle
+        </div>
+        <div id="pageContainer" class="pageContent">
+            <div class="paddedContent">
+                @RenderSection("PageContent", required: false)
+            </div>
+        </div>
+        <div id="footerLeft" class="footerLeft">
+            V0.1
+        </div>
+        <div class="footerRight">
+            ©Intercamber, 2013
+        </div>
+    </div>
+</body>
+</html>

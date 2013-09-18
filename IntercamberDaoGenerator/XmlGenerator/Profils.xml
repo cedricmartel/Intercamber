@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Intercamber.Dao.Profils" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <alias>
+        <typeAlias alias="Profils" type="CML.Intercamber.Business.Model.Profils"/>
+    </alias>
+
+	<resultMaps>
+        <resultMap id="ProfilsResult" class="Profils">
+			<result property="IdProfil" column="IdProfil" />
+			<result property="LblProfil" column="LblProfil" />
+        </resultMap>
+    </resultMaps>
+
+	<statements>
+
+        <select id="CML.Intercamber.Profils.SearchProfilss" resultMap="ProfilsResult" parameterClass="System.Collections.IDictionary">
+            SELECT *
+            FROM Profils
+			WHERE 
+				TODO 
+        </select>
+
+        <update id="CML.Intercamber.Profils.UpdateProfils" parameterClass="Profils" >
+            UPDATE Profils
+            SET IdProfil = #IdProfil#, LblProfil = #LblProfil#
+            WHERE 
+				TODO
+        </update>
+
+        <insert id="CML.Intercamber.Profils.InsertProfils" parameterClass="Profils">
+			INSERT INTO Profils (IdProfil, LblProfil)
+			VALUES ( #IdProfil#, #LblProfil# )
+        </insert>
+
+        <delete id="CML.Intercamber.Profils.DeleteProfils" parameterClass="string">
+            DELETE FROM Agent 
+			WHERE 
+				TODO 
+        </delete>
+
+    </statements>
+
+</sqlMap>

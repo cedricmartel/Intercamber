@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IntercamberModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="IntercamberModelStoreContainer">
+          <EntitySet Name="Contacts" EntityType="IntercamberModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="IntercamberModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Profils" EntityType="IntercamberModel.Store.Profils" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Users" EntityType="IntercamberModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Contacts_Users" Association="IntercamberModel.Store.FK_Contacts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Users1" Association="IntercamberModel.Store.FK_Contacts_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdUserContact" />
+          </Key>
+          <Property Name="IdUser" Type="bigint" Nullable="false" />
+          <Property Name="IdUserContact" Type="bigint" Nullable="false" />
+          <Property Name="DateAdd" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="IdCountry" />
+          </Key>
+          <Property Name="IdCountry" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LblCountry" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Profils">
+          <Key>
+            <PropertyRef Name="IdProfil" />
+          </Key>
+          <Property Name="IdProfil" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LblProfil" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfil" Type="int" />
+          <Property Name="IdEstablishment" Type="int" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="Password" Type="varchar" MaxLength="256" />
+          <Property Name="MustChangePassword" Type="bit" Nullable="false" />
+          <Property Name="IdGender" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="200" />
+          <Property Name="LastName" Type="varchar" MaxLength="200" />
+          <Property Name="BirthDate" Type="datetime2" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Contacts_Users">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="IntercamberModel.Store.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Users1">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="IntercamberModel.Store.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="IdUserContact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IntercamberModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IntercamberEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="IntercamberModel.Contacts" />
+          <EntitySet Name="Country" EntityType="IntercamberModel.Country" />
+          <EntitySet Name="Profils" EntityType="IntercamberModel.Profils" />
+          <EntitySet Name="Users" EntityType="IntercamberModel.Users" />
+          <AssociationSet Name="FK_Contacts_Users" Association="IntercamberModel.FK_Contacts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Users1" Association="IntercamberModel.FK_Contacts_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdUserContact" />
+          </Key>
+          <Property Name="IdUser" Type="Int64" Nullable="false" />
+          <Property Name="IdUserContact" Type="Int64" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Contacts" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Contacts" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="IdCountry" />
+          </Key>
+          <Property Name="IdCountry" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LblCountry" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Profils">
+          <Key>
+            <PropertyRef Name="IdProfil" />
+          </Key>
+          <Property Name="IdProfil" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LblProfil" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfil" Type="Int32" />
+          <Property Name="IdEstablishment" Type="Int32" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="MustChangePassword" Type="Boolean" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="7" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Contacts" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Users" ToRole="Contacts" />
+          <NavigationProperty Name="Contacts1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Users" ToRole="Contacts" />
+        </EntityType>
+        <Association Name="FK_Contacts_Users">
+          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="IntercamberModel.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Users1">
+          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="IntercamberModel.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="IdUserContact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IntercamberModelStoreContainer" CdmEntityContainer="IntercamberEntities">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="IntercamberModel.Contacts">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdUserContact" ColumnName="IdUserContact" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="IntercamberModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="LblCountry" ColumnName="LblCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profils">
+            <EntityTypeMapping TypeName="IntercamberModel.Profils">
+              <MappingFragment StoreEntitySet="Profils">
+                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
+                <ScalarProperty Name="LblProfil" ColumnName="LblProfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IntercamberModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
+                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MustChangePassword" ColumnName="MustChangePassword" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
