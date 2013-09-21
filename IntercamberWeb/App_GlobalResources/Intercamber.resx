@@ -117,8 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Admin_PageName" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Agenda_PageName" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Intercamber</value>
+  </data>
+  <data name="Assistance_PageName" xml:space="preserve">
+    <value>Assistance</value>
+  </data>
+  <data name="Chat_PageName" xml:space="preserve">
+    <value>Discussions</value>
+  </data>
+  <data name="Contacts_PageName" xml:space="preserve">
+    <value>My contacts</value>
+  </data>
+  <data name="EstablishmentAdmin_PageName" xml:space="preserve">
+    <value>Establishment management</value>
   </data>
   <data name="Home_PageName" xml:space="preserve">
     <value>Home</value>
@@ -140,5 +158,23 @@
   </data>
   <data name="Login_Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Moderate_PageName" xml:space="preserve">
+    <value>Moderation</value>
+  </data>
+  <data name="Profil_PageName" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="Reporting_PageName" xml:space="preserve">
+    <value>Reporting</value>
+  </data>
+  <data name="SearchContacts_PageName" xml:space="preserve">
+    <value>Search contacts</value>
+  </data>
+  <data name="UserAdmin_PageName" xml:space="preserve">
+    <value>User management</value>
+  </data>
+  <data name="Vocabulary_PageName" xml:space="preserve">
+    <value>Vocabulary</value>
   </data>
 </root>

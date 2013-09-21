@@ -54,14 +54,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ProfilsConst.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfilsConst.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dao\ThreadMessagesDao.cs" />
+    <Compile Include="Dao\ThreadsDao.cs" />
+    <Compile Include="Dao\ThreadUsersDao.cs" />
     <Compile Include="Dao\UsersDao.cs" />
     <Compile Include="Helper\IBatisHelper.cs" />
+    <Compile Include="Helper\IntHelper.cs" />
     <Compile Include="Model\Contacts.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Country.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Establishments.cs">
+      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IdLabel.cs" />
     <Compile Include="Model\ModelGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,9 +83,19 @@
     <Compile Include="Model\Profils.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ThreadMessages.cs">
+      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Threads.cs">
+      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ThreadUsers.cs">
+      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Users.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\UsersPartial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +105,13 @@
     <None Include="App.Config" />
     <EmbeddedResource Include="IBatisConfig\SqlMap.config" />
     <EmbeddedResource Include="IBatisConfig\Providers.config" />
+    <None Include="Constants\Generator\ConstGenerator.ttinclude" />
+    <None Include="Constants\Generator\EnumGenerator.ttinclude" />
+    <None Include="Constants\Generator\IdLabelGenerator.ttinclude" />
+    <None Include="Constants\ProfilsConst.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProfilsConst.generated.cs</LastGenOutput>
+    </None>
     <None Include="IntercamberModel.edmx.diagram">
       <DependentUpon>IntercamberModel.edmx</DependentUpon>
     </None>
@@ -94,10 +124,15 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="IBatisQuery\ThreadMessages.xml" />
+    <EmbeddedResource Include="IBatisQuery\Threads.xml" />
+    <EmbeddedResource Include="IBatisQuery\ThreadUsers.xml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="IBatisQuery\Users.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

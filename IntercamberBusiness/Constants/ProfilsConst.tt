@@ -1,0 +1,10 @@
+﻿<#
+    string tableName = "dbo.Profils";
+	string className = "ProfilsConst";
+    string columnCode = "IdProfil";
+    string columnLabel = "LblProfil";
+	string columnComment = "LblProfil";
+	string whereClause = "";
+	bool keepCodesInConstNames = false;
+#>
+<#@ include file=".\Generator\IdLabelGenerator.ttinclude" #>

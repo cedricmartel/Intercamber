@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Intercamber.Dao.Establishments" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <alias>
+        <typeAlias alias="Establishments" type="CML.Intercamber.Business.Model.Establishments"/>
+    </alias>
+
+	<resultMaps>
+        <resultMap id="EstablishmentsResult" class="Establishments">
+			<result property="IdEstablishment" column="IdEstablishment" />
+			<result property="LblEstablishment" column="LblEstablishment" />
+			<result property="IdCountry" column="IdCountry" />
+			<result property="DateCreate" column="DateCreate" />
+			<result property="TimeZone" column="TimeZone" />
+        </resultMap>
+    </resultMaps>
+
+	<statements>
+
+        <select id="CML.Intercamber.Establishments.SearchEstablishmentss" resultMap="EstablishmentsResult" parameterClass="System.Collections.IDictionary">
+            SELECT *
+            FROM Establishments
+			WHERE 
+				TODO 
+        </select>
+
+        <update id="CML.Intercamber.Establishments.UpdateEstablishments" parameterClass="Establishments" >
+            UPDATE Establishments
+            SET IdEstablishment = #IdEstablishment#, LblEstablishment = #LblEstablishment#, IdCountry = #IdCountry#, DateCreate = #DateCreate#, TimeZone = #TimeZone#
+            WHERE 
+				TODO
+        </update>
+
+        <insert id="CML.Intercamber.Establishments.InsertEstablishments" parameterClass="Establishments">
+			INSERT INTO Establishments (IdEstablishment, LblEstablishment, IdCountry, DateCreate, TimeZone)
+			VALUES ( #IdEstablishment#, #LblEstablishment#, #IdCountry#, #DateCreate#, #TimeZone# )
+        </insert>
+
+        <delete id="CML.Intercamber.Establishments.DeleteEstablishments" parameterClass="string">
+            DELETE FROM Agent 
+			WHERE 
+				TODO 
+        </delete>
+
+    </statements>
+
+</sqlMap>

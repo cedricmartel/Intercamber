@@ -61,11 +61,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Admin.
+        /// </summary>
+        internal static string Admin_PageName {
+            get {
+                return ResourceManager.GetString("Admin_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Agenda.
+        /// </summary>
+        internal static string Agenda_PageName {
+            get {
+                return ResourceManager.GetString("Agenda_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Intercamber.
         /// </summary>
         internal static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Assistance.
+        /// </summary>
+        internal static string Assistance_PageName {
+            get {
+                return ResourceManager.GetString("Assistance_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Discussions.
+        /// </summary>
+        internal static string Chat_PageName {
+            get {
+                return ResourceManager.GetString("Chat_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à My contacts.
+        /// </summary>
+        internal static string Contacts_PageName {
+            get {
+                return ResourceManager.GetString("Contacts_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Establishment management.
+        /// </summary>
+        internal static string EstablishmentAdmin_PageName {
+            get {
+                return ResourceManager.GetString("EstablishmentAdmin_PageName", resourceCulture);
             }
         }
         
@@ -129,6 +183,60 @@ namespace Resources {
         internal static string Login_Password {
             get {
                 return ResourceManager.GetString("Login_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Moderation.
+        /// </summary>
+        internal static string Moderate_PageName {
+            get {
+                return ResourceManager.GetString("Moderate_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à My profile.
+        /// </summary>
+        internal static string Profil_PageName {
+            get {
+                return ResourceManager.GetString("Profil_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reporting.
+        /// </summary>
+        internal static string Reporting_PageName {
+            get {
+                return ResourceManager.GetString("Reporting_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search contacts.
+        /// </summary>
+        internal static string SearchContacts_PageName {
+            get {
+                return ResourceManager.GetString("SearchContacts_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à User management.
+        /// </summary>
+        internal static string UserAdmin_PageName {
+            get {
+                return ResourceManager.GetString("UserAdmin_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vocabulary.
+        /// </summary>
+        internal static string Vocabulary_PageName {
+            get {
+                return ResourceManager.GetString("Vocabulary_PageName", resourceCulture);
             }
         }
     }

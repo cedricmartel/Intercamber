@@ -1,58 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="CML.Intercamber.Users" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+<sqlMap namespace="Intercamber.Dao.Users" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
     <alias>
         <typeAlias alias="Users" type="CML.Intercamber.Business.Model.Users"/>
     </alias>
 
-    <resultMaps>
+	<resultMaps>
         <resultMap id="UsersResult" class="Users">
-            <result property="IdUser" column="IdUser" />
-            <result property="IdProfil" column="IdProfil" />
-            <result property="IdEstablishment" column="IdEstablishment" />
-            <result property="Email" column="Email" />
-            <result property="Password" column="Password" />
-            <result property="MustChangePassword" column="MustChangePassword" />
-            <result property="IdGender" column="IdGender" />
-            <result property="FirstName" column="FirstName" />
-            <result property="LastName" column="LastName" />
-            <result property="BirthDate" column="BirthDate" />
-            <result property="Enabled" column="Enabled" />
-            <result property="DateCreate" column="DateCreate" />
+			<result property="IdUser" column="IdUser" />
+			<result property="IdProfil" column="IdProfil" />
+			<result property="IdEstablishment" column="IdEstablishment" />
+			<result property="Email" column="Email" />
+			<result property="Password" column="Password" />
+			<result property="MustChangePassword" column="MustChangePassword" />
+			<result property="IdGender" column="IdGender" />
+			<result property="FirstName" column="FirstName" />
+			<result property="LastName" column="LastName" />
+			<result property="BirthDate" column="BirthDate" />
+			<result property="Enabled" column="Enabled" />
+			<result property="DateCreate" column="DateCreate" />
         </resultMap>
     </resultMaps>
 
-    <statements>
-        <select id="CML.Intercamber.Users.Login" resultMap="UsersResult" parameterClass="System.Collections.IDictionary">
+	<statements>
+        <select id="CML.Intercamber.Users.ListUsersByParameters" resultMap="UsersResult" parameterClass="System.Collections.IDictionary">
             SELECT *
             FROM Users
-            WHERE Email = #email# AND Password = #password#
-        </select>
-        
-        
-        <!-- bellow generated not yet used -->
-        <select id="CML.Intercamber.Users.SearchUserss" resultMap="UsersResult" parameterClass="System.Collections.IDictionary">
-            SELECT *
-            FROM Users
-            WHERE
-            TODO
+            <dynamic prepend="where">
+                <isNotEmpty prepend="and" property="IdUser">
+                    IdUser = #IdUser#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="Password">
+                    Password = #Password#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="Email">
+                    Email = #Email#
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="Enabled">
+                    Enabled = #Enabled#
+                </isNotEmpty>
+            </dynamic>
         </select>
 
+        
+        
+        
         <update id="CML.Intercamber.Users.UpdateUsers" parameterClass="Users" >
             UPDATE Users
             SET IdUser = #IdUser#, IdProfil = #IdProfil#, IdEstablishment = #IdEstablishment#, Email = #Email#, Password = #Password#, MustChangePassword = #MustChangePassword#, IdGender = #IdGender#, FirstName = #FirstName#, LastName = #LastName#, BirthDate = #BirthDate#, Enabled = #Enabled#, DateCreate = #DateCreate#
-            WHERE
-            TODO
+            WHERE 
+				TODO
         </update>
 
         <insert id="CML.Intercamber.Users.InsertUsers" parameterClass="Users">
-            INSERT INTO Users (IdUser, IdProfil, IdEstablishment, Email, Password, MustChangePassword, IdGender, FirstName, LastName, BirthDate, Enabled, DateCreate)
-            VALUES ( #IdUser#, #IdProfil#, #IdEstablishment#, #Email#, #Password#, #MustChangePassword#, #IdGender#, #FirstName#, #LastName#, #BirthDate#, #Enabled#, #DateCreate# )
+			INSERT INTO Users (IdUser, IdProfil, IdEstablishment, Email, Password, MustChangePassword, IdGender, FirstName, LastName, BirthDate, Enabled, DateCreate)
+			VALUES ( #IdUser#, #IdProfil#, #IdEstablishment#, #Email#, #Password#, #MustChangePassword#, #IdGender#, #FirstName#, #LastName#, #BirthDate#, #Enabled#, #DateCreate# )
         </insert>
 
         <delete id="CML.Intercamber.Users.DeleteUsers" parameterClass="string">
-            DELETE FROM Agent
-            WHERE
-            TODO
+            DELETE FROM Agent 
+			WHERE 
+				TODO 
         </delete>
 
     </statements>

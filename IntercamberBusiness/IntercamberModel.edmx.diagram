@@ -4,13 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="128c948acccd466295ca0028742403f6" Name="Diagramme1">
-        <EntityTypeShape EntityType="IntercamberModel.Contacts" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Country" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Profils" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Users" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users1" ManuallyRouted="false" />
+      <Diagram DiagramId="128c948acccd466295ca0028742403f6" Name="Diagramme1" ZoomLevel="86">
+        <EntityTypeShape EntityType="IntercamberModel.Contacts" Width="1.5" PointX="8.7907546035902353" PointY="26.82336500046" />
+        <EntityTypeShape EntityType="IntercamberModel.Country" Width="1.5" PointX="7.029147782842232" PointY="11.95811452528374" />
+        <EntityTypeShape EntityType="IntercamberModel.Establishments" Width="1.5" PointX="5.6291832596199507" PointY="3.91428540829303" />
+        <EntityTypeShape EntityType="IntercamberModel.Profils" Width="1.5" PointX="1.5529960922677983" PointY="5.2040970647726663" />
+        <EntityTypeShape EntityType="IntercamberModel.ThreadMessages" Width="1.5" PointX="8.0200482010934735" PointY="14.080161101222114" />
+        <EntityTypeShape EntityType="IntercamberModel.Threads" Width="1.5" PointX="7.8587278685805977" PointY="4.8756292038018021" />
+        <EntityTypeShape EntityType="IntercamberModel.ThreadUsers" Width="1.5" PointX="3.8568262736577665" PointY="1.4331590837953421" />
+        <EntityTypeShape EntityType="IntercamberModel.Users" Width="1.5" PointX="11.46460680079861" PointY="27.788272080844393" />
+        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users" />
+        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users1" />
+        <AssociationConnector Association="IntercamberModel.FK_ThreadMessages_Threads" />
+        <AssociationConnector Association="IntercamberModel.FK_ThreadUsers_Threads" />
+        <AssociationConnector Association="IntercamberModel.FK_ThreadUsers_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

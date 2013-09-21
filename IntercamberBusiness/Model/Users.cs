@@ -26,5 +26,6 @@ namespace CML.Intercamber.Business.Model
         /* Propriétés de navigation */
     	public ArrayList Contacts { get; set; }
     		public ArrayList Contacts1 { get; set; }
+    		public ArrayList ThreadUsers { get; set; }
     	}
 }

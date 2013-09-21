@@ -54,12 +54,24 @@
     <Compile Include="DaoGenerator\CountryDao.cs">
       <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="DaoGenerator\IbatisDaoGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="DaoGenerator\EstablishmentsDao.cs">
       <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="DaoGenerator\IbatisDaoGenerator.cs">
+      <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="DaoGenerator\ProfilsDao.cs">
+      <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DaoGenerator\ThreadMessagesDao.cs">
+      <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DaoGenerator\ThreadsDao.cs">
+      <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DaoGenerator\ThreadUsersDao.cs">
       <DependentUpon>IbatisDaoGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="DaoGenerator\UsersDao.cs">
@@ -98,7 +110,19 @@
     <Content Include="XmlGenerator\Country.xml">
       <DependentUpon>IbatisXmlGenerator.tt</DependentUpon>
     </Content>
+    <Content Include="XmlGenerator\Establishments.xml">
+      <DependentUpon>IbatisXmlGenerator.tt</DependentUpon>
+    </Content>
     <Content Include="XmlGenerator\Profils.xml">
+      <DependentUpon>IbatisXmlGenerator.tt</DependentUpon>
+    </Content>
+    <Content Include="XmlGenerator\ThreadMessages.xml">
+      <DependentUpon>IbatisXmlGenerator.tt</DependentUpon>
+    </Content>
+    <Content Include="XmlGenerator\Threads.xml">
+      <DependentUpon>IbatisXmlGenerator.tt</DependentUpon>
+    </Content>
+    <Content Include="XmlGenerator\ThreadUsers.xml">
       <DependentUpon>IbatisXmlGenerator.tt</DependentUpon>
     </Content>
     <Content Include="XmlGenerator\Users.xml">

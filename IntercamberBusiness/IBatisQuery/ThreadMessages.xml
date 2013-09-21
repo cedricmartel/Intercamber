@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Intercamber.Dao.ThreadMessages" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <alias>
+        <typeAlias alias="ThreadMessages" type="CML.Intercamber.Business.Model.ThreadMessages"/>
+    </alias>
+
+	<resultMaps>
+        <resultMap id="ThreadMessagesResult" class="ThreadMessages">
+			<result property="IdMessage" column="IdMessage" />
+			<result property="IdThread" column="IdThread" />
+			<result property="IdUser" column="IdUser" />
+			<result property="DateMessage" column="DateMessage" />
+			<result property="Message" column="Message" />
+			<result property="MessageCorrection" column="MessageCorrection" />
+        </resultMap>
+    </resultMaps>
+
+	<statements>
+
+        <select id="CML.Intercamber.ThreadMessages.SearchThreadMessagess" resultMap="ThreadMessagesResult" parameterClass="System.Collections.IDictionary">
+            SELECT *
+            FROM ThreadMessages
+			WHERE 
+				TODO 
+        </select>
+
+        <update id="CML.Intercamber.ThreadMessages.UpdateThreadMessages" parameterClass="ThreadMessages" >
+            UPDATE ThreadMessages
+            SET IdMessage = #IdMessage#, IdThread = #IdThread#, IdUser = #IdUser#, DateMessage = #DateMessage#, Message = #Message#, MessageCorrection = #MessageCorrection#
+            WHERE 
+				TODO
+        </update>
+
+        <insert id="CML.Intercamber.ThreadMessages.InsertThreadMessages" parameterClass="ThreadMessages">
+			INSERT INTO ThreadMessages (IdMessage, IdThread, IdUser, DateMessage, Message, MessageCorrection)
+			VALUES ( #IdMessage#, #IdThread#, #IdUser#, #DateMessage#, #Message#, #MessageCorrection# )
+        </insert>
+
+        <delete id="CML.Intercamber.ThreadMessages.DeleteThreadMessages" parameterClass="string">
+            DELETE FROM Agent 
+			WHERE 
+				TODO 
+        </delete>
+
+    </statements>
+
+</sqlMap>

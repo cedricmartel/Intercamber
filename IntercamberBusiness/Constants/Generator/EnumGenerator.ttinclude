@@ -1,0 +1,106 @@
+﻿<#@ template language="C#" debug="true" hostSpecific="true" #>
+<#@ output extension=".generated.cs" #>
+<#@ Assembly Name="System.Data" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#
+    string path = Path.GetDirectoryName(Host.TemplateFile);    
+    string connectionString = "data source=(local);initial catalog=Intercamber;integrated security=True";
+
+    // Get containing project
+    IServiceProvider serviceProvider = (IServiceProvider)Host;
+    //DTE dte = (DTE)serviceProvider.GetService(typeof(DTE));
+    //Project project = dte.Solution.FindProjectItem(Host.TemplateFile).ContainingProject;
+
+	//WriteLine(string.Format("namespace {0}{1}", project.Properties.Item("DefaultNamespace").Value, Path.GetDirectoryName(Host.TemplateFile).Remove(0, Path.GetDirectoryName(project.FileName).Length).Replace("\\", ".")));
+	WriteLine("namespace CML.Intercamber.Business.Constants");
+	WriteLine("{");
+	PushIndent("\t");
+
+	WriteLine("using System;");
+	WriteLine("using System.CodeDom.Compiler;");
+	WriteLine(string.Empty);
+
+	WriteLine("/// <summary>");
+	WriteLine(string.Format("/// {0} auto generated enumeration for table {1}", enumName, tableName));
+	WriteLine("/// </summary>");
+
+    WriteLine("[GeneratedCode(\"TextTemplatingFileGenerator\", \"10\")]");
+    WriteLine(string.Format("public enum {0}", enumName));
+	WriteLine("{");
+
+    SqlConnection conn = new SqlConnection(connectionString);
+
+	string sqlRequest = "select DISTINCT {0} as code, {1} as label, {2} as comment from {3} " + (string.IsNullOrEmpty(whereClause) ? "" : "WHERE " + whereClause) + " order by 2";
+    string command = string.Format(sqlRequest, columnCode, columnLabel, columnComment, tableName);
+	//WriteLine("// " + command);
+    SqlCommand comm = new SqlCommand(command, conn);
+ 
+    conn.Open();
+ 
+    SqlDataReader reader = comm.ExecuteReader();
+    bool loop = reader.Read();
+ 
+ 	PushIndent("\t");
+
+	bool firstIterationPassed = false;
+
+    while(loop)
+    {
+		if(firstIterationPassed)
+		{
+			WriteLine(string.Empty);
+		}
+
+		string label = Convert.ToString(reader["label"]);
+		string code = Convert.ToString(reader["code"]);
+		string comment = Convert.ToString(reader["comment"]);
+
+		WriteLine("/// <summary>");
+		WriteLine(string.Format("/// '{0}' (id {1}) de la table {2}", comment.Replace("\n", "\n///"), code, tableName));
+		WriteLine("/// </summary>");
+
+		string csharpName = keepCodesInConstNames ? RemoveDiacritics(label.ToString()) : Pascalize(label.ToString());
+
+        Write(string.Format("{0} = {1}, ", csharpName, code));
+		
+		loop = reader.Read();
+		firstIterationPassed = true;
+	}
+
+	PopIndent();
+	WriteLine("}");
+	PopIndent();
+	WriteLine("}");
+#>
+<#+
+
+	private string Pascalize(string val)
+	{
+		return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(RemoveDiacritics(val.Replace("_", " "))).Replace(" ", "").Replace("'", "").Replace("\"", "").Replace("/", "");
+	}
+
+	// a partir d'une chaine "nom de l'élément" génère "NOM_DE_LELEMENT"
+	private string FormatConstantName(string text)
+    {
+		return RemoveDiacritics(text).Replace("'", "").Replace("\"", "").Replace(" ", "_").ToUpper();
+    }
+
+	//vire les accents
+	private string RemoveDiacritics(string inputString) {
+		string accent =			"ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÌÍÎÏìíîïÙÚÛÜùúûüÿÑñÇç";
+		string sansAccent =		"AAAAAAaaaaaaOOOOOOooooooEEEEeeeeIIIIiiiiUUUUuuuuyNnCc";
+		// Conversion des chaines en tableaux de caractères
+		char[] tableauSansAccent = inputString.ToCharArray();
+		char[] tableauAccent = accent.ToCharArray();
+		string res = inputString;
+		// Pour chaque accent
+		for (int i1=0;i1<accent.Length;i1++)
+		{
+			res = res.Replace(accent[i1], sansAccent[i1]);
+		}
+		return res;
+	}
+#>

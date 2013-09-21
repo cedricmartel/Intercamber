@@ -2,5 +2,19 @@
     ViewBag.PageTitle = Resources.Intercamber.Home_PageName;
 }
 @section PageContent {
-    HOME!
+    <script>
+        function ResizeComplement() {
+            var h = $("#pageContent").height() - $("#pageTitle").height() - 10;
+            $(".infoBar").height(h);
+        }
+    </script>
+    <div class="infoBar" style="">
+        <div align="center">
+            <img src="~/Images/NoAvatar.png" />    
+        </div>
+    </div>
+    
+    
+    
+
 }
