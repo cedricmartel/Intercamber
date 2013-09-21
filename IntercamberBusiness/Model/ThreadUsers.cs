@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 
 namespace CML.Intercamber.Business.Model
 {
@@ -16,7 +14,7 @@ namespace CML.Intercamber.Business.Model
     	public Nullable<System.DateTime> DateLastSeen { get; set; }
     
         /* Propriétés de navigation */
-    	public ArrayList Threads { get; set; }
-    		public ArrayList Users { get; set; }
+    	public Threads Threads { get; set; }
+    		public Users Users { get; set; }
     	}
 }

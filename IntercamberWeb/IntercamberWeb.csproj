@@ -227,8 +227,9 @@
     <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\ChatMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\ChatHub.cs" />
+    <Compile Include="ChatHub.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
@@ -291,6 +292,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Talk\Discussion.cshtml" />
+    <Content Include="Views\Talk\Threads.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

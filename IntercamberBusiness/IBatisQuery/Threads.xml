@@ -12,18 +12,36 @@
         </resultMap>
     </resultMaps>
 
+    
+     <alias>
+        <typeAlias alias="ThreadDetail" type="CML.Intercamber.Business.Model.ThreadDetail"/>
+    </alias>
+    <resultMaps>
+        <resultMap id="ThreadsDetailResult" class="ThreadDetail">
+			<result property="IdThread" column="IdThread" />
+			<result property="IdUser" column="IdUser" />
+            <result property="FirstName" column="FirstName" />
+            <result property="LastName" column="LastName" />
+        </resultMap>
+    </resultMaps>
+    
 	<statements>
 
-        <select id="CML.Intercamber.Threads.ListThreadsByParameters" resultMap="ThreadsResult" parameterClass="System.Collections.IDictionary">
-            SELECT *
-            FROM Threads
-			<dynamic prepend="where">
-                <isNotEmpty prepend="and" property="IdUser">
-                    IdUser = #IdUser#
-                </isNotEmpty>
-            </dynamic>
+        <select id="CML.Intercamber.Threads.UserThreads" resultMap="ThreadsDetailResult" parameterClass="long">
+            SELECT t.IdThread, u.IdUser, uu.FirstName, uu.LastName
+            FROM Threads t 
+            INNER JOIN ThreadUsers tu on tu.IdThread = t.IdThread and tu.IdUser = #value#
+            INNER JOIN ThreadUsers u on u.IdThread = tu.IdThread and u.Iduser != #value#
+            INNER JOIN Users uu on uu.IdUser = u.IdUser
         </select>
-
+        
+        <select id="CML.Intercamber.Threads.ThreadDetailsById" resultMap="ThreadsDetailResult" parameterClass="long">
+            SELECT t.IdThread, u.IdUser, uu.FirstName, uu.LastName
+            FROM Threads t 
+            INNER JOIN ThreadUsers u on u.IdThread = t.IdThread
+            INNER JOIN Users uu on uu.IdUser = u.IdUser
+            WHERE t.IdThread = #value#
+        </select>
         
         
         <update id="CML.Intercamber.Threads.UpdateThreads" parameterClass="Threads" >

@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 
 namespace CML.Intercamber.Business.Model
 {
@@ -24,8 +22,8 @@ namespace CML.Intercamber.Business.Model
     	public System.DateTime DateCreate { get; set; }
     
         /* Propriétés de navigation */
-    	public ArrayList Contacts { get; set; }
-    		public ArrayList Contacts1 { get; set; }
-    		public ArrayList ThreadUsers { get; set; }
+    	public ICollection<Contacts> Contacts { get; set; }
+    		public ICollection<Contacts> Contacts1 { get; set; }
+    		public ICollection<ThreadUsers> ThreadUsers { get; set; }
     	}
 }

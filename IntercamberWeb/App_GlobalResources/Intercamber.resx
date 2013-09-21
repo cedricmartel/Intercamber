@@ -177,4 +177,7 @@
   <data name="Vocabulary_PageName" xml:space="preserve">
     <value>Vocabulary</value>
   </data>
+  <data name="ChatList_PageName" xml:space="preserve">
+    <value>My discussions</value>
+  </data>
 </root>

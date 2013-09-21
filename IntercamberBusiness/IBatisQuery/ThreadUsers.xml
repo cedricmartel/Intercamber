@@ -15,13 +15,15 @@
 
 	<statements>
 
-        <select id="CML.Intercamber.ThreadUsers.SearchThreadUserss" resultMap="ThreadUsersResult" parameterClass="System.Collections.IDictionary">
+        <select id="CML.Intercamber.ThreadUsers.ThreadUsersByThread" resultMap="ThreadUsersResult" parameterClass="long">
             SELECT *
             FROM ThreadUsers
-			WHERE 
-				TODO 
+            WHERE IdThread = #value#
         </select>
 
+        
+        
+        
         <update id="CML.Intercamber.ThreadUsers.UpdateThreadUsers" parameterClass="ThreadUsers" >
             UPDATE ThreadUsers
             SET IdThread = #IdThread#, IdUser = #IdUser#, DateCreate = #DateCreate#, DateLastSeen = #DateLastSeen#

@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 
 namespace CML.Intercamber.Business.Model
 {
@@ -18,6 +16,6 @@ namespace CML.Intercamber.Business.Model
     	public string MessageCorrection { get; set; }
     
         /* Propriétés de navigation */
-    	public ArrayList Threads { get; set; }
+    	public Threads Threads { get; set; }
     	}
 }

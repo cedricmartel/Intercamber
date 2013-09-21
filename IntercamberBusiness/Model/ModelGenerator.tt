@@ -44,7 +44,7 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
     foreach (NavigationProperty navProperty in entity.NavigationProperties.Where(np => np.DeclaringType == entity))
     {
 #>
-	public ArrayList <#=code.Escape(navProperty)#> { get; set; }
+	public <#=code.Escape(navProperty.TypeUsage)#> <#=code.Escape(navProperty)#> { get; set; }
 	<#
     } 
 #>
@@ -64,9 +64,7 @@ void BeginNamespace(string namespaceName, CodeGenerationTools code)
     {
 #>
 using System;
-using System.Collections;
-using System.Linq;
-using System.Text;
+using System.Collections.Generic;
 
 namespace <#=code.EscapeNamespace(namespaceName)#>
 {

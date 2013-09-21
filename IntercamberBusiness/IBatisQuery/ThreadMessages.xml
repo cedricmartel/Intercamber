@@ -17,12 +17,23 @@
 
 	<statements>
 
-        <select id="CML.Intercamber.ThreadMessages.SearchThreadMessagess" resultMap="ThreadMessagesResult" parameterClass="System.Collections.IDictionary">
+        <select id="CML.Intercamber.ThreadMessages.ListThreadMessagesByParameters" resultMap="ThreadMessagesResult" parameterClass="System.Collections.IDictionary">
             SELECT *
             FROM ThreadMessages
-			WHERE 
-				TODO 
+			<dynamic prepend="where">
+                <isNotEmpty prepend="and" property="IdThread">
+                    IdThread = #IdThread#
+                </isNotEmpty>
+            </dynamic>
         </select>
+
+        <insert id="CML.Intercamber.ThreadMessages.InsertThreadMessages" parameterClass="ThreadMessages">
+            INSERT INTO ThreadMessages (IdThread, IdUser, DateMessage, Message, MessageCorrection)
+            VALUES ( #IdThread#, #IdUser#, #DateMessage#, #Message#, #MessageCorrection# )
+        </insert>
+
+        
+        
 
         <update id="CML.Intercamber.ThreadMessages.UpdateThreadMessages" parameterClass="ThreadMessages" >
             UPDATE ThreadMessages
@@ -30,11 +41,6 @@
             WHERE 
 				TODO
         </update>
-
-        <insert id="CML.Intercamber.ThreadMessages.InsertThreadMessages" parameterClass="ThreadMessages">
-			INSERT INTO ThreadMessages (IdMessage, IdThread, IdUser, DateMessage, Message, MessageCorrection)
-			VALUES ( #IdMessage#, #IdThread#, #IdUser#, #DateMessage#, #Message#, #MessageCorrection# )
-        </insert>
 
         <delete id="CML.Intercamber.ThreadMessages.DeleteThreadMessages" parameterClass="string">
             DELETE FROM Agent 

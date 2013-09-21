@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à My discussions.
+        /// </summary>
+        internal static string ChatList_PageName {
+            get {
+                return ResourceManager.GetString("ChatList_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Discussions.
         /// </summary>
         internal static string Chat_PageName {

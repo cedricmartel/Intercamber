@@ -63,6 +63,7 @@
     <Compile Include="Dao\ThreadsDao.cs" />
     <Compile Include="Dao\ThreadUsersDao.cs" />
     <Compile Include="Dao\UsersDao.cs" />
+    <Compile Include="Helper\DateTimeHelper.cs" />
     <Compile Include="Helper\IBatisHelper.cs" />
     <Compile Include="Helper\IntHelper.cs" />
     <Compile Include="Model\Contacts.cs">
@@ -83,6 +84,7 @@
     <Compile Include="Model\Profils.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ThreadDetail.cs" />
     <Compile Include="Model\ThreadMessages.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>

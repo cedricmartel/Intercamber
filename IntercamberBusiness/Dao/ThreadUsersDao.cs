@@ -17,6 +17,9 @@ namespace CML.Intercamber.Business.Dao
 			return IBatisHelper.Instance().QueryForList<ThreadUsers>("CML.Intercamber.ThreadUsers.SearchThreadUserss", null);
 		}
 
+
+
+
 		public void UpdateThreadUsers(ThreadUsers obj)
 		{
 			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
