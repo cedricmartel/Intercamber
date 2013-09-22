@@ -94,6 +94,7 @@ namespace CML.Intercamber.Web.Helpers
 
         public static void CreateSession(Users user)
         {
+            ChatHub.UsersConnectedCounter++;
             AddSessionItem(SessionKeyUser, user, user.Email);
             // TODO 
         }

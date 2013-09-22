@@ -48,5 +48,10 @@ namespace CML.Intercamber.Web
                 }
             }
         }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            ChatHub.UsersConnectedCounter--;
+        }
     }
 }

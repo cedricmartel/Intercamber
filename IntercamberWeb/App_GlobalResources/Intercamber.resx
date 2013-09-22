@@ -180,4 +180,7 @@
   <data name="ChatList_PageName" xml:space="preserve">
     <value>My discussions</value>
   </data>
+  <data name="NumberOnlineUsers" xml:space="preserve">
+    <value>Online users: {0}</value>
+  </data>
 </root>

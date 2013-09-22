@@ -16,12 +16,26 @@
     <script src="/Scripts/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="/Scripts/jquery.signalR-1.1.3.js"></script>
     <script src="/Scripts/Intercamber.js"></script>
+    <script src="/signalr/hubs"></script>
     <script>
+        var connectedHub = null;
         $(function() {
             var pageCode = "@(NavigationHelper.CurrentPageRoute)";
             var currentMenu = $("a[href='" + pageCode + "']");
             if (currentMenu.length > 0)
                 currentMenu.addClass("ui-menu-sel");
+            @if (Request.IsAuthenticated)
+            {
+                <text>
+                window.connectedHub = $.connection.chatHub;
+                $.connection.hub.start().done(function () {
+                    window.connectedHub.server.getCurrentOnlineUsers();
+                });
+                window.connectedHub.client.printOnlineUsers = function (message) {
+                    $('#footerLeft').text(message);
+                };
+                </text>
+            }
         })
     </script>
     @RenderSection("PageHead", false)
@@ -96,6 +110,7 @@
                     @*<div align="left" class="titleDiv" id="pageTitle">
                             @ViewBag.PageTitle
                         </div>*@
+                    
                     @RenderSection("PageContent")
                 </td>
 
@@ -103,10 +118,9 @@
         </table>
 
         <div id="footerLeft" class="footerLeft">
-            V0.1
         </div>
         <div class="footerRight">
-            ©Intercamber, 2013
+            ©Intercamber v0.1, 2013
         </div>
     </div>
 </body>

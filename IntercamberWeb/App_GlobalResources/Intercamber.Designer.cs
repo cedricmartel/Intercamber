@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Online users: {0}.
+        /// </summary>
+        internal static string NumberOnlineUsers {
+            get {
+                return ResourceManager.GetString("NumberOnlineUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à My profile.
         /// </summary>
         internal static string Profil_PageName {

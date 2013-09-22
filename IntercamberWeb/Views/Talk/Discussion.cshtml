@@ -12,7 +12,6 @@
             margin: 20px;
         }
     </style>
-    <script src="/signalr/hubs"></script>
 }
 
 
@@ -20,15 +19,14 @@
     <script type="text/javascript">
         $(function() {
             // load signalr chat
-            var chat = $.connection.chatHub;
-            chat.client.add = function(name, message, date) {
+            window.connectedHub.client.addMessage = function (name, message, date) {
                 printMessage(encodeText(name), encodeText(message), encodeText(date));
             };
             $('#message').focus();
-            $.connection.hub.start().done(function() {
-                chat.server.addToRoom("@(ViewBag.IdThread)");
+            window.connectedHub.done(function () {
+                window.connectedHub.server.addToRoom("@(ViewBag.IdThread)");
                 $('#sendmessage').click(function() {
-                    chat.server.sendMessage("@(ViewBag.IdThread)", "@(ViewBag.MyName.Replace("\"", ""))", $('#message').val());
+                    window.connectedHub.server.sendMessage("@(ViewBag.IdThread)", "@(ViewBag.MyName.Replace("\"", ""))", $('#message').val());
                     $('#message').val('').focus();
                 });
             });

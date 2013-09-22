@@ -10,6 +10,7 @@ namespace CML.Intercamber.Web
 {
     public class ChatHub : Hub
     {
+        #region chat
         public const string RoomNameTemplate = "r{0}"; // threadId
 
         private bool CanEnterRoom(string idRoom)
@@ -25,7 +26,7 @@ namespace CML.Intercamber.Web
                 return;
             // save message 
             ThreadMessagesDao dao = new ThreadMessagesDao();
-            dao.InsertThreadMessages(new ThreadMessages()
+            dao.InsertThreadMessages(new ThreadMessages
             {
                 DateMessage = DateTime.Now, 
                 IdThread = long.Parse(idThread), 
@@ -34,7 +35,7 @@ namespace CML.Intercamber.Web
                 MessageCorrection = null
             });
             // send message 
-            Clients.Group(targetRoom).add(name, message, DateTimeHelper.FormatDate(DateTime.Now, DateTimeHelper.DATETIME_FORMAT));
+            Clients.Group(targetRoom).addMessage(name, message, DateTimeHelper.FormatDate(DateTime.Now, DateTimeHelper.DATETIME_FORMAT));
         }
 
         public void AddToRoom(string idThread)
@@ -49,5 +50,31 @@ namespace CML.Intercamber.Web
         {
             Groups.Remove(Context.ConnectionId, roomName);
         }
+        #endregion 
+
+        #region connecter users counter
+        private static int usersConnectedCounter = 0;
+
+        public static int UsersConnectedCounter
+        {
+            get
+            {
+                return usersConnectedCounter;
+            }
+            set
+            {
+                usersConnectedCounter = value;
+                string message = string.Format(Resources.Intercamber.NumberOnlineUsers, usersConnectedCounter);
+                var hubContext = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+                hubContext.Clients.All.printOnlineUsers(message);
+            }
+        }
+
+        public void GetCurrentOnlineUsers()
+        {
+            string message = string.Format(Resources.Intercamber.NumberOnlineUsers, usersConnectedCounter);
+            Clients.Caller.printOnlineUsers(message);
+        }
+        #endregion
     }
 }
