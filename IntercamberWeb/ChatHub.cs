@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CML.Intercamber.Business.Dao;
 using CML.Intercamber.Business.Helper;
 using CML.Intercamber.Business.Model;
@@ -53,28 +55,58 @@ namespace CML.Intercamber.Web
         #endregion 
 
         #region connecter users counter
-        private static int usersConnectedCounter = 0;
+        private static readonly List<long> listUserConnected = new List<long>();
 
-        public static int UsersConnectedCounter
+        public static void RegisterUserConnected(long idUser, string emailUser)
         {
-            get
+            if(!listUserConnected.Contains(idUser))
+                listUserConnected.Add(idUser);
+            PublishUserCountAndFriendsOnlineStatus(idUser, emailUser);
+        }
+
+        public static void RegisterUserDisconnected(long idUser, string emailUser)
+        {
+            if (listUserConnected.Contains(idUser))
+                listUserConnected.Remove(idUser);
+            PublishUserCountAndFriendsOnlineStatus(idUser, emailUser);
+        }
+
+        public static bool IsUserConnected(long idUser)
+        {
+            return listUserConnected.Contains(idUser);
+        }
+
+        private static void PublishUserCountAndFriendsOnlineStatus(long idUser, string emailUser)
+        {
+            // change number connected users
+            string message = string.Format(Resources.Intercamber.NumberOnlineUsers, listUserConnected.Count);
+            var hubContext = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+            hubContext.Clients.All.printOnlineUsers(message);
+            // change users online status  
+            bool amIConnected = listUserConnected.Contains(idUser);
+            foreach (var contact in SessionHelper.ContactDetails(idUser, emailUser))
             {
-                return usersConnectedCounter;
-            }
-            set
-            {
-                usersConnectedCounter = value;
-                string message = string.Format(Resources.Intercamber.NumberOnlineUsers, usersConnectedCounter);
-                var hubContext = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-                hubContext.Clients.All.printOnlineUsers(message);
+                if (listUserConnected.Contains(contact.IdUser))
+                    hubContext.Clients.Group("u" + contact.IdUser).refreshOnlineStatus(idUser, amIConnected);
             }
         }
 
         public void GetCurrentOnlineUsers()
         {
-            string message = string.Format(Resources.Intercamber.NumberOnlineUsers, usersConnectedCounter);
+            string message = string.Format(Resources.Intercamber.NumberOnlineUsers, listUserConnected.Count);
             Clients.Caller.printOnlineUsers(message);
         }
         #endregion
+
+
+        public override Task OnConnected()
+        {
+            long idUser = SessionHelper.ConnectedUserId;
+
+            Groups.Add(Context.ConnectionId, "u" + idUser);
+
+            return base.OnConnected();
+        }
+
     }
 }

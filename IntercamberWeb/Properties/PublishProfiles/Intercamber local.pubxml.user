@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Ce fichier est utilisé par le processus de publication/package de votre projet Web. Vous pouvez personnaliser le comportement de ce processus
+en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la page http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_GlobalResources/Intercamber.fr.resx">
+      <publishTime>09/18/2013 19:22:20</publishTime>
+    </File>
+    <File Include="App_GlobalResources/Intercamber.resx">
+      <publishTime>09/22/2013 17:40:55</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/Castle.DynamicProxy.dll">
+      <publishTime>09/17/2013 18:53:44</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/de/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/de/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.AspNet.dll">
+      <publishTime>09/21/2013 12:20:38</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.Core.dll">
+      <publishTime>09/21/2013 12:20:38</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
+      <publishTime>09/21/2013 12:20:38</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OAuth.dll">
+      <publishTime>09/21/2013 12:20:39</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OpenId.dll">
+      <publishTime>09/21/2013 12:20:39</publishTime>
+    </File>
+    <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
+      <publishTime>09/21/2013 12:20:39</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>09/21/2013 12:20:40</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/es/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/es/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/fr/EntityFramework.resources.dll">
+      <publishTime>09/14/2013 18:32:25</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/fr/Microsoft.Web.WebPages.OAuth.resources.dll">
+      <publishTime>09/14/2013 18:32:25</publishTime>
+    </File>
+    <File Include="bin/fr/System.Net.Http.Formatting.resources.dll">
+      <publishTime>09/14/2013 18:32:23</publishTime>
+    </File>
+    <File Include="bin/fr/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Helpers.resources.dll">
+      <publishTime>09/14/2013 18:32:22</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Http.OData.resources.dll">
+      <publishTime>09/14/2013 18:32:26</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Http.resources.dll">
+      <publishTime>09/14/2013 18:32:23</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Http.WebHost.resources.dll">
+      <publishTime>09/14/2013 18:32:23</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Mvc.resources.dll">
+      <publishTime>09/14/2013 18:32:22</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Optimization.resources.dll">
+      <publishTime>09/14/2013 18:32:24</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.Razor.resources.dll">
+      <publishTime>09/14/2013 18:32:22</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>09/14/2013 18:32:22</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>09/14/2013 18:32:22</publishTime>
+    </File>
+    <File Include="bin/fr/System.Web.WebPages.resources.dll">
+      <publishTime>09/14/2013 18:32:22</publishTime>
+    </File>
+    <File Include="bin/fr/WebMatrix.Data.resources.dll">
+      <publishTime>09/14/2013 18:32:24</publishTime>
+    </File>
+    <File Include="bin/fr/WebMatrix.WebData.resources.dll">
+      <publishTime>09/14/2013 18:32:25</publishTime>
+    </File>
+    <File Include="bin/IBatisNet.Common.dll">
+      <publishTime>09/17/2013 18:53:44</publishTime>
+    </File>
+    <File Include="bin/IBatisNet.DataMapper.dll">
+      <publishTime>09/17/2013 18:53:44</publishTime>
+    </File>
+    <File Include="bin/IntercamberBusiness.dll">
+      <publishTime>09/23/2013 19:56:49</publishTime>
+    </File>
+    <File Include="bin/IntercamberBusiness.pdb">
+      <publishTime>09/23/2013 19:56:48</publishTime>
+    </File>
+    <File Include="bin/IntercamberWeb.dll">
+      <publishTime>09/23/2013 19:58:38</publishTime>
+    </File>
+    <File Include="bin/IntercamberWeb.pdb">
+      <publishTime>09/23/2013 19:58:38</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/it/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/it/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/ja/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/ja/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/ko/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/ko/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/log4net.dll">
+      <publishTime>09/21/2013 12:20:41</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
+      <publishTime>09/21/2013 12:20:41</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.Owin.dll">
+      <publishTime>09/21/2013 12:20:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
+      <publishTime>09/21/2013 12:20:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.Edm.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Data.OData.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>09/21/2013 12:20:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>09/21/2013 12:20:47</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>09/21/2013 12:20:41</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.WebPages.OAuth.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>09/21/2013 12:20:47</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/ru/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/ru/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>09/21/2013 12:20:42</publishTime>
+    </File>
+    <File Include="bin/System.Spatial.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>09/21/2013 12:20:43</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.OData.dll">
+      <publishTime>09/21/2013 12:20:43</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>09/21/2013 12:20:43</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>09/21/2013 12:20:41</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>09/21/2013 12:20:42</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>09/21/2013 12:20:41</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/WebMatrix.Data.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/WebMatrix.WebData.dll">
+      <publishTime>09/21/2013 12:20:44</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.Edm.resources.dll">
+      <publishTime>09/21/2013 12:20:45</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/Microsoft.Data.OData.resources.dll">
+      <publishTime>09/21/2013 12:20:46</publishTime>
+    </File>
+    <File Include="bin/zh-Hant/System.Spatial.resources.dll">
+      <publishTime>09/21/2013 12:20:48</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_diagonals-thick_18_b81900_40x40.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_diagonals-thick_20_666666_40x40.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_flat_10_000000_40x100.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_100_f6f6f6_1x400.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_100_fdf5ce_1x400.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_glass_65_ffffff_1x400.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_gloss-wave_35_f6a828_500x100.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_highlight-soft_100_eeeeee_1x100.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-bg_highlight-soft_75_ffe45c_1x100.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_222222_256x240.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_228ef1_256x240.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_ef8c08_256x240.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_ffd27a_256x240.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/images/ui-icons_ffffff_256x240.png">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/jquery-ui-1.9.2.custom.min.css">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>09/21/2013 10:12:57</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/17/2013 19:35:05</publishTime>
+    </File>
+    <File Include="Images/Flags/en.png">
+      <publishTime>09/16/2013 17:47:13</publishTime>
+    </File>
+    <File Include="Images/Flags/es.png">
+      <publishTime>09/16/2013 17:47:05</publishTime>
+    </File>
+    <File Include="Images/Flags/fr.png">
+      <publishTime>09/16/2013 17:47:19</publishTime>
+    </File>
+    <File Include="Images/ico-disconnect.gif">
+      <publishTime>09/18/2013 21:04:15</publishTime>
+    </File>
+    <File Include="Images/Lock.png">
+      <publishTime>04/02/2013 09:56:50</publishTime>
+    </File>
+    <File Include="Images/NoAvatar.png">
+      <publishTime>09/21/2013 10:07:55</publishTime>
+    </File>
+    <File Include="Images/Offline.png">
+      <publishTime>09/21/2013 10:18:29</publishTime>
+    </File>
+    <File Include="Images/Online.png">
+      <publishTime>09/21/2013 10:15:15</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/21/2013 10:51:22</publishTime>
+    </File>
+    <File Include="Scripts/Intercamber.js">
+      <publishTime>09/21/2013 09:18:37</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.8.3.min.js">
+      <publishTime>09/19/2013 20:30:53</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.9.2.custom.min.js">
+      <publishTime>09/19/2013 11:30:24</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-1.1.3.js">
+      <publishTime>09/21/2013 10:51:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery.signalR-1.1.3.min.js">
+      <publishTime>09/21/2013 10:51:03</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>09/18/2013 21:29:58</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>09/21/2013 10:12:45</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/ExternalLoginConfirmation.cshtml">
+      <publishTime>09/17/2013 19:38:40</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/ExternalLoginFailure.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/Login.cshtml">
+      <publishTime>09/17/2013 19:37:53</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/Manage.cshtml">
+      <publishTime>09/17/2013 19:38:40</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/Register.cshtml">
+      <publishTime>09/17/2013 19:38:40</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/_ChangePasswordPartial.cshtml">
+      <publishTime>09/17/2013 19:38:20</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/_ExternalLoginsListPartial.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/_RemoveExternalLoginsPartial.cshtml">
+      <publishTime>09/17/2013 19:38:40</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Account/_SetPasswordPartial.cshtml">
+      <publishTime>09/17/2013 19:38:40</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Home/About.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Home/Contact.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Home/Index.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Shared/Error.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Shared/_Layout.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/SAMPLE/Shared/_LoginPartial.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>09/22/2013 19:54:46</publishTime>
+    </File>
+    <File Include="Views/Talk/Discussion.cshtml">
+      <publishTime>09/22/2013 19:53:09</publishTime>
+    </File>
+    <File Include="Views/Talk/Threads.cshtml">
+      <publishTime>09/21/2013 21:17:54</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>09/14/2013 18:31:22</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/23/2013 19:58:40</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

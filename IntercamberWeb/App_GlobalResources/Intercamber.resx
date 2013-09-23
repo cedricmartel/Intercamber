@@ -183,4 +183,7 @@
   <data name="NumberOnlineUsers" xml:space="preserve">
     <value>Online users: {0}</value>
   </data>
+  <data name="Home_MyContacts" xml:space="preserve">
+    <value>My contacts</value>
+  </data>
 </root>

@@ -10,19 +10,27 @@ namespace CML.Intercamber.Web.Helpers
     public class SessionHelper
     {
         private const string SessionKeyUser = "User";
+        public const string SessionKeyUserId = "IdUser";
+        public const string SessionKeyUserEmail = "Email";
         private const string SessionKeyThreads = "Threads";
+        private const string SessionKeyContacts = "Contacts";
 
         // object for stocking sessions data (.net sessions object is not viable)
-        private static readonly Dictionary<string, Dictionary<string, object>> Session = new Dictionary<string, Dictionary<string, object>>();
+        private static readonly Dictionary<string, Dictionary<string, object>> StaticSession = new Dictionary<string, Dictionary<string, object>>();
 
         #region
 
         public static object GetSessionItem(string code)
         {
-            string idUser = HttpContext.Current.User.Identity.Name;
-            if (!Session.Keys.Contains(idUser))
+            return GetSessionItem(code, HttpContext.Current.User.Identity.Name);
+        }
+            
+
+        public static object GetSessionItem(string code, string idUser)
+        {
+            if (!StaticSession.Keys.Contains(idUser))
                 return null;
-            var connectedUserSession = Session[idUser];
+            var connectedUserSession = StaticSession[idUser];
             if (!connectedUserSession.ContainsKey(code))
                 return null;
             return connectedUserSession[code];
@@ -36,13 +44,19 @@ namespace CML.Intercamber.Web.Helpers
 
         public static void AddSessionItem(string code, object val, string userKey)
         {
-            if (!Session.Keys.Contains(userKey))
-                Session.Add(userKey, new Dictionary<string, object>());
-            var connectedUserSession = Session[userKey];
+            if (!StaticSession.Keys.Contains(userKey))
+                StaticSession.Add(userKey, new Dictionary<string, object>());
+            var connectedUserSession = StaticSession[userKey];
             if (!connectedUserSession.ContainsKey(code))
                 connectedUserSession.Add(code, val);
             else
                 connectedUserSession[code] = val;
+        }
+
+        public static void DestroySession(string userKey)
+        {
+            if (StaticSession.ContainsKey(userKey))
+                StaticSession.Remove(userKey);
         }
 
 
@@ -78,7 +92,8 @@ namespace CML.Intercamber.Web.Helpers
 
         public static long ConnectedUserId
         {
-            get {
+            get
+            {
                 return ((Users)GetSessionItem(SessionKeyUser)).IdUser;
             }
         }
@@ -94,9 +109,11 @@ namespace CML.Intercamber.Web.Helpers
 
         public static void CreateSession(Users user)
         {
-            ChatHub.UsersConnectedCounter++;
+            HttpContext.Current.Session[SessionKeyUserId] = user.IdUser;
+            HttpContext.Current.Session[SessionKeyUserEmail] = user.Email;
+            ChatHub.RegisterUserConnected(user.IdUser, user.Email);
             AddSessionItem(SessionKeyUser, user, user.Email);
-            // TODO 
+            // TODO ajouter les autres caches de session 
         }
 
         public static void CreateSession(string loginUser)
@@ -108,14 +125,13 @@ namespace CML.Intercamber.Web.Helpers
         }
         #endregion
 
-        #region data threads 
-
+        // data threads 
         public static IList<ThreadDetail> ThreadDetails
         {
             get
             {
                 IList<ThreadDetail> data = GetSessionItem(SessionKeyThreads) as List<ThreadDetail>;
-                if(data == null)
+                if (data == null)
                 {
                     var dao = new ThreadsDao();
                     data = dao.ListThreads(ConnectedUserId);
@@ -124,7 +140,19 @@ namespace CML.Intercamber.Web.Helpers
                 return data;
             }
         }
-        #endregion
+
+        // contacts
+        public static IList<ContactDetail> ContactDetails(long idUser, string emailUser)
+        {
+            IList<ContactDetail> data = GetSessionItem(SessionKeyContacts, emailUser) as List<ContactDetail>;
+            if (data == null)
+            {
+                var dao = new ContactsDao();
+                data = dao.ListContactsByUser(idUser);
+                AddSessionItem(SessionKeyContacts, data, emailUser);
+            }
+            return data;
+        }
 
     }
 }

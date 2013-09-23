@@ -28,6 +28,7 @@ a, a:visited
 img
 {
     border: 0;
+    vertical-align: bottom;
 }
 
 p

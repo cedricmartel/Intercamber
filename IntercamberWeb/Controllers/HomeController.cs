@@ -12,7 +12,7 @@ namespace CML.Intercamber.Web.Controllers
 
         public ActionResult Index()
         {
-            
+
             return View();
         }
 

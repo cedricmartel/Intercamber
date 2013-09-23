@@ -51,7 +51,13 @@ namespace CML.Intercamber.Web
 
         protected void Session_End(object sender, EventArgs e)
         {
-            ChatHub.UsersConnectedCounter--;
+            var idUser = Session[SessionHelper.SessionKeyUserId];
+            var mailUser = Session[SessionHelper.SessionKeyUserEmail];
+            if (idUser != null && mailUser != null)
+            {
+                ChatHub.RegisterUserDisconnected((long) idUser, (string) mailUser);
+                SessionHelper.DestroySession((string) Session[SessionHelper.SessionKeyUserEmail]);
+            }
         }
     }
 }

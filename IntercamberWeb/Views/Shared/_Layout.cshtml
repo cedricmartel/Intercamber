@@ -1,6 +1,4 @@
-﻿@using System.Globalization
-@using System.Threading
-@using System.Web.UI.WebControls
+﻿@using System.Threading
 @using CML.Intercamber.Web.Helpers
 <!DOCTYPE html>
 <html lang="fr">
@@ -19,6 +17,7 @@
     <script src="/signalr/hubs"></script>
     <script>
         var connectedHub = null;
+        var hubReady = null;
         $(function() {
             var pageCode = "@(NavigationHelper.CurrentPageRoute)";
             var currentMenu = $("a[href='" + pageCode + "']");
@@ -28,15 +27,17 @@
             {
                 <text>
                 window.connectedHub = $.connection.chatHub;
-                $.connection.hub.start().done(function () {
+                window.hubReady = $.connection.hub.start();
+                window.hubReady.done(function () {
                     window.connectedHub.server.getCurrentOnlineUsers();
                 });
                 window.connectedHub.client.printOnlineUsers = function (message) {
                     $('#footerLeft').text(message);
                 };
+                
                 </text>
             }
-        })
+        });
     </script>
     @RenderSection("PageHead", false)
 </head>

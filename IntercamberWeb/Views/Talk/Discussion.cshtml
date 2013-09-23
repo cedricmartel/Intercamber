@@ -23,7 +23,7 @@
                 printMessage(encodeText(name), encodeText(message), encodeText(date));
             };
             $('#message').focus();
-            window.connectedHub.done(function () {
+            window.hubReady.done(function () {
                 window.connectedHub.server.addToRoom("@(ViewBag.IdThread)");
                 $('#sendmessage').click(function() {
                     window.connectedHub.server.sendMessage("@(ViewBag.IdThread)", "@(ViewBag.MyName.Replace("\"", ""))", $('#message').val());

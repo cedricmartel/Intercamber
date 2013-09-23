@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à My contacts.
+        /// </summary>
+        internal static string Home_MyContacts {
+            get {
+                return ResourceManager.GetString("Home_MyContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Home.
         /// </summary>
         internal static string Home_PageName {

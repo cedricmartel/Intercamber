@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfilsConst.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dao\ContactsDao.cs" />
     <Compile Include="Dao\ThreadMessagesDao.cs" />
     <Compile Include="Dao\ThreadsDao.cs" />
     <Compile Include="Dao\ThreadUsersDao.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Helper\DateTimeHelper.cs" />
     <Compile Include="Helper\IBatisHelper.cs" />
     <Compile Include="Helper\IntHelper.cs" />
+    <Compile Include="Model\ContactDetail.cs" />
     <Compile Include="Model\Contacts.cs">
       <DependentUpon>ModelGenerator.tt</DependentUpon>
     </Compile>
@@ -134,7 +136,9 @@
   <ItemGroup>
     <EmbeddedResource Include="IBatisQuery\Users.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="IBatisQuery\Contacts.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

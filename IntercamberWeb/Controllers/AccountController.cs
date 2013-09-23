@@ -60,7 +60,6 @@ namespace CML.Intercamber.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            Session.Contents.RemoveAll();
             Session.Abandon();
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
