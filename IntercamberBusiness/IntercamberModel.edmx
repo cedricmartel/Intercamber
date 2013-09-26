@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="IntercamberModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="IntercamberModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="IntercamberModelStoreContainer">
           <EntitySet Name="Contacts" EntityType="IntercamberModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Country" EntityType="IntercamberModel.Store.Country" store:Type="Tables" Schema="dbo" />
@@ -113,6 +113,9 @@
           <Property Name="BirthDate" Type="datetime2" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="DateCreate" Type="datetime2" Nullable="false" />
+          <Property Name="LanguageLearn" Type="varchar" MaxLength="2" />
+          <Property Name="LanguageSpoken" Type="varchar" MaxLength="2" />
+          <Property Name="Country" Type="varchar" MaxLength="2" />
         </EntityType>
         <Association Name="FK_Contacts_Users">
           <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
@@ -174,7 +177,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IntercamberModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -213,9 +217,9 @@
             <PropertyRef Name="IdUser" />
             <PropertyRef Name="IdUserContact" />
           </Key>
-          <Property Type="Int64" Name="IdUser" Nullable="false" />
-          <Property Type="Int64" Name="IdUserContact" Nullable="false" />
-          <Property Type="DateTime" Name="DateAdd" Nullable="false" Precision="7" />
+          <Property Name="IdUser" Type="Int64" Nullable="false" />
+          <Property Name="IdUserContact" Type="Int64" Nullable="false" />
+          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Contacts" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Contacts" ToRole="Users" />
         </EntityType>
@@ -223,45 +227,45 @@
           <Key>
             <PropertyRef Name="IdCountry" />
           </Key>
-          <Property Type="Int32" Name="IdCountry" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="LblCountry" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LblCountry" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="Establishments">
           <Key>
             <PropertyRef Name="IdEstablishment" />
           </Key>
-          <Property Type="Int32" Name="IdEstablishment" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="LblEstablishment" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="IdCountry" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
-          <Property Type="Int32" Name="TimeZone" Nullable="false" />
+          <Property Name="IdEstablishment" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LblEstablishment" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IdCountry" Type="Int32" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TimeZone" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
             <PropertyRef Name="IdProfil" />
           </Key>
-          <Property Type="Int32" Name="IdProfil" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="LblProfil" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdProfil" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LblProfil" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="ThreadMessages">
           <Key>
             <PropertyRef Name="IdMessage" />
           </Key>
-          <Property Type="Int64" Name="IdMessage" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="IdThread" Nullable="false" />
-          <Property Type="Int64" Name="IdUser" Nullable="false" />
-          <Property Type="DateTime" Name="DateMessage" Nullable="false" Precision="7" />
-          <Property Type="String" Name="Message" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="MessageCorrection" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdMessage" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdThread" Type="Int64" Nullable="false" />
+          <Property Name="IdUser" Type="Int64" Nullable="false" />
+          <Property Name="DateMessage" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Message" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="MessageCorrection" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Threads" Relationship="IntercamberModel.FK_ThreadMessages_Threads" FromRole="ThreadMessages" ToRole="Threads" />
         </EntityType>
         <EntityType Name="Threads">
           <Key>
             <PropertyRef Name="IdThread" />
           </Key>
-          <Property Type="Int64" Name="IdThread" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="IdTypeThread" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
+          <Property Name="IdThread" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTypeThread" Type="Int32" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="ThreadMessages" Relationship="IntercamberModel.FK_ThreadMessages_Threads" FromRole="Threads" ToRole="ThreadMessages" />
           <NavigationProperty Name="ThreadUsers" Relationship="IntercamberModel.FK_ThreadUsers_Threads" FromRole="Threads" ToRole="ThreadUsers" />
         </EntityType>
@@ -270,10 +274,10 @@
             <PropertyRef Name="IdThread" />
             <PropertyRef Name="IdUser" />
           </Key>
-          <Property Type="Int64" Name="IdThread" Nullable="false" />
-          <Property Type="Int64" Name="IdUser" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
-          <Property Type="DateTime" Name="DateLastSeen" Precision="7" />
+          <Property Name="IdThread" Type="Int64" Nullable="false" />
+          <Property Name="IdUser" Type="Int64" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DateLastSeen" Type="DateTime" Precision="7" />
           <NavigationProperty Name="Threads" Relationship="IntercamberModel.FK_ThreadUsers_Threads" FromRole="ThreadUsers" ToRole="Threads" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_ThreadUsers_Users" FromRole="ThreadUsers" ToRole="Users" />
         </EntityType>
@@ -281,25 +285,28 @@
           <Key>
             <PropertyRef Name="IdUser" />
           </Key>
-          <Property Type="Int64" Name="IdUser" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="IdProfil" />
-          <Property Type="Int32" Name="IdEstablishment" />
-          <Property Type="String" Name="Email" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="MustChangePassword" Nullable="false" />
-          <Property Type="Int32" Name="IdGender" />
-          <Property Type="String" Name="FirstName" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LastName" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="BirthDate" Precision="7" />
-          <Property Type="Boolean" Name="Enabled" Nullable="false" />
-          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
+          <Property Name="IdUser" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfil" Type="Int32" />
+          <Property Name="IdEstablishment" Type="Int32" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="MustChangePassword" Type="Boolean" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="7" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LanguageLearn" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="LanguageSpoken" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Contacts" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Users" ToRole="Contacts" />
           <NavigationProperty Name="Contacts1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Users" ToRole="Contacts" />
           <NavigationProperty Name="ThreadUsers" Relationship="IntercamberModel.FK_ThreadUsers_Users" FromRole="Users" ToRole="ThreadUsers" />
         </EntityType>
         <Association Name="FK_Contacts_Users">
-          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="IntercamberModel.Contacts" Role="Contacts" Multiplicity="*" />
+          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="IntercamberModel.Contacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="IdUser" />
@@ -310,8 +317,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Contacts_Users1">
-          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="IntercamberModel.Contacts" Role="Contacts" Multiplicity="*" />
+          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="IntercamberModel.Contacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="IdUser" />
@@ -322,8 +329,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThreadMessages_Threads">
-          <End Type="IntercamberModel.Threads" Role="Threads" Multiplicity="1" />
-          <End Type="IntercamberModel.ThreadMessages" Role="ThreadMessages" Multiplicity="*" />
+          <End Role="Threads" Type="IntercamberModel.Threads" Multiplicity="1" />
+          <End Role="ThreadMessages" Type="IntercamberModel.ThreadMessages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Threads">
               <PropertyRef Name="IdThread" />
@@ -334,8 +341,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThreadUsers_Threads">
-          <End Type="IntercamberModel.Threads" Role="Threads" Multiplicity="1" />
-          <End Type="IntercamberModel.ThreadUsers" Role="ThreadUsers" Multiplicity="*" />
+          <End Role="Threads" Type="IntercamberModel.Threads" Multiplicity="1" />
+          <End Role="ThreadUsers" Type="IntercamberModel.ThreadUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Threads">
               <PropertyRef Name="IdThread" />
@@ -346,8 +353,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThreadUsers_Users">
-          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="IntercamberModel.ThreadUsers" Role="ThreadUsers" Multiplicity="*" />
+          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
+          <End Role="ThreadUsers" Type="IntercamberModel.ThreadUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="IdUser" />
@@ -357,7 +364,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -366,85 +373,88 @@
           <EntitySetMapping Name="Contacts">
             <EntityTypeMapping TypeName="IntercamberModel.Contacts">
               <MappingFragment StoreEntitySet="Contacts">
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-                <ScalarProperty Name="IdUserContact" ColumnName="IdUserContact" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdUserContact" ColumnName="IdUserContact" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Country">
             <EntityTypeMapping TypeName="IntercamberModel.Country">
               <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="LblCountry" ColumnName="LblCountry" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="LblCountry" ColumnName="LblCountry" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Establishments">
             <EntityTypeMapping TypeName="IntercamberModel.Establishments">
               <MappingFragment StoreEntitySet="Establishments">
-                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="LblEstablishment" ColumnName="LblEstablishment" />
                 <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
+                <ScalarProperty Name="LblEstablishment" ColumnName="LblEstablishment" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Profils">
             <EntityTypeMapping TypeName="IntercamberModel.Profils">
               <MappingFragment StoreEntitySet="Profils">
-                <ScalarProperty Name="LblProfil" ColumnName="LblProfil" />
                 <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
+                <ScalarProperty Name="LblProfil" ColumnName="LblProfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThreadMessages">
             <EntityTypeMapping TypeName="IntercamberModel.ThreadMessages">
               <MappingFragment StoreEntitySet="ThreadMessages">
-                <ScalarProperty Name="MessageCorrection" ColumnName="MessageCorrection" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="DateMessage" ColumnName="DateMessage" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
                 <ScalarProperty Name="IdMessage" ColumnName="IdMessage" />
+                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="DateMessage" ColumnName="DateMessage" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MessageCorrection" ColumnName="MessageCorrection" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Threads">
             <EntityTypeMapping TypeName="IntercamberModel.Threads">
               <MappingFragment StoreEntitySet="Threads">
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="IdTypeThread" ColumnName="IdTypeThread" />
                 <ScalarProperty Name="IdThread" ColumnName="IdThread" />
+                <ScalarProperty Name="IdTypeThread" ColumnName="IdTypeThread" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThreadUsers">
             <EntityTypeMapping TypeName="IntercamberModel.ThreadUsers">
               <MappingFragment StoreEntitySet="ThreadUsers">
-                <ScalarProperty Name="DateLastSeen" ColumnName="DateLastSeen" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdThread" ColumnName="IdThread" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="DateLastSeen" ColumnName="DateLastSeen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="IntercamberModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="MustChangePassword" ColumnName="MustChangePassword" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
-                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
+                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MustChangePassword" ColumnName="MustChangePassword" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="LanguageLearn" ColumnName="LanguageLearn" />
+                <ScalarProperty Name="LanguageSpoken" ColumnName="LanguageSpoken" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -465,7 +475,6 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
-        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

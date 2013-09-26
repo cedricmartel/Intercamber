@@ -2,77 +2,86 @@
 @{
     ViewBag.PageTitle = Resources.Intercamber.Chat_PageName;
 }
-@section PageHead {
-    <style type="text/css">
-        .container
-        {
-            background-color: #99CCFF;
-            border: thick solid #808080;
-            padding: 20px;
-            margin: 20px;
+@section PageHead
+{
+    <style>
+        #pageContent {
+            margin-left: 180px;
         }
     </style>
 }
-
+@section PageLeftBar
+{
+    @Html.Partial("~/Views/Shared/_LeftBarActiveThreadsPartial.cshtml")
+}
 
 @section PageContent {
     <script type="text/javascript">
+        var currentThreadId = null;
+        var myName = "@(ViewBag.MyName.Replace("\"", ""))";
+
         $(function() {
             // load signalr chat
-            window.connectedHub.client.addMessage = function (name, message, date) {
-                printMessage(encodeText(name), encodeText(message), encodeText(date));
+            window.connectedHub.client.addMessage = function (idThread, name, message, date) {
+                if (idThread == currentThreadId)
+                    printMessage(encodeText(name), encodeText(message), encodeText(date));
+                else {
+                    // TODO alert new message
+                }
             };
-            $('#message').focus();
-            window.hubReady.done(function () {
-                window.connectedHub.server.addToRoom("@(ViewBag.IdThread)");
+            window.hubReady.done(function() {
+                @foreach (ThreadDetail thread in ViewBag.MyThreads)
+                {
+                    <text>window.connectedHub.server.addToRoom(@(thread.IdThread)); </text>
+                }
                 $('#sendmessage').click(function() {
-                    window.connectedHub.server.sendMessage("@(ViewBag.IdThread)", "@(ViewBag.MyName.Replace("\"", ""))", $('#message').val());
+                    window.connectedHub.server.sendMessage(window.currentThreadId, myName, $('#message').val());
                     $('#message').val('').focus();
                 });
             });
+            
+        });
+
+        function loadChat(id) {
+            currentThreadId = id;
+            $("#discussion").empty();
             // load chat history 
             $.ajax({
                 type: "POST",
                 url: "/Talk/ChatHistory",
                 contentType: "application/json; charset=utf-8",
-                data: "{'id':@(ViewBag.IdThread)}", 
+                data: "{'id':\"" + currentThreadId + "\"}",
                 dataType: "json",
-                success: function (result) {
+                success: function(result) {
                     for (var i = 0; i < result.length; i++) {
                         var r = result[i];
                         printMessage(r.Author, r.Message, r.Date);
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     debugger;
                 }
             });
-        });
+        }
 
         function encodeText(txt) {
             return $('<div />').text(txt).html();
         }
 
         function printMessage(name, message, date) {
-            $('#discussion').append('<br/>[' + date + ']<strong>' + name + '</strong>:&nbsp;&nbsp;' + message + '');
+            $('#discussion').append('<br/>[' + date + ']<strong> ' + name + '</strong>:&nbsp;' + message + '');
         }
     </script>
     
-    Chat with 
-    @foreach (ThreadDetail td in ViewBag.currentThread)
-    {
-        @td.FirstName
-        @td.LastName
-        <br/>
-    }
-    <br/>
-    
-    <div class="container">
-        <input type="text" id="message" />
-        <input type="button" id="sendmessage" value="Send" />
-        <div id="discussion">
-        </div>
-    </div>
-
+    <table id="talkDiv" style="width:600px; padding-left:5px;border:1px solid #EEEEEE; min-width: 600px;" cellpadding="0" cellspacing="0" >
+        <tr>
+            <td>
+                <div id="discussion" style="min-height:30px; max-height:200px; width:600px; overflow: auto"> </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top: 1px solid #EEEEEE;"><input type="text" style="width:85%" id="message" /> <input type="button" id="sendmessage" value="Send" /></td>
+        </tr>
+    </table>
 
 }

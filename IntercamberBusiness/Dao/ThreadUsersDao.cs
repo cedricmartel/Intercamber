@@ -1,52 +1,26 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
-using CML.Intercamber.Business.Helper;
-using CML.Intercamber.Business.Model;
-using IBatisNet.Common;
 
 namespace CML.Intercamber.Business.Dao
 {
     public class ThreadUsersDao
     {
 
-		public IList<ThreadUsers> SearchThreadUserss()
-		{
-			return IBatisHelper.Instance().QueryForList<ThreadUsers>("CML.Intercamber.ThreadUsers.SearchThreadUserss", null);
-		}
+        //public IList<ThreadUsers> SearchThreadUserss()
+        //{
+        //    List<ThreadUsers> res;
+        //    using (var context = new IntercamberEntities())
+        //    {
+        //        res = (from t in context.Threads
+        //               where t.IdThread == idThread
+        //               from tu in t.ThreadUsers
+        //               join u in context.Users on tu.IdUser equals u.IdUser
+        //               where u.Enabled
+        //               select new ThreadDetail { FirstName = u.FirstName, LastName = u.LastName, IdThread = t.IdThread, IdUser = u.IdUser }
+        //            ).ToList();
+        //    }
+        //    return res;
+        //}
 
-
-
-
-		public void UpdateThreadUsers(ThreadUsers obj)
-		{
-			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-            {
-                IBatisHelper.Instance().Update("CML.Intercamber.ThreadUsers.UpdateThreadUsers", obj);
-                session.Complete();
-            }
-		}
-
-		public void InsertThreadUsers(ThreadUsers obj)
-		{
-			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-            {
-                IBatisHelper.Instance().Insert("CML.Intercamber.ThreadUsers.InsertThreadUsers", obj);
-                session.Complete();
-            }
-		}
-		
-		public void DeleteThreadUsers(string code)
-		{
-			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-            {
-				// TODO  
-                //IBatisHelper.Instance().Delete("CML.Intercamber.ThreadUsers.DeteleThreadUsers", code);
-                //session.Complete();
-            }
-		}
 	}
 }
 

@@ -1,47 +1,29 @@
 using System.Collections.Generic;
-using CML.Intercamber.Business.Helper;
-using CML.Intercamber.Business.Model;
-using IBatisNet.Common;
+using System.Linq;
 
 namespace CML.Intercamber.Business.Dao
 {
     public class ThreadMessagesDao
     {
-        public IList<ThreadMessages> ListThreadMessagesByParameters(long idThread)
-		{
-            Dictionary<string, object> p = new Dictionary<string, object> {{"IdThread", idThread}};
-            return IBatisHelper.Instance().QueryForList<ThreadMessages>("CML.Intercamber.ThreadMessages.ListThreadMessagesByParameters", p);
+        public List<ThreadMessages> ListThreadMessagesByParameters(long idThread)
+        {
+            List<ThreadMessages> res;
+            using (var context = new IntercamberEntities())
+            {
+                res = context.ThreadMessages.Where(x => x.IdThread == idThread).ToList();
+            }
+            return res; 
 		}
 
         public void InsertThreadMessages(ThreadMessages obj)
         {
-            using (IDalSession session = IBatisHelper.Instance().BeginTransaction())
+            using (var context = new IntercamberEntities())
             {
-                IBatisHelper.Instance().Insert("CML.Intercamber.ThreadMessages.InsertThreadMessages", obj);
-                session.Complete();
+                context.ThreadMessages.Add(obj);
+                context.SaveChanges();
             }
         }
 
-
-
-        //public void UpdateThreadMessages(ThreadMessages obj)
-        //{
-        //    using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-        //    {
-        //        IBatisHelper.Instance().Update("CML.Intercamber.ThreadMessages.UpdateThreadMessages", obj);
-        //        session.Complete();
-        //    }
-        //}
-		
-        //public void DeleteThreadMessages(string code)
-        //{
-        //    using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-        //    {
-        //        // TODO  
-        //        //IBatisHelper.Instance().Delete("CML.Intercamber.ThreadMessages.DeteleThreadMessages", code);
-        //        //session.Complete();
-        //    }
-        //}
 	}
 }
 

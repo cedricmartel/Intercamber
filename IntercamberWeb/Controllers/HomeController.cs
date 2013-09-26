@@ -2,6 +2,7 @@
 //using IntercamberWeb.Models;
 
 using System.Web.Mvc;
+using CML.Intercamber.Web.Helpers;
 
 namespace CML.Intercamber.Web.Controllers
 {
@@ -12,7 +13,7 @@ namespace CML.Intercamber.Web.Controllers
 
         public ActionResult Index()
         {
-
+            ViewBag.MyContacts = SessionHelper.ContactDetails(SessionHelper.ConnectedUserId, SessionHelper.ConnectedUser.Email);
             return View();
         }
 

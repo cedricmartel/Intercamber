@@ -1,13 +1,9 @@
-﻿//using IntercamberWeb.Filters;
-//using IntercamberWeb.Models;
-
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CML.Intercamber.Business;
 using CML.Intercamber.Business.Dao;
-using CML.Intercamber.Business.Model;
 using CML.Intercamber.Web.Helpers;
 using CML.Intercamber.Web.Models;
 
@@ -20,6 +16,7 @@ namespace CML.Intercamber.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
+            ViewBag.HideLeftBar = true;
             return View();
         }
 
@@ -42,18 +39,11 @@ namespace CML.Intercamber.Web.Controllers
                 {
                     return Redirect(returnUrl);
                 }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                return RedirectToAction("Index", "Home");
             }
-            else
-            {
-                // connection failed
-                ViewBag.ErrorMessage = "<span style='color:red;'>" + Resources.Intercamber.Login_BadLoginOrPassword + "</span>";
-                return View(model);
-            }
-            
+            // connection failed
+            ViewBag.ErrorMessage = "<span style='color:red;'>" + Resources.Intercamber.Login_BadLoginOrPassword + "</span>";
+            return View(model);
         }
 
         [HttpPost]

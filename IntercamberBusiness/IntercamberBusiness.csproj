@@ -30,19 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.DynamicProxy">
-      <HintPath>Lib\Castle.DynamicProxy.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="IBatisNet.Common">
-      <HintPath>Lib\IBatisNet.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="IBatisNet.DataMapper">
-      <HintPath>Lib\IBatisNet.DataMapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -59,56 +51,60 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfilsConst.tt</DependentUpon>
     </Compile>
+    <Compile Include="Contacts.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dao\ContactsDao.cs" />
     <Compile Include="Dao\ThreadMessagesDao.cs" />
     <Compile Include="Dao\ThreadsDao.cs" />
     <Compile Include="Dao\ThreadUsersDao.cs" />
     <Compile Include="Dao\UsersDao.cs" />
+    <Compile Include="Establishments.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helper\DateTimeHelper.cs" />
-    <Compile Include="Helper\IBatisHelper.cs" />
     <Compile Include="Helper\IntHelper.cs" />
-    <Compile Include="Model\ContactDetail.cs" />
-    <Compile Include="Model\Contacts.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Country.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Establishments.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\IdLabel.cs" />
-    <Compile Include="Model\ModelGenerator.cs">
+    <Compile Include="IntercamberModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
+      <DependentUpon>IntercamberModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Profils.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
+    <Compile Include="IntercamberModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IntercamberModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IntercamberModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ContactDetail.cs" />
+    <Compile Include="Model\IdLabel.cs" />
     <Compile Include="Model\ThreadDetail.cs" />
-    <Compile Include="Model\ThreadMessages.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Threads.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\ThreadUsers.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Users.cs">
-      <DependentUpon>ModelGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\UsersPartial.cs" />
+    <Compile Include="Profils.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="IntercamberModel.edmx" />
+    <Compile Include="ThreadMessages.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Threads.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThreadUsers.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EmbeddedResource Include="IBatisConfig\SqlMap.config" />
-    <EmbeddedResource Include="IBatisConfig\Providers.config" />
     <None Include="Constants\Generator\ConstGenerator.ttinclude" />
     <None Include="Constants\Generator\EnumGenerator.ttinclude" />
     <None Include="Constants\Generator\IdLabelGenerator.ttinclude" />
@@ -116,28 +112,27 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProfilsConst.generated.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="IntercamberModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IntercamberModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="IntercamberModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IntercamberModel.edmx</DependentUpon>
+      <LastGenOutput>IntercamberModel.Context.cs</LastGenOutput>
+    </None>
     <None Include="IntercamberModel.edmx.diagram">
       <DependentUpon>IntercamberModel.edmx</DependentUpon>
     </None>
-    <None Include="Model\ModelGenerator.tt">
+    <None Include="IntercamberModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelGenerator.cs</LastGenOutput>
+      <DependentUpon>IntercamberModel.edmx</DependentUpon>
+      <LastGenOutput>IntercamberModel.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="IBatisQuery\ThreadMessages.xml" />
-    <EmbeddedResource Include="IBatisQuery\Threads.xml" />
-    <EmbeddedResource Include="IBatisQuery\ThreadUsers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="IBatisQuery\Users.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="IBatisQuery\Contacts.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using CML.Intercamber.Business;
 using CML.Intercamber.Business.Constants;
 using CML.Intercamber.Business.Dao;
 using CML.Intercamber.Business.Model;
@@ -94,7 +95,8 @@ namespace CML.Intercamber.Web.Helpers
         {
             get
             {
-                return ((Users)GetSessionItem(SessionKeyUser)).IdUser;
+                var user = ((Users) GetSessionItem(SessionKeyUser));
+                return user != null ? user.IdUser: 0;
             }
         }
 

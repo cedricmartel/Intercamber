@@ -1,4 +1,4 @@
-﻿namespace CML.Intercamber.Business.Model
+﻿namespace CML.Intercamber.Business
 {
     public partial class Users
     {

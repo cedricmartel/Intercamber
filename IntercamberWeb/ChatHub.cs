@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CML.Intercamber.Business;
 using CML.Intercamber.Business.Dao;
 using CML.Intercamber.Business.Helper;
-using CML.Intercamber.Business.Model;
 using CML.Intercamber.Web.Helpers;
 using Microsoft.AspNet.SignalR;
 
@@ -37,7 +37,7 @@ namespace CML.Intercamber.Web
                 MessageCorrection = null
             });
             // send message 
-            Clients.Group(targetRoom).addMessage(name, message, DateTimeHelper.FormatDate(DateTime.Now, DateTimeHelper.DATETIME_FORMAT));
+            Clients.Group(targetRoom).addMessage(idThread, name, message, DateTimeHelper.FormatDate(DateTime.Now, DateTimeHelper.DATETIME_FORMAT));
         }
 
         public void AddToRoom(string idThread)

@@ -26,8 +26,6 @@ namespace CML.Intercamber.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            // load connection string 
-            Business.Helper.IBatisHelper.RegisterConnectionString(ConfigurationManager.ConnectionStrings["IntercamberDatabase"].ConnectionString);
         }
 
         protected void Session_Start(object sender, EventArgs e)

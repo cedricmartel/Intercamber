@@ -30,7 +30,9 @@ img
     border: 0;
     vertical-align: bottom;
 }
-
+td {
+    vertical-align: top;
+}
 p
 {
     margin-top: 0;
@@ -68,7 +70,6 @@ p
 
 .logo
 {
-    border-right: 1px solid #3D556C;
     width: 100px;
 }
 
@@ -96,9 +97,8 @@ p
     background: #DEF6FF;
     width: auto;
     font-size: 13px;
-    padding: 10px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
     color: #00156e;
-    vertical-align: middle;
     position:relative; 
     height:100%; 
     width:180px;
@@ -125,7 +125,7 @@ p
 .languageSelector
 {
     position: absolute;
-    right: 5px;
+    right: 100px;
 }
 
 /* IMG BUTTON */

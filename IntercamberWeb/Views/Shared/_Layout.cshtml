@@ -18,7 +18,7 @@
     <script>
         var connectedHub = null;
         var hubReady = null;
-        $(function() {
+        $(function () {
             var pageCode = "@(NavigationHelper.CurrentPageRoute)";
             var currentMenu = $("a[href='" + pageCode + "']");
             if (currentMenu.length > 0)
@@ -26,16 +26,16 @@
             @if (Request.IsAuthenticated)
             {
                 <text>
-                window.connectedHub = $.connection.chatHub;
-                window.hubReady = $.connection.hub.start();
-                window.hubReady.done(function () {
-                    window.connectedHub.server.getCurrentOnlineUsers();
-                });
-                window.connectedHub.client.printOnlineUsers = function (message) {
-                    $('#footerLeft').text(message);
-                };
-                
-                </text>
+            window.connectedHub = $.connection.chatHub;
+            window.hubReady = $.connection.hub.start();
+            window.hubReady.done(function () {
+                window.connectedHub.server.getCurrentOnlineUsers();
+            });
+            window.connectedHub.client.printOnlineUsers = function (message) {
+                $('#footerLeft').text(message);
+            };
+
+            </text>
             }
         });
     </script>
@@ -45,17 +45,18 @@
     <div id="centpourcent">
         <table width="100%" style="height: 100%" cellspacing="0" cellpadding="0">
             <tr>
-                <td rowspan="2" class="header logo" align="center">logo 
+                <td class="titreApplication" colspan="2">
+                    <img src="~/Images/TitreIntercambers.png" />
+                    <span class="languageSelector">
+                        <a href="/Account/ChangeLanguage?id=fr">
+                            <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("fr") ? "imgButtonSelected" : "")" src="~/Images/Flags/fr.png" /></a>
+                        <a href="/Account/ChangeLanguage?id=es">
+                            <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("es") ? "imgButtonSelected" : "")" src="~/Images/Flags/es.png" /></a>
+                        <a href="/Account/ChangeLanguage?id=en">
+                            <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("en") ? "imgButtonSelected" : "")" src="~/Images/Flags/en.png" /></a>
+                    </span>
                 </td>
-                <td class="titreApplication">Intercamber
-                        <span class="languageSelector">
-                            <a href="/Account/ChangeLanguage?id=fr">
-                                <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("fr") ? "imgButtonSelected" : "")" src="~/Images/Flags/fr.png" /></a>
-                            <a href="/Account/ChangeLanguage?id=es">
-                                <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("es") ? "imgButtonSelected" : "")" src="~/Images/Flags/es.png" /></a>
-                            <a href="/Account/ChangeLanguage?id=en">
-                                <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("en") ? "imgButtonSelected" : "")" src="~/Images/Flags/en.png" /></a>
-                        </span>
+                <td rowspan="2" class="header logo" align="center">logo 
                 </td>
             </tr>
             <tr class="ui-widget-content">
@@ -67,7 +68,7 @@
                             <li><a href="#">@Resources.Intercamber.Profil_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Contacts_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.SearchContacts_PageName</a></li>
-                            <li><a href="/Talk/Threads">@Resources.Intercamber.ChatList_PageName</a></li>
+                            <li><a href="/Talk/Discussion">@Resources.Intercamber.ChatList_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Agenda_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Vocabulary_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Assistance_PageName</a></li>
@@ -88,33 +89,41 @@
                         </ul>
                     }
                 </td>
-                <td align="right" style="vertical-align:top;" class="header menu">
+                <td align="right" style="vertical-align: top; border-right: 1px solid #3D556C;" class="header menu">
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                         {
-                            <text>
-                                <span style="margin-bottom:8px;">
-                                    @(SessionHelper.ConnectedUser != null ? SessionHelper.ConnectedUser.UserNameComplete : "null")
-                                </span>
-                                <a href="javascript:document.getElementById('logoutForm').submit()">
-                                    <img src="/Images/ico-disconnect.gif" class="imgButton" />
-                                </a>
-                                @Html.AntiForgeryToken()
-                            </text>
+                        <text>
+                        <span style="margin-bottom: 8px;">
+                            @(SessionHelper.ConnectedUser != null ? SessionHelper.ConnectedUser.UserNameComplete : "null")
+                        </span>&nbsp;
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                <img src="/Images/ico-disconnect.gif" class="imgButton" />
+                            </a>
+                    &nbsp;
+                        @Html.AntiForgeryToken()
+                        </text>
                         }
                     }
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="vertical-align: top;" id="pageContent">
+                <td colspan="3" id="pageContent">
                     @*<div align="left" class="titleDiv" id="pageTitle">
                             @ViewBag.PageTitle
                         </div>*@
-                    
-                    @RenderSection("PageContent")
+                    <table class="calcHeight" style="width:100%">
+                        <tr>
+                            <td class="infoBar" @if(ViewBag.HideLeftBar == true){<text>style='display:none;'</text>}>
+                                @RenderSection("PageLeftBar", false)
+                            </td>
+                            <td>
+                                @RenderSection("PageContent")
+                            </td>
+                        </tr>
+                    </table>
                 </td>
-
             </tr>
         </table>
 

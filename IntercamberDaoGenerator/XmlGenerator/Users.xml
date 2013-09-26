@@ -18,6 +18,9 @@
 			<result property="BirthDate" column="BirthDate" />
 			<result property="Enabled" column="Enabled" />
 			<result property="DateCreate" column="DateCreate" />
+			<result property="LanguageLearn" column="LanguageLearn" />
+			<result property="LanguageSpoken" column="LanguageSpoken" />
+			<result property="Country" column="Country" />
         </resultMap>
     </resultMaps>
 
@@ -32,14 +35,14 @@
 
         <update id="CML.Intercamber.Users.UpdateUsers" parameterClass="Users" >
             UPDATE Users
-            SET IdUser = #IdUser#, IdProfil = #IdProfil#, IdEstablishment = #IdEstablishment#, Email = #Email#, Password = #Password#, MustChangePassword = #MustChangePassword#, IdGender = #IdGender#, FirstName = #FirstName#, LastName = #LastName#, BirthDate = #BirthDate#, Enabled = #Enabled#, DateCreate = #DateCreate#
+            SET IdUser = #IdUser#, IdProfil = #IdProfil#, IdEstablishment = #IdEstablishment#, Email = #Email#, Password = #Password#, MustChangePassword = #MustChangePassword#, IdGender = #IdGender#, FirstName = #FirstName#, LastName = #LastName#, BirthDate = #BirthDate#, Enabled = #Enabled#, DateCreate = #DateCreate#, LanguageLearn = #LanguageLearn#, LanguageSpoken = #LanguageSpoken#, Country = #Country#
             WHERE 
 				TODO
         </update>
 
         <insert id="CML.Intercamber.Users.InsertUsers" parameterClass="Users">
-			INSERT INTO Users (IdUser, IdProfil, IdEstablishment, Email, Password, MustChangePassword, IdGender, FirstName, LastName, BirthDate, Enabled, DateCreate)
-			VALUES ( #IdUser#, #IdProfil#, #IdEstablishment#, #Email#, #Password#, #MustChangePassword#, #IdGender#, #FirstName#, #LastName#, #BirthDate#, #Enabled#, #DateCreate# )
+			INSERT INTO Users (IdUser, IdProfil, IdEstablishment, Email, Password, MustChangePassword, IdGender, FirstName, LastName, BirthDate, Enabled, DateCreate, LanguageLearn, LanguageSpoken, Country)
+			VALUES ( #IdUser#, #IdProfil#, #IdEstablishment#, #Email#, #Password#, #MustChangePassword#, #IdGender#, #FirstName#, #LastName#, #BirthDate#, #Enabled#, #DateCreate#, #LanguageLearn#, #LanguageSpoken#, #Country# )
         </insert>
 
         <delete id="CML.Intercamber.Users.DeleteUsers" parameterClass="string">

@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Intercamber.
+        ///   Recherche une chaîne localisée semblable à Intercambers.
         /// </summary>
         internal static string ApplicationTitle {
             get {

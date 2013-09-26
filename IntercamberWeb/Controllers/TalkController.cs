@@ -19,19 +19,10 @@ namespace CML.Intercamber.Web.Controllers
         /// </summary>
         /// <param name="id">id of thread</param>
         /// <returns></returns>
-        public ActionResult Discussion(long? id)
+        public ActionResult Discussion()
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            // get thread infos
-            var threads = SessionHelper.ThreadDetails;
-            var currentThread = threads.Where(x => x.IdThread == id);
-            ViewBag.CurrentThread = currentThread;
+            ViewBag.MyThreads = SessionHelper.ThreadDetails;
             ViewBag.MyName = SessionHelper.ConnectedUser.UserNameComplete;
-            ViewBag.IdThread = id;
             return View();
         }
 
@@ -54,12 +45,6 @@ namespace CML.Intercamber.Web.Controllers
                 Date = DateTimeHelper.FormatDate(x.DateMessage, DateTimeHelper.DATETIME_FORMAT)
             }).ToList();
             return Json(res, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult Threads()
-        {
-            ViewBag.MyThreads = SessionHelper.ThreadDetails;
-            return View();
         }
 
     }

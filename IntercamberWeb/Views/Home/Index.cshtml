@@ -1,11 +1,10 @@
 ﻿@{
     ViewBag.PageTitle = Resources.Intercamber.Home_PageName;
 }
+@section PageLeftBar
+{
+    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml") 
+}
 @section PageContent {
-    
-    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
-    
-    
-    
-
+    Bientot !
 }

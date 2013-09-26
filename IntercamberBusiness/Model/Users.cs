@@ -20,6 +20,9 @@ namespace CML.Intercamber.Business.Model
     	public Nullable<System.DateTime> BirthDate { get; set; }
     	public bool Enabled { get; set; }
     	public System.DateTime DateCreate { get; set; }
+    	public string LanguageLearn { get; set; }
+    	public string LanguageSpoken { get; set; }
+    	public string Country { get; set; }
     
         /* Propriétés de navigation */
     	public ICollection<Contacts> Contacts { get; set; }

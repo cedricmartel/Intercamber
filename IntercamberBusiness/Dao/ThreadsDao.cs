@@ -1,57 +1,45 @@
 using System.Collections.Generic;
-using CML.Intercamber.Business.Helper;
 using CML.Intercamber.Business.Model;
+using System.Linq;
 
 namespace CML.Intercamber.Business.Dao
 {
     public class ThreadsDao
     {
 
-        public IList<ThreadDetail> ListThreads(long idUser)
+        public List<ThreadDetail> ListThreads(long idUser)
         {
-            return IBatisHelper.Instance().QueryForList<ThreadDetail>("CML.Intercamber.Threads.UserThreads", idUser);
+            List<ThreadDetail> res;
+            using (var context = new IntercamberEntities())
+            {
+                res = (from t in context.Threads
+                       where t.ThreadUsers.Any(ttu => ttu.IdUser == idUser)
+                       from tu in t.ThreadUsers
+                       where tu.IdUser != idUser
+                       join u in context.Users on tu.IdUser equals u.IdUser
+                       where u.Enabled
+                       select new ThreadDetail { FirstName = u.FirstName, LastName = u.LastName, IdThread = t.IdThread, IdUser = u.IdUser }
+                    ).ToList();
+            }
+            return res;
         }
 
-        public IList<ThreadDetail> ThreadDetail(long idThread)
+        public List<ThreadDetail> ThreadDetail(long idThread)
         {
-            return IBatisHelper.Instance().QueryForList<ThreadDetail>("CML.Intercamber.Threads.ThreadDetailsById", idThread);
+            List<ThreadDetail> res;
+            using (var context = new IntercamberEntities())
+            {
+                res = (from t in context.Threads
+                       where t.IdThread == idThread
+                       from tu in t.ThreadUsers
+                       join u in context.Users on tu.IdUser equals u.IdUser
+                       where u.Enabled
+                       select new ThreadDetail { FirstName = u.FirstName, LastName = u.LastName, IdThread = t.IdThread, IdUser = u.IdUser }
+                    ).ToList();
+            }
+            return res;
         }
-        
 
-        // TODO remove bellow 
-
-        //public IList<Threads> SearchThreadss()
-        //{
-        //    return IBatisHelper.Instance().QueryForList<Threads>("CML.Intercamber.Threads.SearchThreadss", null);
-        //}
-
-        //public void UpdateThreads(Threads obj)
-        //{
-        //    using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-        //    {
-        //        IBatisHelper.Instance().Update("CML.Intercamber.Threads.UpdateThreads", obj);
-        //        session.Complete();
-        //    }
-        //}
-
-        //public void InsertThreads(Threads obj)
-        //{
-        //    using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-        //    {
-        //        IBatisHelper.Instance().Insert("CML.Intercamber.Threads.InsertThreads", obj);
-        //        session.Complete();
-        //    }
-        //}
-		
-        //public void DeleteThreads(string code)
-        //{
-        //    using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-        //    {
-        //        // TODO  
-        //        //IBatisHelper.Instance().Delete("CML.Intercamber.Threads.DeteleThreads", code);
-        //        //session.Complete();
-        //    }
-        //}
-	}
+    }
 }
 

@@ -1,51 +1,26 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Collections;
-using CML.Intercamber.Business.Helper;
 using CML.Intercamber.Business.Model;
-using IBatisNet.Common;
 
 namespace CML.Intercamber.Business.Dao
 {
     public class ContactsDao
     {
-        public IList<ContactDetail> ListContactsByUser(long idUser)
+        public List<ContactDetail> ListContactsByUser(long idUser)
 		{
-            return IBatisHelper.Instance().QueryForList<ContactDetail>("CML.Intercamber.Contacts.ListContactsByUser", idUser);
-		}
-
-
-
-
-		public void UpdateContacts(Contacts obj)
-		{
-			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
+            List<ContactDetail> res;
+            using (var context = new IntercamberEntities())
             {
-                IBatisHelper.Instance().Update("CML.Intercamber.Contacts.UpdateContacts", obj);
-                session.Complete();
+                res = (from c in context.Contacts
+                       join u in context.Users on c.IdUserContact equals u.IdUser
+                       where c.IdUser == idUser && u.Enabled
+                       select new ContactDetail { IdUser = u.IdUser, FirstName = u.FirstName, LastName = u.LastName }
+                        ).ToList();
             }
+            return res;
 		}
 
-		public void InsertContacts(Contacts obj)
-		{
-			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-            {
-                IBatisHelper.Instance().Insert("CML.Intercamber.Contacts.InsertContacts", obj);
-                session.Complete();
-            }
-		}
-		
-		public void DeleteContacts(string code)
-		{
-			using (IDalSession session = IBatisHelper.Instance().BeginTransaction() )
-            {
-				// TODO  
-                //IBatisHelper.Instance().Delete("CML.Intercamber.Contacts.DeteleContacts", code);
-                //session.Complete();
-            }
-		}
+
 	}
 }
 
