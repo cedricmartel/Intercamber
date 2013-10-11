@@ -32,7 +32,7 @@ namespace CML.Intercamber.Web.Controllers
             {
                 // connection ok
                 FormsAuthentication.SetAuthCookie(model.Email, false);
-                SessionHelper.CreateSession(connectedUser);
+                ConnectedUserHelper.CreateSession(connectedUser);
 
                 //success redirect 
                 if (Url.IsLocalUrl(returnUrl))

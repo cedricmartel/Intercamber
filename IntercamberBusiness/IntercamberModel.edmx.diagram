@@ -5,19 +5,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="09c46aa8ab684e4da0ae746fe41dc3f8" Name="Diagramme1">
-        <EntityTypeShape EntityType="IntercamberModel.Contacts" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Country" Width="1.5" PointX="5.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Establishments" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Profils" Width="1.5" PointX="5.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.ThreadMessages" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Threads" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.ThreadUsers" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="IntercamberModel.Users" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users1" ManuallyRouted="false" />
-        <AssociationConnector Association="IntercamberModel.FK_ThreadMessages_Threads" ManuallyRouted="false" />
-        <AssociationConnector Association="IntercamberModel.FK_ThreadUsers_Threads" ManuallyRouted="false" />
-        <AssociationConnector Association="IntercamberModel.FK_ThreadUsers_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IntercamberModel.ContactRequests" Width="1.5" PointX="1.9041610667035733" PointY="17.761079841182138" />
+        <EntityTypeShape EntityType="IntercamberModel.Contacts" Width="1.5" PointX="2.2631186797577509" PointY="13.521398565509077" />
+        <EntityTypeShape EntityType="IntercamberModel.Countries" Width="1.5" PointX="2.6976250012859819" PointY="26.849459496722304" />
+        <EntityTypeShape EntityType="IntercamberModel.Establishments" Width="1.5" PointX="5.6647927079651472" PointY="17.853853755562497" />
+        <EntityTypeShape EntityType="IntercamberModel.Languages" Width="1.5" PointX="8.0687968749873331" PointY="11.243192737569657" />
+        <EntityTypeShape EntityType="IntercamberModel.Profils" Width="1.5" PointX="0.32581208661469263" PointY="29.050304590282174" />
+        <EntityTypeShape EntityType="IntercamberModel.ThreadMessages" Width="1.5" PointX="3.3109928831974944" PointY="14.080424866676529" />
+        <EntityTypeShape EntityType="IntercamberModel.Threads" Width="1.5" PointX="10.400818095729136" PointY="2.5440255713388442" />
+        <EntityTypeShape EntityType="IntercamberModel.ThreadUsers" Width="1.5" PointX="2.3648054703906203" PointY="28.946764870056306" />
+        <EntityTypeShape EntityType="IntercamberModel.Users" Width="1.5" PointX="3.6577537877754089" PointY="24.284546520693482" />
+        <EntityTypeShape EntityType="IntercamberModel.UsersLearnLanguages" Width="1.5" PointX="10.152371070418679" PointY="13.809019452803312" />
+        <EntityTypeShape EntityType="IntercamberModel.UsersSpokenLanguages" Width="1.5" PointX="10.890308372159632" PointY="25.059582096086622" />
+        <AssociationConnector Association="IntercamberModel.FK_ContactRequests_Users_Ask" />
+        <AssociationConnector Association="IntercamberModel.FK_ContactRequests_Users_Requested" />
+        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users" />
+        <AssociationConnector Association="IntercamberModel.FK_Contacts_Users1" />
+        <AssociationConnector Association="IntercamberModel.FK_Users_Countries" />
+        <AssociationConnector Association="IntercamberModel.FK_UsersLearnLanguages_Languages" />
+        <AssociationConnector Association="IntercamberModel.FK_UsersSpokenLanguages_Languages" />
+        <AssociationConnector Association="IntercamberModel.FK_ThreadMessages_Threads" />
+        <AssociationConnector Association="IntercamberModel.FK_ThreadUsers_Threads" />
+        <AssociationConnector Association="IntercamberModel.FK_ThreadUsers_Users" />
+        <AssociationConnector Association="IntercamberModel.FK_usersLearnLanguages_Users" />
+        <AssociationConnector Association="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

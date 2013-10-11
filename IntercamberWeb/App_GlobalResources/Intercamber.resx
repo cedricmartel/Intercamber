@@ -120,20 +120,11 @@
   <data name="Admin_PageName" xml:space="preserve">
     <value>Admin</value>
   </data>
-  <data name="Agenda_PageName" xml:space="preserve">
-    <value>Agenda</value>
-  </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Intercambers</value>
   </data>
-  <data name="Assistance_PageName" xml:space="preserve">
-    <value>Assistance</value>
-  </data>
   <data name="Chat_PageName" xml:space="preserve">
     <value>Discussions</value>
-  </data>
-  <data name="Contacts_PageName" xml:space="preserve">
-    <value>My contacts</value>
   </data>
   <data name="EstablishmentAdmin_PageName" xml:space="preserve">
     <value>Establishment management</value>
@@ -177,13 +168,103 @@
   <data name="Vocabulary_PageName" xml:space="preserve">
     <value>Vocabulary</value>
   </data>
-  <data name="ChatList_PageName" xml:space="preserve">
-    <value>My discussions</value>
-  </data>
   <data name="NumberOnlineUsers" xml:space="preserve">
     <value>Online users: {0}</value>
   </data>
   <data name="Home_MyContacts" xml:space="preserve">
     <value>My contacts</value>
+  </data>
+  <data name="Discussion_TalkWith" xml:space="preserve">
+    <value>Talking with </value>
+  </data>
+  <data name="Agenda_PageName" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
+  <data name="Assistance_PageName" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="ChatList_PageName" xml:space="preserve">
+    <value>My discussions</value>
+  </data>
+  <data name="Contacts_PageName" xml:space="preserve">
+    <value>My contacts</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="Project_PageName" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Toolbox_PageName" xml:space="preserve">
+    <value>Toolbox</value>
+  </data>
+  <data name="Countries_ag" xml:space="preserve">
+    <value>Argentina</value>
+  </data>
+  <data name="Countries_be" xml:space="preserve">
+    <value>Belgium</value>
+  </data>
+  <data name="Countries_de" xml:space="preserve">
+    <value>Germany</value>
+  </data>
+  <data name="Countries_fr" xml:space="preserve">
+    <value>France</value>
+  </data>
+  <data name="Countries_gr" xml:space="preserve">
+    <value>Grece</value>
+  </data>
+  <data name="Countries_it" xml:space="preserve">
+    <value>Italy</value>
+  </data>
+  <data name="Countries_sp" xml:space="preserve">
+    <value>Spain</value>
+  </data>
+  <data name="Countries_uk" xml:space="preserve">
+    <value>United Kingdom</value>
+  </data>
+  <data name="Countries_us" xml:space="preserve">
+    <value>United States of America</value>
+  </data>
+  <data name="Languages_de" xml:space="preserve">
+    <value>german</value>
+  </data>
+  <data name="Languages_en" xml:space="preserve">
+    <value>english</value>
+  </data>
+  <data name="Languages_fr" xml:space="preserve">
+    <value>french</value>
+  </data>
+  <data name="Languages_sp" xml:space="preserve">
+    <value>spanish</value>
+  </data>
+  <data name="LeftBar_Learning" xml:space="preserve">
+    <value>Currently learning {0}</value>
+  </data>
+  <data name="LeftBar_Speaking" xml:space="preserve">
+    <value>I am fluent in {0}</value>
+  </data>
+  <data name="LeftBar_ContactRequests" xml:space="preserve">
+    <value>Contacts requests</value>
+  </data>
+  <data name="SearchContacts_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="SearchContacts_RequestSentTo" xml:space="preserve">
+    <value>Contact request has been sent to </value>
+  </data>
+  <data name="SearchContacts_SendRequest" xml:space="preserve">
+    <value>Send request</value>
+  </data>
+  <data name="SearchContacts_SendRequestTo" xml:space="preserve">
+    <value>Send contact request to </value>
+  </data>
+  <data name="SearchContacts_YourMessage" xml:space="preserve">
+    <value>Your message</value>
+  </data>
+  <data name="SearchContacts_RequestSentError" xml:space="preserve">
+    <value>Error: could not send request</value>
   </data>
 </root>

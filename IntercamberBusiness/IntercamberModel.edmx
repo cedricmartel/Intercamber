@@ -4,16 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IntercamberModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IntercamberModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="IntercamberModelStoreContainer">
+          <EntitySet Name="ContactRequests" EntityType="IntercamberModel.Store.ContactRequests" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Contacts" EntityType="IntercamberModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Country" EntityType="IntercamberModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Countries" EntityType="IntercamberModel.Store.Countries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Establishments" EntityType="IntercamberModel.Store.Establishments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Languages" EntityType="IntercamberModel.Store.Languages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profils" EntityType="IntercamberModel.Store.Profils" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ThreadMessages" EntityType="IntercamberModel.Store.ThreadMessages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Threads" EntityType="IntercamberModel.Store.Threads" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ThreadUsers" EntityType="IntercamberModel.Store.ThreadUsers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="IntercamberModel.Store.Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersLearnLanguages" EntityType="IntercamberModel.Store.UsersLearnLanguages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsersSpokenLanguages" EntityType="IntercamberModel.Store.UsersSpokenLanguages" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ContactRequests_Users_Ask" Association="IntercamberModel.Store.FK_ContactRequests_Users_Ask">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ContactRequests" EntitySet="ContactRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactRequests_Users_Requested" Association="IntercamberModel.Store.FK_ContactRequests_Users_Requested">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ContactRequests" EntitySet="ContactRequests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Contacts_Users" Association="IntercamberModel.Store.FK_Contacts_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Contacts" EntitySet="Contacts" />
@@ -34,7 +46,39 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="ThreadUsers" EntitySet="ThreadUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Users_Countries" Association="IntercamberModel.Store.FK_Users_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersLearnLanguages_Languages" Association="IntercamberModel.Store.FK_UsersLearnLanguages_Languages">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="UsersLearnLanguages" EntitySet="UsersLearnLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usersLearnLanguages_Users" Association="IntercamberModel.Store.FK_usersLearnLanguages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersLearnLanguages" EntitySet="UsersLearnLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersSpokenLanguages_Languages" Association="IntercamberModel.Store.FK_UsersSpokenLanguages_Languages">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="UsersSpokenLanguages" EntitySet="UsersSpokenLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersSpokenLanguages_UsersSpokenLanguages" Association="IntercamberModel.Store.FK_UsersSpokenLanguages_UsersSpokenLanguages">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersSpokenLanguages" EntitySet="UsersSpokenLanguages" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ContactRequests">
+          <Key>
+            <PropertyRef Name="IdContactRequest" />
+          </Key>
+          <Property Name="IdContactRequest" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdUserRequester" Type="bigint" Nullable="false" />
+          <Property Name="IdUserAsk" Type="bigint" Nullable="false" />
+          <Property Name="DateAsk" Type="datetime2" Nullable="false" />
+          <Property Name="DateValidated" Type="datetime2" />
+          <Property Name="DateDismissed" Type="datetime2" />
+          <Property Name="Message" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="Contacts">
           <Key>
             <PropertyRef Name="IdUser" />
@@ -44,12 +88,11 @@
           <Property Name="IdUserContact" Type="bigint" Nullable="false" />
           <Property Name="DateAdd" Type="datetime2" Nullable="false" />
         </EntityType>
-        <EntityType Name="Country">
+        <EntityType Name="Countries">
           <Key>
             <PropertyRef Name="IdCountry" />
           </Key>
-          <Property Name="IdCountry" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="LblCountry" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IdCountry" Type="varchar" Nullable="false" MaxLength="2" />
         </EntityType>
         <EntityType Name="Establishments">
           <Key>
@@ -60,6 +103,12 @@
           <Property Name="IdCountry" Type="int" Nullable="false" />
           <Property Name="DateCreate" Type="datetime2" Nullable="false" />
           <Property Name="TimeZone" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="varchar" Nullable="false" MaxLength="2" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
@@ -113,10 +162,51 @@
           <Property Name="BirthDate" Type="datetime2" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="DateCreate" Type="datetime2" Nullable="false" />
-          <Property Name="LanguageLearn" Type="varchar" MaxLength="2" />
-          <Property Name="LanguageSpoken" Type="varchar" MaxLength="2" />
-          <Property Name="Country" Type="varchar" MaxLength="2" />
+          <Property Name="IdCountry" Type="varchar" MaxLength="2" />
+          <Property Name="City" Type="nvarchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="UsersLearnLanguages">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdUser" Type="bigint" Nullable="false" />
+          <Property Name="IdLanguage" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="LanguageLevel" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UsersSpokenLanguages">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdUser" Type="bigint" Nullable="false" />
+          <Property Name="IdLanguage" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="IsMotherThongue" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ContactRequests_Users_Ask">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="ContactRequests" Type="IntercamberModel.Store.ContactRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="ContactRequests">
+              <PropertyRef Name="IdUserAsk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactRequests_Users_Requested">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="ContactRequests" Type="IntercamberModel.Store.ContactRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="ContactRequests">
+              <PropertyRef Name="IdUserRequester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contacts_Users">
           <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
           <End Role="Contacts" Type="IntercamberModel.Store.Contacts" Multiplicity="*" />
@@ -177,20 +267,91 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_Users_Countries">
+          <End Role="Countries" Type="IntercamberModel.Store.Countries" Multiplicity="0..1" />
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersLearnLanguages_Languages">
+          <End Role="Languages" Type="IntercamberModel.Store.Languages" Multiplicity="1" />
+          <End Role="UsersLearnLanguages" Type="IntercamberModel.Store.UsersLearnLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="UsersLearnLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usersLearnLanguages_Users">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="UsersLearnLanguages" Type="IntercamberModel.Store.UsersLearnLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UsersLearnLanguages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersSpokenLanguages_Languages">
+          <End Role="Languages" Type="IntercamberModel.Store.Languages" Multiplicity="1" />
+          <End Role="UsersSpokenLanguages" Type="IntercamberModel.Store.UsersSpokenLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="UsersSpokenLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersSpokenLanguages_UsersSpokenLanguages">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="UsersSpokenLanguages" Type="IntercamberModel.Store.UsersSpokenLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UsersSpokenLanguages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IntercamberModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="IntercamberEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ContactRequests" EntityType="IntercamberModel.ContactRequests" />
           <EntitySet Name="Contacts" EntityType="IntercamberModel.Contacts" />
-          <EntitySet Name="Country" EntityType="IntercamberModel.Country" />
+          <EntitySet Name="Countries" EntityType="IntercamberModel.Countries" />
           <EntitySet Name="Establishments" EntityType="IntercamberModel.Establishments" />
+          <EntitySet Name="Languages" EntityType="IntercamberModel.Languages" />
           <EntitySet Name="Profils" EntityType="IntercamberModel.Profils" />
           <EntitySet Name="ThreadMessages" EntityType="IntercamberModel.ThreadMessages" />
           <EntitySet Name="Threads" EntityType="IntercamberModel.Threads" />
           <EntitySet Name="ThreadUsers" EntityType="IntercamberModel.ThreadUsers" />
           <EntitySet Name="Users" EntityType="IntercamberModel.Users" />
+          <EntitySet Name="UsersLearnLanguages" EntityType="IntercamberModel.UsersLearnLanguages" />
+          <EntitySet Name="UsersSpokenLanguages" EntityType="IntercamberModel.UsersSpokenLanguages" />
+          <AssociationSet Name="FK_ContactRequests_Users_Ask" Association="IntercamberModel.FK_ContactRequests_Users_Ask">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ContactRequests" EntitySet="ContactRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactRequests_Users_Requested" Association="IntercamberModel.FK_ContactRequests_Users_Requested">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ContactRequests" EntitySet="ContactRequests" />
+          </AssociationSet>
           <AssociationSet Name="FK_Contacts_Users" Association="IntercamberModel.FK_Contacts_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Contacts" EntitySet="Contacts" />
@@ -198,6 +359,18 @@
           <AssociationSet Name="FK_Contacts_Users1" Association="IntercamberModel.FK_Contacts_Users1">
             <End Role="Users" EntitySet="Users" />
             <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Countries" Association="IntercamberModel.FK_Users_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersLearnLanguages_Languages" Association="IntercamberModel.FK_UsersLearnLanguages_Languages">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="UsersLearnLanguages" EntitySet="UsersLearnLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersSpokenLanguages_Languages" Association="IntercamberModel.FK_UsersSpokenLanguages_Languages">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="UsersSpokenLanguages" EntitySet="UsersSpokenLanguages" />
           </AssociationSet>
           <AssociationSet Name="FK_ThreadMessages_Threads" Association="IntercamberModel.FK_ThreadMessages_Threads">
             <End Role="Threads" EntitySet="Threads" />
@@ -211,61 +384,91 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="ThreadUsers" EntitySet="ThreadUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_usersLearnLanguages_Users" Association="IntercamberModel.FK_usersLearnLanguages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersLearnLanguages" EntitySet="UsersLearnLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersSpokenLanguages_UsersSpokenLanguages" Association="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersSpokenLanguages" EntitySet="UsersSpokenLanguages" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ContactRequests">
+          <Key>
+            <PropertyRef Name="IdContactRequest" />
+          </Key>
+          <Property Type="Int64" Name="IdContactRequest" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="IdUserRequester" Nullable="false" />
+          <Property Type="Int64" Name="IdUserAsk" Nullable="false" />
+          <Property Type="DateTime" Name="DateAsk" Nullable="false" Precision="7" />
+          <Property Type="DateTime" Name="DateValidated" Precision="7" />
+          <Property Type="DateTime" Name="DateDismissed" Precision="7" />
+          <Property Type="String" Name="Message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_ContactRequests_Users_Ask" FromRole="ContactRequests" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="IntercamberModel.FK_ContactRequests_Users_Requested" FromRole="ContactRequests" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Contacts">
           <Key>
             <PropertyRef Name="IdUser" />
             <PropertyRef Name="IdUserContact" />
           </Key>
-          <Property Name="IdUser" Type="Int64" Nullable="false" />
-          <Property Name="IdUserContact" Type="Int64" Nullable="false" />
-          <Property Name="DateAdd" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Type="Int64" Name="IdUser" Nullable="false" />
+          <Property Type="Int64" Name="IdUserContact" Nullable="false" />
+          <Property Type="DateTime" Name="DateAdd" Nullable="false" Precision="7" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Contacts" ToRole="Users" />
           <NavigationProperty Name="Users1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Contacts" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Country">
+        <EntityType Name="Countries">
           <Key>
             <PropertyRef Name="IdCountry" />
           </Key>
-          <Property Name="IdCountry" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="LblCountry" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="IdCountry" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Countries" ToRole="Users" />
         </EntityType>
         <EntityType Name="Establishments">
           <Key>
             <PropertyRef Name="IdEstablishment" />
           </Key>
-          <Property Name="IdEstablishment" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="LblEstablishment" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="IdCountry" Type="Int32" Nullable="false" />
-          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="TimeZone" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="IdEstablishment" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LblEstablishment" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IdCountry" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
+          <Property Type="Int32" Name="TimeZone" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Type="String" Name="IdLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UsersLearnLanguages" Relationship="IntercamberModel.FK_UsersLearnLanguages_Languages" FromRole="Languages" ToRole="UsersLearnLanguages" />
+          <NavigationProperty Name="UsersSpokenLanguages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_Languages" FromRole="Languages" ToRole="UsersSpokenLanguages" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
             <PropertyRef Name="IdProfil" />
           </Key>
-          <Property Name="IdProfil" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="LblProfil" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="IdProfil" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LblProfil" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ThreadMessages">
           <Key>
             <PropertyRef Name="IdMessage" />
           </Key>
-          <Property Name="IdMessage" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="IdThread" Type="Int64" Nullable="false" />
-          <Property Name="IdUser" Type="Int64" Nullable="false" />
-          <Property Name="DateMessage" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Message" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="MessageCorrection" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Type="Int64" Name="IdMessage" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="IdThread" Nullable="false" />
+          <Property Type="Int64" Name="IdUser" Nullable="false" />
+          <Property Type="DateTime" Name="DateMessage" Nullable="false" Precision="7" />
+          <Property Type="String" Name="Message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MessageCorrection" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Threads" Relationship="IntercamberModel.FK_ThreadMessages_Threads" FromRole="ThreadMessages" ToRole="Threads" />
         </EntityType>
         <EntityType Name="Threads">
           <Key>
             <PropertyRef Name="IdThread" />
           </Key>
-          <Property Name="IdThread" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="IdTypeThread" Type="Int32" Nullable="false" />
-          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Type="Int64" Name="IdThread" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdTypeThread" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
           <NavigationProperty Name="ThreadMessages" Relationship="IntercamberModel.FK_ThreadMessages_Threads" FromRole="Threads" ToRole="ThreadMessages" />
           <NavigationProperty Name="ThreadUsers" Relationship="IntercamberModel.FK_ThreadUsers_Threads" FromRole="Threads" ToRole="ThreadUsers" />
         </EntityType>
@@ -274,10 +477,10 @@
             <PropertyRef Name="IdThread" />
             <PropertyRef Name="IdUser" />
           </Key>
-          <Property Name="IdThread" Type="Int64" Nullable="false" />
-          <Property Name="IdUser" Type="Int64" Nullable="false" />
-          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="DateLastSeen" Type="DateTime" Precision="7" />
+          <Property Type="Int64" Name="IdThread" Nullable="false" />
+          <Property Type="Int64" Name="IdUser" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
+          <Property Type="DateTime" Name="DateLastSeen" Precision="7" />
           <NavigationProperty Name="Threads" Relationship="IntercamberModel.FK_ThreadUsers_Threads" FromRole="ThreadUsers" ToRole="Threads" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_ThreadUsers_Users" FromRole="ThreadUsers" ToRole="Users" />
         </EntityType>
@@ -285,28 +488,78 @@
           <Key>
             <PropertyRef Name="IdUser" />
           </Key>
-          <Property Name="IdUser" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="IdProfil" Type="Int32" />
-          <Property Name="IdEstablishment" Type="Int32" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="256" Unicode="false" FixedLength="false" />
-          <Property Name="MustChangePassword" Type="Boolean" Nullable="false" />
-          <Property Name="IdGender" Type="Int32" />
-          <Property Name="FirstName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="BirthDate" Type="DateTime" Precision="7" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="LanguageLearn" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
-          <Property Name="LanguageSpoken" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
-          <Property Name="Country" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Type="Int64" Name="IdUser" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdProfil" />
+          <Property Type="Int32" Name="IdEstablishment" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="MustChangePassword" Nullable="false" />
+          <Property Type="Int32" Name="IdGender" />
+          <Property Type="String" Name="FirstName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="BirthDate" Precision="7" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
+          <Property Type="String" Name="IdCountry" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRequests" Relationship="IntercamberModel.FK_ContactRequests_Users_Ask" FromRole="Users" ToRole="ContactRequests" />
+          <NavigationProperty Name="ContactRequests1" Relationship="IntercamberModel.FK_ContactRequests_Users_Requested" FromRole="Users" ToRole="ContactRequests" />
           <NavigationProperty Name="Contacts" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Users" ToRole="Contacts" />
           <NavigationProperty Name="Contacts1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Users" ToRole="Contacts" />
+          <NavigationProperty Name="Countries" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Users" ToRole="Countries" />
           <NavigationProperty Name="ThreadUsers" Relationship="IntercamberModel.FK_ThreadUsers_Users" FromRole="Users" ToRole="ThreadUsers" />
+          <NavigationProperty Name="UsersLearnLanguages" Relationship="IntercamberModel.FK_usersLearnLanguages_Users" FromRole="Users" ToRole="UsersLearnLanguages" />
+          <NavigationProperty Name="UsersSpokenLanguages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages" FromRole="Users" ToRole="UsersSpokenLanguages" />
         </EntityType>
+        <EntityType Name="UsersLearnLanguages">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Type="Int64" Name="IdUser" Nullable="false" />
+          <Property Type="String" Name="IdLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LanguageLevel" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Languages" Relationship="IntercamberModel.FK_UsersLearnLanguages_Languages" FromRole="UsersLearnLanguages" ToRole="Languages" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_usersLearnLanguages_Users" FromRole="UsersLearnLanguages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="UsersSpokenLanguages">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Type="Int64" Name="IdUser" Nullable="false" />
+          <Property Type="String" Name="IdLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsMotherThongue" Nullable="false" />
+          <NavigationProperty Name="Languages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_Languages" FromRole="UsersSpokenLanguages" ToRole="Languages" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages" FromRole="UsersSpokenLanguages" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_ContactRequests_Users_Ask">
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.ContactRequests" Role="ContactRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="ContactRequests">
+              <PropertyRef Name="IdUserAsk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactRequests_Users_Requested">
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.ContactRequests" Role="ContactRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="ContactRequests">
+              <PropertyRef Name="IdUserRequester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contacts_Users">
-          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
-          <End Role="Contacts" Type="IntercamberModel.Contacts" Multiplicity="*" />
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.Contacts" Role="Contacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="IdUser" />
@@ -317,8 +570,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Contacts_Users1">
-          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
-          <End Role="Contacts" Type="IntercamberModel.Contacts" Multiplicity="*" />
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.Contacts" Role="Contacts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="IdUser" />
@@ -328,9 +581,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Users_Countries">
+          <End Type="IntercamberModel.Countries" Role="Countries" Multiplicity="0..1" />
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdCountry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersLearnLanguages_Languages">
+          <End Type="IntercamberModel.Languages" Role="Languages" Multiplicity="1" />
+          <End Type="IntercamberModel.UsersLearnLanguages" Role="UsersLearnLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="UsersLearnLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersSpokenLanguages_Languages">
+          <End Type="IntercamberModel.Languages" Role="Languages" Multiplicity="1" />
+          <End Type="IntercamberModel.UsersSpokenLanguages" Role="UsersSpokenLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="UsersSpokenLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ThreadMessages_Threads">
-          <End Role="Threads" Type="IntercamberModel.Threads" Multiplicity="1" />
-          <End Role="ThreadMessages" Type="IntercamberModel.ThreadMessages" Multiplicity="*" />
+          <End Type="IntercamberModel.Threads" Role="Threads" Multiplicity="1" />
+          <End Type="IntercamberModel.ThreadMessages" Role="ThreadMessages" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Threads">
               <PropertyRef Name="IdThread" />
@@ -341,8 +630,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThreadUsers_Threads">
-          <End Role="Threads" Type="IntercamberModel.Threads" Multiplicity="1" />
-          <End Role="ThreadUsers" Type="IntercamberModel.ThreadUsers" Multiplicity="*" />
+          <End Type="IntercamberModel.Threads" Role="Threads" Multiplicity="1" />
+          <End Type="IntercamberModel.ThreadUsers" Role="ThreadUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Threads">
               <PropertyRef Name="IdThread" />
@@ -353,8 +642,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ThreadUsers_Users">
-          <End Role="Users" Type="IntercamberModel.Users" Multiplicity="1" />
-          <End Role="ThreadUsers" Type="IntercamberModel.ThreadUsers" Multiplicity="*" />
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.ThreadUsers" Role="ThreadUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="IdUser" />
@@ -364,97 +653,157 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_usersLearnLanguages_Users">
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.UsersLearnLanguages" Role="UsersLearnLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UsersLearnLanguages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersSpokenLanguages_UsersSpokenLanguages">
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.UsersSpokenLanguages" Role="UsersSpokenLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UsersSpokenLanguages">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="IntercamberModelStoreContainer" CdmEntityContainer="IntercamberEntities">
-          <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="IntercamberModel.Contacts">
-              <MappingFragment StoreEntitySet="Contacts">
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdUserContact" ColumnName="IdUserContact" />
-                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <EntitySetMapping Name="ContactRequests">
+            <EntityTypeMapping TypeName="IntercamberModel.ContactRequests">
+              <MappingFragment StoreEntitySet="ContactRequests">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DateDismissed" ColumnName="DateDismissed" />
+                <ScalarProperty Name="DateValidated" ColumnName="DateValidated" />
+                <ScalarProperty Name="DateAsk" ColumnName="DateAsk" />
+                <ScalarProperty Name="IdUserAsk" ColumnName="IdUserAsk" />
+                <ScalarProperty Name="IdUserRequester" ColumnName="IdUserRequester" />
+                <ScalarProperty Name="IdContactRequest" ColumnName="IdContactRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Country">
-            <EntityTypeMapping TypeName="IntercamberModel.Country">
-              <MappingFragment StoreEntitySet="Country">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="IntercamberModel.Contacts">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+                <ScalarProperty Name="IdUserContact" ColumnName="IdUserContact" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="IntercamberModel.Countries">
+              <MappingFragment StoreEntitySet="Countries">
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="LblCountry" ColumnName="LblCountry" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Establishments">
             <EntityTypeMapping TypeName="IntercamberModel.Establishments">
               <MappingFragment StoreEntitySet="Establishments">
-                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
-                <ScalarProperty Name="LblEstablishment" ColumnName="LblEstablishment" />
-                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
                 <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+                <ScalarProperty Name="LblEstablishment" ColumnName="LblEstablishment" />
+                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="IntercamberModel.Languages">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Profils">
             <EntityTypeMapping TypeName="IntercamberModel.Profils">
               <MappingFragment StoreEntitySet="Profils">
-                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
                 <ScalarProperty Name="LblProfil" ColumnName="LblProfil" />
+                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThreadMessages">
             <EntityTypeMapping TypeName="IntercamberModel.ThreadMessages">
               <MappingFragment StoreEntitySet="ThreadMessages">
-                <ScalarProperty Name="IdMessage" ColumnName="IdMessage" />
-                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="DateMessage" ColumnName="DateMessage" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="MessageCorrection" ColumnName="MessageCorrection" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DateMessage" ColumnName="DateMessage" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
+                <ScalarProperty Name="IdMessage" ColumnName="IdMessage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Threads">
             <EntityTypeMapping TypeName="IntercamberModel.Threads">
               <MappingFragment StoreEntitySet="Threads">
-                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
-                <ScalarProperty Name="IdTypeThread" ColumnName="IdTypeThread" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IdTypeThread" ColumnName="IdTypeThread" />
+                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ThreadUsers">
             <EntityTypeMapping TypeName="IntercamberModel.ThreadUsers">
               <MappingFragment StoreEntitySet="ThreadUsers">
-                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
                 <ScalarProperty Name="DateLastSeen" ColumnName="DateLastSeen" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdThread" ColumnName="IdThread" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="IntercamberModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
-                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="MustChangePassword" ColumnName="MustChangePassword" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-                <ScalarProperty Name="LanguageLearn" ColumnName="LanguageLearn" />
-                <ScalarProperty Name="LanguageSpoken" ColumnName="LanguageSpoken" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="MustChangePassword" ColumnName="MustChangePassword" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdEstablishment" ColumnName="IdEstablishment" />
+                <ScalarProperty Name="IdProfil" ColumnName="IdProfil" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersLearnLanguages">
+            <EntityTypeMapping TypeName="IntercamberModel.UsersLearnLanguages">
+              <MappingFragment StoreEntitySet="UsersLearnLanguages">
+                <ScalarProperty Name="LanguageLevel" ColumnName="LanguageLevel" />
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersSpokenLanguages">
+            <EntityTypeMapping TypeName="IntercamberModel.UsersSpokenLanguages">
+              <MappingFragment StoreEntitySet="UsersSpokenLanguages">
+                <ScalarProperty Name="IsMotherThongue" ColumnName="IsMotherThongue" />
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

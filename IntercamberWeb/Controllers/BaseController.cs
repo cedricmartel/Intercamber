@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Configuration;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using CML.Intercamber.Business.Dao;
+using CML.Intercamber.Web.Helpers;
+using WebGrease.Css.Extensions;
 
 namespace CML.Intercamber.Web.Controllers
 {
@@ -39,6 +43,22 @@ namespace CML.Intercamber.Web.Controllers
             // Modify current thread's cultures            
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+
+            // load chat contacts
+            if (Request.IsAuthenticated)
+            {
+                var contactInfos = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId);
+                // TODO gérer un cache pour les messages non lus
+                ThreadMessagesDao messagesDao = new ThreadMessagesDao();
+                var unreadMessagesInfos = messagesDao.UnreadMessagesCount(ConnectedUserHelper.ConnectedUserId);
+                contactInfos.ForEach(x =>
+                {
+                    x.NumUnreadMessages = unreadMessagesInfos.Where(y => y.IdUser == x.IdUser).Select(y => y.NbMessages).FirstOrDefault();
+                });
+                ViewBag.MyContacts = contactInfos;
+                ViewBag.ConnectedUserInfo = ConnectedUserHelper.ConnectedUser;
+            }
+            ViewBag.IsAdmin = ConnectedUserHelper.IsAdmin;
 
             return base.BeginExecuteCore(c, state);
         }

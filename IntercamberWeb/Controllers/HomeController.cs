@@ -13,7 +13,7 @@ namespace CML.Intercamber.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.MyContacts = SessionHelper.ContactDetails(SessionHelper.ConnectedUserId, SessionHelper.ConnectedUser.Email);
+            
             return View();
         }
 

@@ -1,26 +1,22 @@
-﻿@using CML.Intercamber.Business.Model
-@using CML.Intercamber.Web
-@using CML.Intercamber.Web.Helpers
-
-<script>
-    $(function () {
-        window.connectedHub.client.refreshOnlineStatus = function (idUser, isOnline) {
-            $("#contactCnx" + idUser).attr("src", isOnline ? "/Images/Online.png" : "/Images/Offline.png");
-        };
-    });
-</script>
-<br/>
-<div align="center">
-    <img style="position:relative;padding-left: 130px; margin-bottom:-25px; margin-top : -5px;" src="~/Images/RoundFlags/RoundFlag_small_@(SessionHelper.ConnectedUser.Country).png" />
-    <img src="~/Images/NoAvatar.png" />
-</div>
-    
-<br/>
-<br/>
-@Resources.Intercamber.Home_MyContacts:<br/>
-@foreach (ContactDetail cd in ViewBag.MyContacts)
-{
-    <text>
-        <img id="contactCnx@(cd.IdUser)" src="@(ChatHub.IsUserConnected(cd.IdUser) ? "/Images/Online.png" : "/Images/Offline.png")" />&nbsp;@(cd.FirstName)&nbsp;@(cd.LastName)<br/>
-    </text>
-}
+﻿@using System.Linq
+@using CML.Intercamber.Business
+<br />
+<img style="position:relative;padding-left: 130px; margin-bottom:-25px; margin-top : -5px;" src="~/Images/RoundFlagsSmall/RoundFlag_@(ViewBag.ConnectedUserInfo.IdCountry).png" />
+<img src="~/Images/NoAvatar.png" />
+<br />
+@string.Format(Resources.Intercamber.LeftBar_Learning, ((Users)ViewBag.ConnectedUserInfo).UsersLearnLanguages.Select(x => Resources.Intercamber.ResourceManager.GetString("Languages_" + x.IdLanguage)).Aggregate((i, j) => i + ", " + j))
+<br />
+@string.Format(Resources.Intercamber.LeftBar_Speaking, ((Users)ViewBag.ConnectedUserInfo).UsersSpokenLanguages.Select(x => Resources.Intercamber.ResourceManager.GetString("Languages_" + x.IdLanguage)).Aggregate((i, j) => i + ", " + j))
+<br />
+<br />
+<b>
+    <div align="left">
+        #Mon profil
+    <br />
+        <br />
+        #Mes penpals
+    <br />
+        <br />
+        #Mes discussions 
+    </div>
+</b>

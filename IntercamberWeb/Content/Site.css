@@ -1,7 +1,7 @@
 ﻿html, body
 {
     font-size: 13px;
-    font-family: Calibri;
+    font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
     font-weight: normal;
     cursor: default;
     background-color: White;
@@ -15,13 +15,13 @@
 
 a, a:visited
 {
-    color: #002E6E;
+    color: #0875a0;
     text-decoration: none;
 }
 
     a:hover
     {
-        color: #002E6E;
+        color: #0875a0;
         text-decoration: underline;
     }
 
@@ -30,25 +30,38 @@ img
     border: 0;
     vertical-align: bottom;
 }
-td {
+
+td
+{
     vertical-align: top;
 }
+
 p
 {
     margin-top: 0;
 }
 
+textarea
+{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
 .footerLeft
 {
-    position: absolute;
+    position: relative;
+    margin-top: -17px;
     left: 0;
-    bottom: 0;
+    bottom: 1;
     padding-left: 3px;
 }
 
 .footerRight
 {
-    position: absolute;
+    position: relative;
+    margin-top: -17px;
     right: 0;
     bottom: 0;
     padding-right: 3px;
@@ -56,16 +69,11 @@ p
 
 #centpourcent
 {
-    height: 98%;
-    width: 99%;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     position: absolute;
-    margin: 5px;
-    border: 1px solid #3D556C;
-}
-
-.header
-{
-    border-bottom: 1px solid #3D556C;
 }
 
 .logo
@@ -75,57 +83,48 @@ p
 
 .menu
 {
-    border-top: 1px solid #3D556C;
     padding-top: 3px;
     font-size: 13px;
-    vertical-align: middle;
-    color: #002E6E;
 }
 
 .titreApplication
 {
     text-align: left;
     vertical-align: middle;
-    font-size: 20px;
     height: 53px;
     padding-left: 20px;
 }
 
 .infoBar
 {
-    border-right: 1px solid #336699;
-    background: #DEF6FF;
+    border-right: 1px solid #F8B74D;
+    background: #DEECF8; /*#EEEEEE;*/
     width: auto;
     font-size: 13px;
-    padding: 0px 5px 0px 5px;
+    padding: 0 5px 0 5px;
+    margin: 0;
     color: #00156e;
-    position:relative; 
-    height:100%; 
-    width:180px;
+    position: relative;
+    height: 100%;
+    width: 180px;
+    text-align: center;
 }
 
-.pageContent
+.intermediaryTitle
 {
-    position: absolute;
-    vertical-align: top;
-    overflow: auto;
-    width: 100%;
-    height: auto;
+    font-size: 14px;
+    font-style: italic;
 }
 
 .paddedContent
 {
-    padding: 5px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    padding: 10px;
 }
 
 .languageSelector
 {
     position: absolute;
-    right: 100px;
+    right: 5px;
 }
 
 /* IMG BUTTON */
@@ -147,7 +146,6 @@ p
 {
     border: 2px solid #A9C6DF;
 }
-
 
 /* MENU */
 .titleDiv
@@ -173,7 +171,9 @@ p
     display: inline-block;
     text-align: center;
     width: auto;
-    padding: 2px;
+    margin-top: -2px;
+    position: absolute;
+    z-index: 10000;
 }
 
 ul#menu > li
@@ -181,11 +181,76 @@ ul#menu > li
     width: auto; /* définit la largeur des items de niveau 1 */
     float: left; /* définit le positionnement des items de niveau 1 */
     padding: 0px 20px 0px 20px;
+    z-index: 100000;
+}
+
+.contactsTitle
+{
+    background-color: #F7AF39;
+    color: #232323;
+    border: 1px solid #CCCCCC;
+    position: absolute;
+    z-index: 10000;
+    right: 18px;
+    bottom: 0;
+    width: 180px;
+    height: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    vertical-align: middle;
+    padding: 3px 0 3px 0;
+    cursor: pointer;
+}
+
+    .contactsTitle:hover
+    {
+        background-color: #F8F8F8;
+    }
+
+.contactsContent
+{
+    background-color: #F8F8F8;
+    color: #232323;
+    border: 1px solid #CCCCCC;
+    position: absolute;
+    z-index: 10000;
+    right: 18px;
+    bottom: 28px;
+    width: 174px;
+    font-size: 13px;
+    text-align: left;
+    vertical-align: middle;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.contactItem
+{
+    display: block;
+    padding: 3px 0 3px 0;
+}
+
+.ui-widget-header a
+{
+    color: white;
+}
+
+.nameUser
+{
+    color: white;
 }
 
 .ui-menu-sel
 {
     border: 1px solid rgb(170, 170, 170);
     background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% rgb(255, 255, 255);
+    color: #232323 !important;
     margin: -1px;
 }
+
+.unreadMsg
+{
+    font-weight: bold;
+}
+

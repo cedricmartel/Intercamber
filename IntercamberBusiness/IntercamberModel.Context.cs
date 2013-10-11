@@ -25,13 +25,17 @@ namespace CML.Intercamber.Business
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<ContactRequests> ContactRequests { get; set; }
         public DbSet<Contacts> Contacts { get; set; }
-        public DbSet<Country> Country { get; set; }
+        public DbSet<Countries> Countries { get; set; }
         public DbSet<Establishments> Establishments { get; set; }
+        public DbSet<Languages> Languages { get; set; }
         public DbSet<Profils> Profils { get; set; }
         public DbSet<ThreadMessages> ThreadMessages { get; set; }
         public DbSet<Threads> Threads { get; set; }
         public DbSet<ThreadUsers> ThreadUsers { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<UsersLearnLanguages> UsersLearnLanguages { get; set; }
+        public DbSet<UsersSpokenLanguages> UsersSpokenLanguages { get; set; }
     }
 }

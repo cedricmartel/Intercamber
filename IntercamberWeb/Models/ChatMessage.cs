@@ -15,7 +15,7 @@ namespace CML.Intercamber.Web.Models
         public string Author { get; set; }
 
         [JsonProperty(PropertyName = "d")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
     }
 }

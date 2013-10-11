@@ -1,10 +1,40 @@
 ﻿@{
     ViewBag.PageTitle = Resources.Intercamber.Home_PageName;
 }
+@section PageHead
+{
+    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0" ></script>
+}
 @section PageLeftBar
 {
-    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml") 
+    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
 }
 @section PageContent {
-    Bientot !
+    <script type="text/javascript">
+        $(function () {
+            resizeMap();
+            getMap();
+        });
+        function getMap() {
+            var map = new Microsoft.Maps.Map($("#mapDiv")[0], {
+                credentials: "AhVRnzwEamrHeRawUhrEf_nHYS5tO4H9x1-EX_ExRyIaNtz4fvDAU0ux0nFd3B4X",
+                center: new Microsoft.Maps.Location(46.90079149133472, 1.5840055942535258),
+                mapTypeId: Microsoft.Maps.MapTypeId.road,
+                zoom: 4, // zoom de niveau 6
+                //disableZooming: true, // désactive la possibilité de zoomer
+                enableSearchLogo: false, //désactive la fonction recherche intégrée à la carte
+                enableClickableLogo: false, // désactive le lien à partir du logo Bing
+                //showDashboard: false, // désactive le panel de la carte
+                //disablePanning: true
+            });
+        }
+        function resizeMap() {
+            var md = $("#mapDiv");
+            md.css({top: 88, left: 191, right: 0, bottom: 0, position:'absolute'});
+        }
+    </script>
+
+    <div id='mapDiv' style="position:absolute;" ></div>
+    
+
 }

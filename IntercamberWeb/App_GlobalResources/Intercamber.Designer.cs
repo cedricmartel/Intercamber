@@ -88,11 +88,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Assistance.
+        ///   Recherche une chaîne localisée semblable à Help.
         /// </summary>
         internal static string Assistance_PageName {
             get {
                 return ResourceManager.GetString("Assistance_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
@@ -124,6 +133,96 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Argentina.
+        /// </summary>
+        internal static string Countries_ag {
+            get {
+                return ResourceManager.GetString("Countries_ag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Belgium.
+        /// </summary>
+        internal static string Countries_be {
+            get {
+                return ResourceManager.GetString("Countries_be", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Germany.
+        /// </summary>
+        internal static string Countries_de {
+            get {
+                return ResourceManager.GetString("Countries_de", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à France.
+        /// </summary>
+        internal static string Countries_fr {
+            get {
+                return ResourceManager.GetString("Countries_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Grece.
+        /// </summary>
+        internal static string Countries_gr {
+            get {
+                return ResourceManager.GetString("Countries_gr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Italy.
+        /// </summary>
+        internal static string Countries_it {
+            get {
+                return ResourceManager.GetString("Countries_it", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Spain.
+        /// </summary>
+        internal static string Countries_sp {
+            get {
+                return ResourceManager.GetString("Countries_sp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à United Kingdom.
+        /// </summary>
+        internal static string Countries_uk {
+            get {
+                return ResourceManager.GetString("Countries_uk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à United States of America.
+        /// </summary>
+        internal static string Countries_us {
+            get {
+                return ResourceManager.GetString("Countries_us", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Talking with .
+        /// </summary>
+        internal static string Discussion_TalkWith {
+            get {
+                return ResourceManager.GetString("Discussion_TalkWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Establishment management.
         /// </summary>
         internal static string EstablishmentAdmin_PageName {
@@ -147,6 +246,69 @@ namespace Resources {
         internal static string Home_PageName {
             get {
                 return ResourceManager.GetString("Home_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à german.
+        /// </summary>
+        internal static string Languages_de {
+            get {
+                return ResourceManager.GetString("Languages_de", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à english.
+        /// </summary>
+        internal static string Languages_en {
+            get {
+                return ResourceManager.GetString("Languages_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à french.
+        /// </summary>
+        internal static string Languages_fr {
+            get {
+                return ResourceManager.GetString("Languages_fr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à spanish.
+        /// </summary>
+        internal static string Languages_sp {
+            get {
+                return ResourceManager.GetString("Languages_sp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Contacts requests.
+        /// </summary>
+        internal static string LeftBar_ContactRequests {
+            get {
+                return ResourceManager.GetString("LeftBar_ContactRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Currently learning {0}.
+        /// </summary>
+        internal static string LeftBar_Learning {
+            get {
+                return ResourceManager.GetString("LeftBar_Learning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à I am fluent in {0}.
+        /// </summary>
+        internal static string LeftBar_Speaking {
+            get {
+                return ResourceManager.GetString("LeftBar_Speaking", resourceCulture);
             }
         }
         
@@ -205,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Log out.
+        /// </summary>
+        internal static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Moderation.
         /// </summary>
         internal static string Moderate_PageName {
@@ -232,6 +403,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Project.
+        /// </summary>
+        internal static string Project_PageName {
+            get {
+                return ResourceManager.GetString("Project_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Reporting.
         /// </summary>
         internal static string Reporting_PageName {
@@ -241,11 +421,74 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Add.
+        /// </summary>
+        internal static string SearchContacts_Add {
+            get {
+                return ResourceManager.GetString("SearchContacts_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Search contacts.
         /// </summary>
         internal static string SearchContacts_PageName {
             get {
                 return ResourceManager.GetString("SearchContacts_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Error: could not send request.
+        /// </summary>
+        internal static string SearchContacts_RequestSentError {
+            get {
+                return ResourceManager.GetString("SearchContacts_RequestSentError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Contact request has been sent to .
+        /// </summary>
+        internal static string SearchContacts_RequestSentTo {
+            get {
+                return ResourceManager.GetString("SearchContacts_RequestSentTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Send request.
+        /// </summary>
+        internal static string SearchContacts_SendRequest {
+            get {
+                return ResourceManager.GetString("SearchContacts_SendRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Send contact request to .
+        /// </summary>
+        internal static string SearchContacts_SendRequestTo {
+            get {
+                return ResourceManager.GetString("SearchContacts_SendRequestTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Your message.
+        /// </summary>
+        internal static string SearchContacts_YourMessage {
+            get {
+                return ResourceManager.GetString("SearchContacts_YourMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Toolbox.
+        /// </summary>
+        internal static string Toolbox_PageName {
+            get {
+                return ResourceManager.GetString("Toolbox_PageName", resourceCulture);
             }
         }
         

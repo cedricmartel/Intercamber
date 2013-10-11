@@ -40,6 +40,31 @@ namespace CML.Intercamber.Business.Dao
             return res;
         }
 
+        public Threads GetThreads(long connectedUser, long destUser)
+        {
+            Threads res;
+            using (var context = new IntercamberEntities())
+            {
+                res = context.Threads.FirstOrDefault(x =>
+                    x.ThreadUsers.Any(y => y.IdThread == x.IdThread && y.IdUser == connectedUser) &&
+                    x.ThreadUsers.Any(y => y.IdThread == x.IdThread && y.IdUser == destUser));
+            }
+            return res;
+        }
+        public Threads CreateThreads(long connectedUser, long destUser)
+        {
+            Threads res;
+            using (var context = new IntercamberEntities())
+            {
+                res = new Threads {IdTypeThread = 1};
+                res.ThreadUsers.Add(new ThreadUsers { IdUser = connectedUser } );
+                res.ThreadUsers.Add(new ThreadUsers { IdUser = destUser });
+                context.Threads.Add(res);
+                context.SaveChanges();
+            }
+            return res;
+        }
+
     }
 }
 

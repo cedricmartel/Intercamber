@@ -1,0 +1,125 @@
+﻿@using MvcJqGrid
+@using MvcJqGrid.DataReaders
+@using MvcJqGrid.Enums
+
+@{
+    ViewBag.PageTitle = Resources.Intercamber.SearchContacts_PageName;
+}
+@section PageHead
+{
+    <script>
+        var ttAdd = null, ttAddTitle = "";
+        function gridColumnAdd(cellvalue, options, rowobject) {
+            return "<img id=\"add" + cellvalue + "\" class='imgButton' src='/Images/AddContact.png' onclick=\"formAddContact('" + cellvalue + "', '" + rowobject.FirstName.replace("\"", "").replace("'", "") + " " + rowobject.LastName.replace("\"", "").replace("'", "") + "')\" />";
+        }
+
+        var currentIdUser = null, currentUserName = "";
+        function formAddContact(idUser, userName) {
+            currentIdUser = idUser;
+            currentUserName = userName;
+            ttAddTitle = "@Resources.Intercamber.SearchContacts_SendRequestTo " + userName;
+            if (ttAdd == null) {
+                ttAdd = $('<div />');
+                ttAdd.qtip({
+                    show: {
+                        effect: false,
+                        modal: { on: true, blur: false }
+                    },
+                    content: $('#ttAdd'),
+                    position: { my: 'center', at: 'center', target: $(window), viewport: $(window), adjust: { method: "shift", x: 0, y: 0 }, effect: false },
+                    events: {
+                        show: function () {
+                            $(this).draggable();
+                            $(this).qtip('option', { 'content.title': ttAddTitle, 'content.title.button': 'true' });
+                        },
+                        hide: function () {
+                            $(this).qtip('option', { 'position.my': 'top left', 'position.target': [$(this).offset().left, $(this).offset().top] });
+                        }
+                    },
+                    hide: false,
+                    style: { classes: "qtip-light qtip-rounded tipWidth", tip: false }
+                });
+            }
+            else {
+                try { ttAdd.qtip('option', 'content.title', ttAddTitle); } catch (err) { }
+            }
+            $("#addContactMessage").val("");
+            ttAdd.qtip('show');
+        }
+        function hideTtAdd() {
+            ttAdd.qtip('hide');
+        }
+        function sendContactRequest() {
+            var message = $("#addContactMessage").val();
+            $.ajax({
+                type: "POST",
+                url: "/Contact/AskContact",
+                contentType: "application/json; charset=utf-8",
+                data: "{'idUser':\"" + currentIdUser + "\", 'message': \"" + message + "\"}",
+                dataType: "json",
+                success: function (result) {
+                    if (result == true) {
+                        alert("@Resources.Intercamber.SearchContacts_RequestSentTo " + currentUserName);
+                        hideTtAdd();
+                        $("#add" + currentIdUser).hide();
+                    } else {
+                        alert("@Resources.Intercamber.SearchContacts_RequestSentError");
+                    }
+                },
+                error: function (result) {
+                    debugger;
+                }
+            });
+        }
+    </script>
+    <style>
+    .tipWidth {
+        width: 400px;
+	    max-width: 400px;
+	    min-width: 400px;
+    }
+    #gview_basic
+    {
+    position:relative;
+    z-index:1;
+    }
+    </style>
+}
+@section PageLeftBar
+{
+    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
+}
+@section PageContent {
+    <div id="grid" style="width: 96%; text-align: center;">
+        @(Html.Grid("basic")
+              .SetDataType(DataType.Json)
+              .SetLoadOnce(false)
+              .AddColumn(new Column("IdUser")
+                  .SetLabel(Resources.Intercamber.SearchContacts_Add)
+                  .SetFixedWidth(true)
+                  .SetWidth(40)
+                  .SetAlign(Align.Center)
+                  .SetResizeable(false)
+                  .SetCustomFormatter("gridColumnAdd")
+                  .SetSortable(false))
+              .AddColumn(new Column("FirstName"))
+              .AddColumn(new Column("LastName"))
+              .AddColumn(new Column("City"))
+              .SetUrl("/Contact/SearchData/")
+              .SetAutoWidth(true)
+              .SetViewRecords(true)
+              .SetJsonReader(new JsonReader { RepeatItems = false, Id = "IdUser" })
+              .SetRowNum(20)
+              .SetRowList(new[] { 20, 40, 60 })
+              .SetPager("pager")
+              )
+    </div>
+    <div id="ttAdd" style="display: none">
+        @Resources.Intercamber.SearchContacts_YourMessage:<br />
+        <textarea id="addContactMessage" rows="5"></textarea>
+        <br />
+        <button onclick="sendContactRequest()">@Resources.Intercamber.SearchContacts_SendRequest</button>
+        &nbsp;
+        <button onclick="hideTtAdd()">@Resources.Intercamber.Cancel</button>
+    </div>
+}

@@ -16,9 +16,13 @@ namespace CML.Intercamber.Business
     {
         public Users()
         {
+            this.ContactRequests = new HashSet<ContactRequests>();
+            this.ContactRequests1 = new HashSet<ContactRequests>();
             this.Contacts = new HashSet<Contacts>();
             this.Contacts1 = new HashSet<Contacts>();
             this.ThreadUsers = new HashSet<ThreadUsers>();
+            this.UsersLearnLanguages = new HashSet<UsersLearnLanguages>();
+            this.UsersSpokenLanguages = new HashSet<UsersSpokenLanguages>();
         }
     
         public long IdUser { get; set; }
@@ -33,12 +37,16 @@ namespace CML.Intercamber.Business
         public Nullable<System.DateTime> BirthDate { get; set; }
         public bool Enabled { get; set; }
         public System.DateTime DateCreate { get; set; }
-        public string LanguageLearn { get; set; }
-        public string LanguageSpoken { get; set; }
-        public string Country { get; set; }
+        public string IdCountry { get; set; }
+        public string City { get; set; }
     
+        public virtual ICollection<ContactRequests> ContactRequests { get; set; }
+        public virtual ICollection<ContactRequests> ContactRequests1 { get; set; }
         public virtual ICollection<Contacts> Contacts { get; set; }
         public virtual ICollection<Contacts> Contacts1 { get; set; }
+        public virtual Countries Countries { get; set; }
         public virtual ICollection<ThreadUsers> ThreadUsers { get; set; }
+        public virtual ICollection<UsersLearnLanguages> UsersLearnLanguages { get; set; }
+        public virtual ICollection<UsersSpokenLanguages> UsersSpokenLanguages { get; set; }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using CML.Intercamber.Business;
 using CML.Intercamber.Business.Dao;
-using CML.Intercamber.Business.Helper;
 using CML.Intercamber.Web.Helpers;
 using Microsoft.AspNet.SignalR;
 
@@ -13,45 +12,39 @@ namespace CML.Intercamber.Web
     public class ChatHub : Hub
     {
         #region chat
-        public const string RoomNameTemplate = "r{0}"; // threadId
 
-        private bool CanEnterRoom(string idRoom)
+        private bool CanTalkInThread(long idThread)
         {
-            return SessionHelper.ThreadDetails.Any(x => idRoom == string.Format(RoomNameTemplate, x.IdThread));
+            return ThreadHelper.ThreadDetails.Any(x => idThread == x.IdThread);
         }
 
-        public void SendMessage(string idThread, string name, string message)
+        /// <summary>
+        /// send a message from client side 
+        /// </summary>
+        /// <param name="idContact">dest</param>
+        /// <param name="idThread"></param>
+        /// <param name="name">sender display name</param>
+        /// <param name="message"></param>
+        public void SendMessage(long idContact, long idThread, string name, string message)
         {
             // verify rights on room 
-            string targetRoom = string.Format(RoomNameTemplate, idThread);
-            if (!CanEnterRoom(targetRoom))
+            if (!CanTalkInThread(idThread))
                 return;
             // save message 
             ThreadMessagesDao dao = new ThreadMessagesDao();
             dao.InsertThreadMessages(new ThreadMessages
             {
                 DateMessage = DateTime.Now, 
-                IdThread = long.Parse(idThread), 
-                IdUser = SessionHelper.ConnectedUserId, 
+                IdThread = idThread,
+                IdUser = ConnectedUserHelper.ConnectedUserId, 
                 Message = message, 
                 MessageCorrection = null
             });
-            // send message 
-            Clients.Group(targetRoom).addMessage(idThread, name, message, DateTimeHelper.FormatDate(DateTime.Now, DateTimeHelper.DATETIME_FORMAT));
+            // send message to anybody in thread but sender
+            foreach (var thread in ThreadHelper.ThreadDetails.Where(x => x.IdThread == idThread))
+                Clients.Group(thread.IdUser.ToString()).addMessage(ConnectedUserHelper.ConnectedUserId, idThread, name, message, DateTime.Now);
         }
 
-        public void AddToRoom(string idThread)
-        {
-            string targetRoom = string.Format(RoomNameTemplate, idThread);
-            if (!CanEnterRoom(targetRoom))
-                return;
-            Groups.Add(Context.ConnectionId, targetRoom);
-        }
-
-        public void RemoveFromRoom(string roomName)
-        {
-            Groups.Remove(Context.ConnectionId, roomName);
-        }
         #endregion 
 
         #region connecter users counter
@@ -84,10 +77,10 @@ namespace CML.Intercamber.Web
             hubContext.Clients.All.printOnlineUsers(message);
             // change users online status  
             bool amIConnected = listUserConnected.Contains(idUser);
-            foreach (var contact in SessionHelper.ContactDetails(idUser, emailUser))
+            foreach (var contact in ContactsHelper.ContactDetails(idUser, emailUser))
             {
                 if (listUserConnected.Contains(contact.IdUser))
-                    hubContext.Clients.Group("u" + contact.IdUser).refreshOnlineStatus(idUser, amIConnected);
+                    hubContext.Clients.Group(contact.IdUser.ToString()).refreshOnlineStatus(idUser, amIConnected);
             }
         }
 
@@ -101,10 +94,9 @@ namespace CML.Intercamber.Web
 
         public override Task OnConnected()
         {
-            long idUser = SessionHelper.ConnectedUserId;
-
-            Groups.Add(Context.ConnectionId, "u" + idUser);
-
+            // add user to group that has same id as him
+            long idUser = ConnectedUserHelper.ConnectedUserId;
+            Groups.Add(Context.ConnectionId, idUser.ToString());
             return base.OnConnected();
         }
 

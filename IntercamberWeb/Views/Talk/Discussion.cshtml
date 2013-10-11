@@ -1,45 +1,43 @@
-﻿@using CML.Intercamber.Business.Model
+﻿@using System.Web.UI.WebControls
+@using CML.Intercamber.Business.Model
 @{
     ViewBag.PageTitle = Resources.Intercamber.Chat_PageName;
 }
-@section PageHead
-{
-    <style>
-        #pageContent {
-            margin-left: 180px;
-        }
-    </style>
-}
+
 @section PageLeftBar
 {
-    @Html.Partial("~/Views/Shared/_LeftBarActiveThreadsPartial.cshtml")
+    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
 }
 
 @section PageContent {
+    <style>
+        .dateItem
+        {
+            font-style: italic;
+            font-size: 11px;
+            width: auto;
+            background-color: #EEEEEE;
+            display: block;
+        }
+    </style>
     <script type="text/javascript">
-        var currentThreadId = null;
+        var currentThreadId = @(ViewBag.IdThread ?? "null");
+        var idContactDiscussion = @(ViewBag.IdContact ?? "null");
         var myName = "@(ViewBag.MyName.Replace("\"", ""))";
+        var currentDate = null;
+        var firstLog = true;
 
         $(function() {
-            // load signalr chat
-            window.connectedHub.client.addMessage = function (idThread, name, message, date) {
-                if (idThread == currentThreadId)
-                    printMessage(encodeText(name), encodeText(message), encodeText(date));
-                else {
-                    // TODO alert new message
-                }
-            };
             window.hubReady.done(function() {
-                @foreach (ThreadDetail thread in ViewBag.MyThreads)
-                {
-                    <text>window.connectedHub.server.addToRoom(@(thread.IdThread)); </text>
-                }
                 $('#sendmessage').click(function() {
-                    window.connectedHub.server.sendMessage(window.currentThreadId, myName, $('#message').val());
+                    var msg = $('#message').val();
+                    window.connectedHub.server.sendMessage(idContactDiscussion, currentThreadId, myName, msg);
+                    printMessage(myName, msg, new Date);
                     $('#message').val('').focus();
                 });
+                if (currentThreadId != null)
+                    loadChat(currentThreadId);
             });
-            
         });
 
         function loadChat(id) {
@@ -57,6 +55,7 @@
                         var r = result[i];
                         printMessage(r.Author, r.Message, r.Date);
                     }
+                    scrollToDiscussionBottom();
                 },
                 error: function(result) {
                     debugger;
@@ -65,22 +64,59 @@
         }
 
         function encodeText(txt) {
-            return $('<div />').text(txt).html();
+            return txt.replace("<", "").replace(">", "");
+        }
+
+        function addMessage(name, message, date) {
+            printMessage(name, message, date);
+            scrollToDiscussionBottom();
+        }
+
+        function scrollToDiscussionBottom() {
+            var discussionDiv = $('#discussion');
+            discussionDiv.scrollTop(discussionDiv[0].scrollHeight);
         }
 
         function printMessage(name, message, date) {
-            $('#discussion').append('<br/>[' + date + ']<strong> ' + name + '</strong>:&nbsp;' + message + '');
+            if (typeof(date) == "string")
+                date = instanciateDotNetDate(date);
+            var dTime = (new Date(date));
+            dTime.setHours(0, 0, 0, 0);
+            dTime = dTime.getTime();
+            if (currentDate == null || dTime != currentDate) {
+
+                $('#discussion').append((firstLog ? '' : '<br/>') + "<span class='dateItem'>" + date.toLocaleDateString() + "</span>");
+                currentDate = dTime;
+                firstLog = true;
+            }
+            $('#discussion').append((firstLog ? '' : '<br/>') + date.toLocaleTimeString() + ' <strong> ' + name + '</strong>:&nbsp;' + message + '');
+            firstLog = false;
+
+        }
+        
+        function resizeComplement() {
+            // resize of chat: leave 200px right, fullheight
+            var discussionDiv = $('#discussion');
+            discussionDiv.height($(".calcHeight").height() - 100);
+            discussionDiv.width($(".pageContent").width() - $(".infoBar").width() - 200);
+            $("#talkDiv").height(discussionDiv.height + $('#discussionInput').height());
         }
     </script>
-    
-    <table id="talkDiv" style="width:600px; padding-left:5px;border:1px solid #EEEEEE; min-width: 600px;" cellpadding="0" cellspacing="0" >
+
+    <div class="intermediaryTitle">@Resources.Intercamber.Discussion_TalkWith @ViewBag.DestName<br />
+        <br />
+    </div>
+
+    <table id="talkDiv" style="padding-left: 5px; border: 1px solid #EEEEEE; min-width: 600px;" cellpadding="0" cellspacing="0">
         <tr>
             <td>
-                <div id="discussion" style="min-height:30px; max-height:200px; width:600px; overflow: auto"> </div>
+                <div id="discussion" style="min-height: 30px; width: 600px; overflow: auto"></div>
             </td>
         </tr>
-        <tr>
-            <td style="border-top: 1px solid #EEEEEE;"><input type="text" style="width:85%" id="message" /> <input type="button" id="sendmessage" value="Send" /></td>
+        <tr id="discussionInput">
+            <td style="border-top: 1px solid #EEEEEE;">
+                <input type="text" style="width: 85%" id="message" />
+                <input type="button" id="sendmessage" value="Send" /></td>
         </tr>
     </table>
 

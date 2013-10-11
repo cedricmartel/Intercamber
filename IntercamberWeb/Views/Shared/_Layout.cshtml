@@ -1,43 +1,32 @@
 ﻿@using System.Threading
+@using CML.Intercamber.Business.Model
+@using CML.Intercamber.Web
 @using CML.Intercamber.Web.Helpers
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-    <title>Intercamber - @ViewBag.PageTitle</title>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <title>Intercambers - @ViewBag.PageTitle</title>
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <link href="/Content/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
+    <link href="/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
     <link href="/Content/site.css" rel="stylesheet" />
+    <link href="/Scripts/qtip/jquery.qtip.min.css" rel="stylesheet" />
     <script src="/Scripts/jquery-1.8.3.min.js"></script>
     <script src="/Scripts/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="/Scripts/jquery.jqGrid.js"></script>
+    <script src="/Scripts/i18n/grid.locale-en.js"></script>
     <script src="/Scripts/jquery.signalR-1.1.3.js"></script>
+    <script src="/Scripts/qtip/jquery.qtip.min.js"></script>
     <script src="/Scripts/Intercamber.js"></script>
     <script src="/signalr/hubs"></script>
     <script>
         var connectedHub = null;
         var hubReady = null;
-        $(function () {
-            var pageCode = "@(NavigationHelper.CurrentPageRoute)";
-            var currentMenu = $("a[href='" + pageCode + "']");
-            if (currentMenu.length > 0)
-                currentMenu.addClass("ui-menu-sel");
-            @if (Request.IsAuthenticated)
-            {
-                <text>
-            window.connectedHub = $.connection.chatHub;
-            window.hubReady = $.connection.hub.start();
-            window.hubReady.done(function () {
-                window.connectedHub.server.getCurrentOnlineUsers();
-            });
-            window.connectedHub.client.printOnlineUsers = function (message) {
-                $('#footerLeft').text(message);
-            };
-
-            </text>
-            }
-        });
+        var pageCode = "@(NavigationHelper.CurrentPageRoute)";
+        var myId = @(ViewBag.ConnectedUserInfo != null ? ViewBag.ConnectedUserInfo.IdUser : -1);
     </script>
     @RenderSection("PageHead", false)
 </head>
@@ -45,7 +34,7 @@
     <div id="centpourcent">
         <table width="100%" style="height: 100%" cellspacing="0" cellpadding="0">
             <tr>
-                <td class="titreApplication" colspan="2">
+                <td id="titleTd" class="titreApplication" colspan="2">
                     <img src="~/Images/TitreIntercambers.png" />
                     <span class="languageSelector">
                         <a href="/Account/ChangeLanguage?id=fr">
@@ -54,34 +43,31 @@
                             <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("es") ? "imgButtonSelected" : "")" src="~/Images/Flags/es.png" /></a>
                         <a href="/Account/ChangeLanguage?id=en">
                             <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("en") ? "imgButtonSelected" : "")" src="~/Images/Flags/en.png" /></a>
+                        <br />
+                        <span id="onlineUsers"></span>
                     </span>
                 </td>
-                <td rowspan="2" class="header logo" align="center">logo 
-                </td>
             </tr>
-            <tr class="ui-widget-content">
-                <td height="27px" id="menuTd" class="header menu">
+            <tr class="ui-widget-header">
+                <td height="27px" id="menuTd" class="menu" style="padding-left: 170px">
                     @if (Request.IsAuthenticated)
                     {
-                        <ul id="menu" style="width: 100%; border: 0;">
-                            <li><a href="/Home/Index">@Resources.Intercamber.Home_PageName</a></li>
-                            <li><a href="#">@Resources.Intercamber.Profil_PageName</a></li>
-                            <li><a href="#">@Resources.Intercamber.Contacts_PageName</a></li>
-                            <li><a href="#">@Resources.Intercamber.SearchContacts_PageName</a></li>
-                            <li><a href="/Talk/Discussion">@Resources.Intercamber.ChatList_PageName</a></li>
-                            <li><a href="#">@Resources.Intercamber.Agenda_PageName</a></li>
-                            <li><a href="#">@Resources.Intercamber.Vocabulary_PageName</a></li>
+                        <ul id="menu" style="border: 0;">
+                            <li><a href="~/Home/Index">@Resources.Intercamber.Home_PageName</a></li>
+                            <li><a href="~/Contact/Search">@Resources.Intercamber.SearchContacts_PageName</a></li>
+                            <li><a href="#">@Resources.Intercamber.Project_PageName</a></li>
+                            <li><a href="#">@Resources.Intercamber.Toolbox_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Assistance_PageName</a></li>
-                            @if (SessionHelper.IsAdmin)
+                            @if (ViewBag.IsAdmin)
                             {
                                 <text>
                                 <li>
                                     <a href="#">@Resources.Intercamber.Admin_PageName</a>
                                     <ul>
-                                        <li><a href="#">@Resources.Intercamber.UserAdmin_PageName</a></li>
-                                        <li><a href="#">@Resources.Intercamber.EstablishmentAdmin_PageName</a></li>
-                                        <li><a href="#">@Resources.Intercamber.Moderate_PageName</a></li>
-                                        <li><a href="#">@Resources.Intercamber.Reporting_PageName</a></li>
+                                        <li><a href="#" style="color: black;">@Resources.Intercamber.UserAdmin_PageName</a></li>
+                                        <li><a href="#" style="color: black;">@Resources.Intercamber.EstablishmentAdmin_PageName</a></li>
+                                        <li><a href="#" style="color: black;">@Resources.Intercamber.Moderate_PageName</a></li>
+                                        <li><a href="#" style="color: black;">@Resources.Intercamber.Reporting_PageName</a></li>
                                     </ul>
                                 </li>
                                 </text>
@@ -89,19 +75,18 @@
                         </ul>
                     }
                 </td>
-                <td align="right" style="vertical-align: top; border-right: 1px solid #3D556C;" class="header menu">
+                <td align="right" style="vertical-align: top;" class="menu">
                     @if (Request.IsAuthenticated)
                     {
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                         {
                         <text>
-                        <span style="margin-bottom: 8px;">
-                            @(SessionHelper.ConnectedUser != null ? SessionHelper.ConnectedUser.UserNameComplete : "null")
+                        <span class="nameUser">
+                            @(ViewBag.ConnectedUserInfo != null ? ViewBag.ConnectedUserInfo.UserNameComplete : "null")
                         </span>&nbsp;
                             <a href="javascript:document.getElementById('logoutForm').submit()">
-                                <img src="/Images/ico-disconnect.gif" class="imgButton" />
-                            </a>
-                    &nbsp;
+                                <img title="@(Resources.Intercamber.Logout)" src="/Images/ico-disconnect.gif" class="imgButton" /></a>
+                        &nbsp;
                         @Html.AntiForgeryToken()
                         </text>
                         }
@@ -109,17 +94,22 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3" id="pageContent">
+                <td colspan="2" id="pageContent">
                     @*<div align="left" class="titleDiv" id="pageTitle">
                             @ViewBag.PageTitle
                         </div>*@
-                    <table class="calcHeight" style="width:100%">
+                    <table class="calcHeight" style="width: 100%" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td class="infoBar" @if(ViewBag.HideLeftBar == true){<text>style='display:none;'</text>}>
+                            <td class="infoBar" @if (ViewBag.HideLeftBar == true)
+                                                {<text>style='display:none;'</text>}>
                                 @RenderSection("PageLeftBar", false)
                             </td>
-                            <td>
-                                @RenderSection("PageContent")
+                            <td class="pageContent">
+                                <div style="overflow: auto;" class="calcHeight" >
+                                    <div class="paddedContent">
+                                    @RenderSection("PageContent")
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -128,10 +118,26 @@
         </table>
 
         <div id="footerLeft" class="footerLeft">
+            ©Intercamber v0.2, 2013
         </div>
-        <div class="footerRight">
-            ©Intercamber v0.1, 2013
-        </div>
+        @if (Request.IsAuthenticated)
+        {
+            <div class="contactsTitle ui-widget-header" onmouseover="$(this).removeClass('ui-widget-header')" onmouseout="$(this).addClass('ui-widget-header')" onclick="ToggleDisplayContacts()">
+                Contacts
+                <img style="padding-left: 10px" id="contactToggle" src="/Images/Minimize.png" />
+            </div>
+            <div class="contactsContent">
+                @foreach (ContactDetail cd in ViewBag.MyContacts)
+                {
+                    <text>
+                    <span class="contactItem">
+                        <img id="contactCnx@(cd.IdUser)" src="@(ChatHub.IsUserConnected(cd.IdUser) ? "/Images/Online.png" : "/Images/Offline.png")" />
+                        &nbsp;<a href="~/Talk/Discussion/@(cd.IdUser)">@(cd.FirstName)&nbsp;@(cd.LastName)&nbsp;<span id="UM@(cd.IdUser)" class="unreadMsg ui-state-highlight ui-corner-all" style="@(cd.NumUnreadMessages == 0 ? "display:none" : "")">@cd.NumUnreadMessages</span></a><br />
+                    </span>
+                    </text>
+                }
+            </div>
+        }
     </div>
 </body>
 </html>

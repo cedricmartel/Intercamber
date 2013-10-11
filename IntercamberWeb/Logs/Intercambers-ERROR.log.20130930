@@ -1,0 +1,59 @@
+2013-09-30 18:48:44,146 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
+ExceptionType: System.NotSupportedException
+Message: Only parameterless constructors and initializers are supported in LINQ to Entities.
+Source: System.Data.Entity
+Target site: System.Data.Common.CommandTrees.DbExpression TypedTranslate(System.Data.Objects.ELinq.ExpressionConverter, System.Linq.Expressions.NewExpression)
+   at System.Data.Objects.ELinq.ExpressionConverter.NewTranslator.TypedTranslate(ExpressionConverter parent, NewExpression linq)
+   at System.Data.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   at System.Data.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   at System.Data.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   at System.Data.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   at System.Data.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   at System.Data.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   at System.Data.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   at System.Data.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   at System.Data.Objects.ELinq.ExpressionConverter.Convert()
+   at System.Data.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   at System.Data.Objects.ObjectQuery`1.System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+   at System.Data.Entity.Internal.Linq.InternalQuery`1.GetEnumerator()
+   at System.Data.Entity.Infrastructure.DbQuery`1.System.Collections.Generic.IEnumerable<TResult>.GetEnumerator()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at CML.Intercamber.Business.Dao.ThreadMessagesDao.UnreadMessagesCount(Int64 idUser) in c:\PROJETS\working\Intercamber\IntercamberBusiness\Dao\ThreadMessagesDao.cs:line 36
+   at CML.Intercamber.Web.Controllers.BaseController.BeginExecuteCore(AsyncCallback c, Object state) in c:\PROJETS\working\Intercamber\IntercamberWeb\Controllers\BaseController.cs:line 53
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__2(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
+2013-09-30 19:30:15,305 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/signalr/abort?transport=serverSentEvents&connectionToken=y_Ra9y0DaKJGnZbjZcb6ude00IqgxnZW4za2Vney7G3rWQoKtgwswIWomqW4GoHi7bmWfeHe1ta9dzTZTYgaxNuLU7vX60x1PnX4gC8fygwC0AgF0P2Jo9jQ_eNu95Nb0
+ExceptionType: System.InvalidOperationException
+Message: Unrecognized user identity.  The user identity cannot change during an active SignalR connection.
+Source: Microsoft.AspNet.SignalR.Core
+Target site: System.String GetConnectionId(Microsoft.AspNet.SignalR.Hosting.HostContext, System.String)
+   à Microsoft.AspNet.SignalR.PersistentConnection.GetConnectionId(HostContext context, String connectionToken)
+   à Microsoft.AspNet.SignalR.PersistentConnection.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Hubs.HubDispatcher.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Owin.CallHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.AspNet.SignalR.Owin.Handlers.HubDispatcherHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.Owin.Host.SystemWeb.OwinCallContext.Execute()
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object extraData)
+--- Fin de la trace de la pile à partir de l'emplacement précédent au niveau duquel l'exception a été levée ---
+   à Microsoft.Owin.Host.SystemWeb.CallContextAsyncResult.End(IAsyncResult result)
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.EndProcessRequest(IAsyncResult result)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
