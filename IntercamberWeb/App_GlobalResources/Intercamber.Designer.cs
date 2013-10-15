@@ -286,11 +286,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à You have no pending contact requests.
+        /// </summary>
+        internal static string LeftBar_0ContactRequests {
+            get {
+                return ResourceManager.GetString("LeftBar_0ContactRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You have no new messages.
+        /// </summary>
+        internal static string LeftBar_0NewMessages {
+            get {
+                return ResourceManager.GetString("LeftBar_0NewMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Contacts requests.
         /// </summary>
         internal static string LeftBar_ContactRequests {
             get {
                 return ResourceManager.GetString("LeftBar_ContactRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Time cumulated in {0}.
+        /// </summary>
+        internal static string LeftBar_CumulatedIn {
+            get {
+                return ResourceManager.GetString("LeftBar_CumulatedIn", resourceCulture);
             }
         }
         
@@ -304,11 +331,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à My discussions.
+        /// </summary>
+        internal static string LeftBar_MyDiscussions {
+            get {
+                return ResourceManager.GetString("LeftBar_MyDiscussions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à My penpals.
+        /// </summary>
+        internal static string LeftBar_MyPenpals {
+            get {
+                return ResourceManager.GetString("LeftBar_MyPenpals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à My profile.
+        /// </summary>
+        internal static string LeftBar_MyProfile {
+            get {
+                return ResourceManager.GetString("LeftBar_MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You have {0} contact requests.
+        /// </summary>
+        internal static string LeftBar_NContactRequests {
+            get {
+                return ResourceManager.GetString("LeftBar_NContactRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You have {0} new messages.
+        /// </summary>
+        internal static string LeftBar_NNewMessages {
+            get {
+                return ResourceManager.GetString("LeftBar_NNewMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à I am fluent in {0}.
         /// </summary>
         internal static string LeftBar_Speaking {
             get {
                 return ResourceManager.GetString("LeftBar_Speaking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à points.
+        /// </summary>
+        internal static string LeftBar_TimeUnit {
+            get {
+                return ResourceManager.GetString("LeftBar_TimeUnit", resourceCulture);
             }
         }
         
@@ -385,6 +466,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Next.
+        /// </summary>
+        internal static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Online users: {0}.
         /// </summary>
         internal static string NumberOnlineUsers {
@@ -430,11 +520,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à You are looking for a penpal ?.
+        /// </summary>
+        internal static string SearchContacts_LookingForPenpal {
+            get {
+                return ResourceManager.GetString("SearchContacts_LookingForPenpal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Search contacts.
         /// </summary>
         internal static string SearchContacts_PageName {
             get {
                 return ResourceManager.GetString("SearchContacts_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Here are the penpals Intercambers recommand you.
+        /// </summary>
+        internal static string SearchContacts_ProposedPenpals {
+            get {
+                return ResourceManager.GetString("SearchContacts_ProposedPenpals", resourceCulture);
             }
         }
         
@@ -457,6 +565,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Find a penpal living in .
+        /// </summary>
+        internal static string SearchContacts_SelectContactCountry {
+            get {
+                return ResourceManager.GetString("SearchContacts_SelectContactCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Find a penpal with the following hobbies.
+        /// </summary>
+        internal static string SearchContacts_SelectContactHobbies {
+            get {
+                return ResourceManager.GetString("SearchContacts_SelectContactHobbies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à who is fluent in .
+        /// </summary>
+        internal static string SearchContacts_SelectContactLanguage {
+            get {
+                return ResourceManager.GetString("SearchContacts_SelectContactLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Send request.
         /// </summary>
         internal static string SearchContacts_SendRequest {
@@ -471,6 +606,33 @@ namespace Resources {
         internal static string SearchContacts_SendRequestTo {
             get {
                 return ResourceManager.GetString("SearchContacts_SendRequestTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Search a penpal.
+        /// </summary>
+        internal static string SearchContacts_Step1 {
+            get {
+                return ResourceManager.GetString("SearchContacts_Step1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Customize request.
+        /// </summary>
+        internal static string SearchContacts_Step2 {
+            get {
+                return ResourceManager.GetString("SearchContacts_Step2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Find your penpal.
+        /// </summary>
+        internal static string SearchContacts_Step3 {
+            get {
+                return ResourceManager.GetString("SearchContacts_Step3", resourceCulture);
             }
         }
         
@@ -498,6 +660,15 @@ namespace Resources {
         internal static string UserAdmin_PageName {
             get {
                 return ResourceManager.GetString("UserAdmin_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Validate.
+        /// </summary>
+        internal static string Validate {
+            get {
+                return ResourceManager.GetString("Validate", resourceCulture);
             }
         }
         

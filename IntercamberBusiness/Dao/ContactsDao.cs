@@ -14,7 +14,7 @@ namespace CML.Intercamber.Business.Dao
                 res = (from c in context.Contacts
                        where c.IdUser == idUser
                        join u in context.Users on c.IdUserContact equals u.IdUser
-                       where u.Enabled
+                       where u.Enabled && u.DisplayInContactRequests
                        select new ContactDetail
                        {
                            IdUser = u.IdUser,

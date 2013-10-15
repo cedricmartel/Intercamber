@@ -12,16 +12,13 @@ namespace CML.Intercamber.Business
     using System;
     using System.Collections.Generic;
     
-    public partial class Countries
+    public partial class UserActivities
     {
-        public Countries()
-        {
-            this.Users = new HashSet<Users>();
-        }
+        public long IdUserActivity { get; set; }
+        public long IdUser { get; set; }
+        public System.DateTime DateActivity { get; set; }
+        public string ActivityMessage { get; set; }
     
-        public string IdCountry { get; set; }
-        public bool Enabled { get; set; }
-    
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

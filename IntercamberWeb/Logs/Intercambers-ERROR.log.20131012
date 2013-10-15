@@ -1,0 +1,99 @@
+2013-10-12 14:02:33,882 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/signalr/abort?transport=serverSentEvents&connectionToken=WfNGD2_qM5fq6zT16L8wo2znTYJ_8f8RXYDGFgoLFCSpOvH8qhIIg5QkcK1yR3-kFkUP5aPLya-EmvJ9nu4USFiQcDMp-X4gi5VJRqQUPXGi5FvN9yKh0fniRmNEG2u5fVxIQ-0TlQrXiKRgALPhxw2
+ExceptionType: System.InvalidOperationException
+Message: Unrecognized user identity.  The user identity cannot change during an active SignalR connection.
+Source: Microsoft.AspNet.SignalR.Core
+Target site: System.String GetConnectionId(Microsoft.AspNet.SignalR.Hosting.HostContext, System.String)
+   à Microsoft.AspNet.SignalR.PersistentConnection.GetConnectionId(HostContext context, String connectionToken)
+   à Microsoft.AspNet.SignalR.PersistentConnection.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Hubs.HubDispatcher.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Owin.CallHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.AspNet.SignalR.Owin.Handlers.HubDispatcherHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.Owin.Host.SystemWeb.OwinCallContext.Execute()
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object extraData)
+--- Fin de la trace de la pile à partir de l'emplacement précédent au niveau duquel l'exception a été levée ---
+   à Microsoft.Owin.Host.SystemWeb.CallContextAsyncResult.End(IAsyncResult result)
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.EndProcessRequest(IAsyncResult result)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
+2013-10-12 14:03:11,865 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/signalr/abort?transport=serverSentEvents&connectionToken=fEEAY2McaYEJfsMNtvq2o5-ArnkeyVLVDzRDw_I1xe7eNDpjbt2dGSNq3qqOPuQfpJAhyZVt_l35w2kAun6VZ2p2yfwLCTrjEIMlPujqqrfuNy60ITy_i1vTqBI7m5NV0
+ExceptionType: System.InvalidOperationException
+Message: Unrecognized user identity.  The user identity cannot change during an active SignalR connection.
+Source: Microsoft.AspNet.SignalR.Core
+Target site: System.String GetConnectionId(Microsoft.AspNet.SignalR.Hosting.HostContext, System.String)
+   à Microsoft.AspNet.SignalR.PersistentConnection.GetConnectionId(HostContext context, String connectionToken)
+   à Microsoft.AspNet.SignalR.PersistentConnection.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Hubs.HubDispatcher.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Owin.CallHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.AspNet.SignalR.Owin.Handlers.HubDispatcherHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.Owin.Host.SystemWeb.OwinCallContext.Execute()
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object extraData)
+--- Fin de la trace de la pile à partir de l'emplacement précédent au niveau duquel l'exception a été levée ---
+   à Microsoft.Owin.Host.SystemWeb.CallContextAsyncResult.End(IAsyncResult result)
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.EndProcessRequest(IAsyncResult result)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
+2013-10-12 14:09:27,532 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/signalr/abort?transport=serverSentEvents&connectionToken=2A-Hl0xKnC99Uc_fTpeugwbWfszjrDorizdZL37GZHMup4UCVJPaeN6CTAWEQkjqGQJJ5SWRLMtlqZXhUhEKTo8l1FV2ICKXaC5MpxRrwQqAOKRU2tW7u4icZ-YKaexv0
+ExceptionType: System.InvalidOperationException
+Message: Unrecognized user identity.  The user identity cannot change during an active SignalR connection.
+Source: Microsoft.AspNet.SignalR.Core
+Target site: System.String GetConnectionId(Microsoft.AspNet.SignalR.Hosting.HostContext, System.String)
+   à Microsoft.AspNet.SignalR.PersistentConnection.GetConnectionId(HostContext context, String connectionToken)
+   à Microsoft.AspNet.SignalR.PersistentConnection.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Hubs.HubDispatcher.ProcessRequest(HostContext context)
+   à Microsoft.AspNet.SignalR.Owin.CallHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.AspNet.SignalR.Owin.Handlers.HubDispatcherHandler.Invoke(IDictionary`2 environment)
+   à Microsoft.Owin.Host.SystemWeb.OwinCallContext.Execute()
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object extraData)
+--- Fin de la trace de la pile à partir de l'emplacement précédent au niveau duquel l'exception a été levée ---
+   à Microsoft.Owin.Host.SystemWeb.CallContextAsyncResult.End(IAsyncResult result)
+   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.EndProcessRequest(IAsyncResult result)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
+2013-10-12 19:12:34,088 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/Contact/Images/Workflow/bubble.png
+ExceptionType: System.Web.HttpException
+Message: Le fichier n'existe pas.
+Source: System.Web
+Target site: System.IO.FileInfo GetFileInfo(System.String, System.String, System.Web.HttpResponse)
+   à System.Web.StaticFileHandler.GetFileInfo(String virtualPathWithPathInfo, String physicalPath, HttpResponse response)
+   à System.Web.StaticFileHandler.ProcessRequestInternal(HttpContext context, String overrideVirtualPath)
+   à System.Web.DefaultHttpHandler.BeginProcessRequest(HttpContext context, AsyncCallback callback, Object state)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
+2013-10-12 19:12:35,002 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/Contact/Images/Workflow/bubble.png
+ExceptionType: System.Web.HttpException
+Message: Le fichier n'existe pas.
+Source: System.Web
+Target site: System.IO.FileInfo GetFileInfo(System.String, System.String, System.Web.HttpResponse)
+   à System.Web.StaticFileHandler.GetFileInfo(String virtualPathWithPathInfo, String physicalPath, HttpResponse response)
+   à System.Web.StaticFileHandler.ProcessRequestInternal(HttpContext context, String overrideVirtualPath)
+   à System.Web.DefaultHttpHandler.BeginProcessRequest(HttpContext context, AsyncCallback callback, Object state)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 
+2013-10-12 19:12:35,178 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/Contact/Images/Workflow/bubble.png
+ExceptionType: System.Web.HttpException
+Message: Le fichier n'existe pas.
+Source: System.Web
+Target site: System.IO.FileInfo GetFileInfo(System.String, System.String, System.Web.HttpResponse)
+   à System.Web.StaticFileHandler.GetFileInfo(String virtualPathWithPathInfo, String physicalPath, HttpResponse response)
+   à System.Web.StaticFileHandler.ProcessRequestInternal(HttpContext context, String overrideVirtualPath)
+   à System.Web.DefaultHttpHandler.BeginProcessRequest(HttpContext context, AsyncCallback callback, Object state)
+   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+
+ ----------------------------------------------------- 

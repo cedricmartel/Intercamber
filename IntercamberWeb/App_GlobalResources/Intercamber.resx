@@ -267,4 +267,61 @@
   <data name="SearchContacts_RequestSentError" xml:space="preserve">
     <value>Error: could not send request</value>
   </data>
+  <data name="LeftBar_0ContactRequests" xml:space="preserve">
+    <value>You have no pending contact requests</value>
+  </data>
+  <data name="LeftBar_0NewMessages" xml:space="preserve">
+    <value>You have no new messages</value>
+  </data>
+  <data name="LeftBar_CumulatedIn" xml:space="preserve">
+    <value>Time cumulated in {0}</value>
+  </data>
+  <data name="LeftBar_MyDiscussions" xml:space="preserve">
+    <value>My discussions</value>
+  </data>
+  <data name="LeftBar_MyPenpals" xml:space="preserve">
+    <value>My penpals</value>
+  </data>
+  <data name="LeftBar_MyProfile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="LeftBar_NContactRequests" xml:space="preserve">
+    <value>You have {0} contact requests</value>
+  </data>
+  <data name="LeftBar_NNewMessages" xml:space="preserve">
+    <value>You have {0} new messages</value>
+  </data>
+  <data name="LeftBar_TimeUnit" xml:space="preserve">
+    <value>points</value>
+  </data>
+  <data name="SearchContacts_Step1" xml:space="preserve">
+    <value>Search a penpal</value>
+  </data>
+  <data name="SearchContacts_Step2" xml:space="preserve">
+    <value>Customize request</value>
+  </data>
+  <data name="SearchContacts_Step3" xml:space="preserve">
+    <value>Find your penpal</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="SearchContacts_LookingForPenpal" xml:space="preserve">
+    <value>You are looking for a penpal ?</value>
+  </data>
+  <data name="SearchContacts_ProposedPenpals" xml:space="preserve">
+    <value>Here are the penpals Intercambers recommand you</value>
+  </data>
+  <data name="SearchContacts_SelectContactCountry" xml:space="preserve">
+    <value>Find a penpal living in </value>
+  </data>
+  <data name="SearchContacts_SelectContactHobbies" xml:space="preserve">
+    <value>Find a penpal with the following hobbies</value>
+  </data>
+  <data name="SearchContacts_SelectContactLanguage" xml:space="preserve">
+    <value>who is fluent in </value>
+  </data>
 </root>

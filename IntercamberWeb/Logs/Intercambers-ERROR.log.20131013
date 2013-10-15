@@ -1,173 +1,5 @@
-2013-10-14 15:35:21,003 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+2013-10-13 15:30:16,333 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
 Url: http://localhost:8080/Contact/Search
-ExceptionType: System.Resources.MissingManifestResourceException
-Message: Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "DateStrings.resources" was correctly embedded or linked into assembly "IntercamberWeb" at compile time, or that all the satellite assemblies required are loadable and fully signed.
-Source: mscorlib
-Target site: Void HandleResourceStreamMissing(System.String)
-   at System.Resources.ManifestBasedResourceGroveler.HandleResourceStreamMissing(String fileName)
-   at System.Resources.ManifestBasedResourceGroveler.GrovelForResourceSet(CultureInfo culture, Dictionary`2 localResourceSets, Boolean tryParents, Boolean createIfNotExists, StackCrawlMark& stackMark)
-   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo requestedCulture, Boolean createIfNotExists, Boolean tryParents, StackCrawlMark& stackMark)
-   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo culture, Boolean createIfNotExists, Boolean tryParents)
-   at System.Resources.ResourceManager.GetString(String name, CultureInfo culture)
-   at System.Resources.ResourceManager.GetString(String name)
-   at CML.Intercamber.Web.Helpers.ResourcesHelper.GetString(String resourceCode) in c:\PROJETS\working\Intercamber\IntercamberWeb\Helpers\ResourcesHelper.cs:line 13
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__8() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 248
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Shared\_Layout.cshtml:line 110
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
-   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClass7.<RenderPageCore>b__6(TextWriter writer)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
-   at System.Web.WebPages.WebPageBase.PopContext()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
-   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
-   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
-   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 15:36:01,361 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
-ExceptionType: System.Resources.MissingManifestResourceException
-Message: Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "Intercamber.resources" was correctly embedded or linked into assembly "IntercamberWeb" at compile time, or that all the satellite assemblies required are loadable and fully signed.
-Source: mscorlib
-Target site: Void HandleResourceStreamMissing(System.String)
-   at System.Resources.ManifestBasedResourceGroveler.HandleResourceStreamMissing(String fileName)
-   at System.Resources.ManifestBasedResourceGroveler.GrovelForResourceSet(CultureInfo culture, Dictionary`2 localResourceSets, Boolean tryParents, Boolean createIfNotExists, StackCrawlMark& stackMark)
-   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo requestedCulture, Boolean createIfNotExists, Boolean tryParents, StackCrawlMark& stackMark)
-   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo culture, Boolean createIfNotExists, Boolean tryParents)
-   at System.Resources.ResourceManager.GetString(String name, CultureInfo culture)
-   at System.Resources.ResourceManager.GetString(String name)
-   at CML.Intercamber.Web.Helpers.ResourcesHelper.GetString(String resourceCode) in c:\PROJETS\working\Intercamber\IntercamberWeb\Helpers\ResourcesHelper.cs:line 13
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__8() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 248
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Shared\_Layout.cshtml:line 110
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
-   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClass7.<RenderPageCore>b__6(TextWriter writer)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
-   at System.Web.WebPages.WebPageBase.PopContext()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
-   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
-   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
-   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 15:36:54,508 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
-ExceptionType: System.Resources.MissingManifestResourceException
-Message: Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "Resources.Intercamber.resources" was correctly embedded or linked into assembly "IntercamberWeb" at compile time, or that all the satellite assemblies required are loadable and fully signed.
-Source: mscorlib
-Target site: Void HandleResourceStreamMissing(System.String)
-   at System.Resources.ManifestBasedResourceGroveler.HandleResourceStreamMissing(String fileName)
-   at System.Resources.ManifestBasedResourceGroveler.GrovelForResourceSet(CultureInfo culture, Dictionary`2 localResourceSets, Boolean tryParents, Boolean createIfNotExists, StackCrawlMark& stackMark)
-   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo requestedCulture, Boolean createIfNotExists, Boolean tryParents, StackCrawlMark& stackMark)
-   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo culture, Boolean createIfNotExists, Boolean tryParents)
-   at System.Resources.ResourceManager.GetString(String name, CultureInfo culture)
-   at System.Resources.ResourceManager.GetString(String name)
-   at CML.Intercamber.Web.Helpers.ResourcesHelper.GetString(String resourceCode) in c:\PROJETS\working\Intercamber\IntercamberWeb\Helpers\ResourcesHelper.cs:line 13
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__8() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 248
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Shared\_Layout.cshtml:line 110
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
-   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClass7.<RenderPageCore>b__6(TextWriter writer)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
-   at System.Web.WebPages.WebPageBase.PopContext()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
-   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
-   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
-   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 16:35:19,980 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search?_search=false&nd=1381761313024&rows=5&page=1&sidx=&sord=asc
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
@@ -175,7 +7,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at CallSite.Target(Closure , CallSite , Object )
    at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_5eny5ibd.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -184,7 +16,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 216
+   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__4() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 127
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -227,14 +59,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:37:10,971 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search?_search=false&nd=1381761424722&rows=5&page=1&sidx=&sord=asc
+2013-10-13 15:31:06,199 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_5eny5ibd.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -243,7 +75,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -286,14 +118,15 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:43:53,426 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:09,893 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -302,7 +135,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -345,14 +178,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:44:20,224 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:10,808 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -361,7 +194,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -404,14 +237,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:47:15,120 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:11,363 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -420,7 +253,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -463,14 +296,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:47:25,793 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:12,455 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -479,7 +312,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -522,14 +355,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:47:38,009 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:12,969 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -538,7 +371,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__c() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -581,14 +414,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:48:37,881 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:18,747 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -597,7 +430,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 217
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -640,14 +473,14 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
  ----------------------------------------------------- 
-2013-10-14 16:49:57,602 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
+2013-10-13 15:31:19,565 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
+Url: http://localhost:8080/
 ExceptionType: Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
 Message: Cannot perform runtime binding on a null reference
 Source: Anonymously Hosted DynamicMethods Assembly
 Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closure, System.Runtime.CompilerServices.CallSite, System.Object)
    at CallSite.Target(Closure , CallSite , Object )
-   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_33rvl34a.0.cs:line 0
+   at ASP._Page_Views_Shared__LeftBarUserDetailPartial_cshtml.Execute() in c:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\42f790b5\3732d114\App_Web_ajbcuh2z.1.cs:line 0
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
    at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
    at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
@@ -656,7 +489,7 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
    at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 216
+   at ASP._Page_Views_Home_Index_cshtml.<Execute>b__3() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Home\Index.cshtml:line 10
    at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
    at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
    at System.Web.WebPages.WebPageBase.Write(HelperResult result)
@@ -673,158 +506,6 @@ Target site: System.Object CallSite.Target(System.Runtime.CompilerServices.Closu
    at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
    at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
    at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
-   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 16:51:44,287 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/Search
-ExceptionType: System.Web.HttpParseException
-Message: Unexpected "string" keyword after "@" character.  Once inside code, you do not need to prefix constructs like "string" with "@".
-
-Source: System.Web.WebPages.Razor
-Target site: Void EnsureGeneratedCode()
-   at System.Web.WebPages.Razor.RazorBuildProvider.EnsureGeneratedCode()
-   at System.Web.WebPages.Razor.RazorBuildProvider.get_CodeCompilerType()
-   at System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(BuildProvider buildProvider)
-   at System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
-   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
-   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
-   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   at System.Web.Compilation.BuildManager.GetObjectFactory(String virtualPath, Boolean throwIfNotFound)
-   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.FileExists(String virtualPath)
-   at System.Web.Mvc.BuildManagerViewEngine.FileExists(ControllerContext controllerContext, String virtualPath)
-   at Microsoft.Web.Mvc.FixedRazorViewEngine.Microsoft.Web.Mvc.IViewEngineProxy.FileExists(ControllerContext controllerContext, String virtualPath)
-   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FileExists(ControllerContext controllerContext, String virtualPath)
-   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPathFromSpecificName(ControllerContext controllerContext, String name, String cacheKey, String[]& searchedLocations)
-   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.GetPath(ControllerContext controllerContext, String[] locations, String[] areaLocations, String locationsPropertyName, String name, String controllerName, String cacheKeyPrefix, Boolean useCache, String[]& searchedLocations)
-   at Microsoft.Web.Mvc.ViewEngineFixWorker`1.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache)
-   at Microsoft.Web.Mvc.FixedRazorViewEngine.FindPartialView(ControllerContext controllerContext, String partialViewName, Boolean useCache)
-   at System.Web.Mvc.ViewEngineCollection.<>c__DisplayClass8.<FindPartialView>b__7(IViewEngine e)
-   at System.Web.Mvc.ViewEngineCollection.Find(Func`2 lookup, Boolean trackSearchedPaths)
-   at System.Web.Mvc.ViewEngineCollection.FindPartialView(ControllerContext controllerContext, String partialViewName)
-   at System.Web.Mvc.HtmlHelper.FindPartialView(ViewContext viewContext, String partialViewName, ViewEngineCollection viewEngineCollection)
-   at System.Web.Mvc.HtmlHelper.RenderPartialInternal(String partialViewName, ViewDataDictionary viewData, Object model, TextWriter writer, ViewEngineCollection viewEngineCollection)
-   at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
-   at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName)
-   at ASP._Page_Views_Contact_Search_cshtml.<Execute>b__d() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Contact\Search.cshtml:line 216
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClassb.<RenderSection>b__9(TextWriter tw)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at ASP._Page_Views_Shared__Layout_cshtml.Execute() in c:\PROJETS\working\Intercamber\IntercamberWeb\Views\Shared\_Layout.cshtml:line 105
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
-   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.WebPages.WebPageBase.<>c__DisplayClass7.<RenderPageCore>b__6(TextWriter writer)
-   at System.Web.WebPages.HelperResult.WriteTo(TextWriter writer)
-   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
-   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
-   at System.Web.WebPages.WebPageBase.PopContext()
-   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
-   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
-   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
-   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)
-   at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<>c__DisplayClass1c.<InvokeActionResultWithFilters>b__19()
-   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<>c__DisplayClass2a.<BeginInvokeAction>b__20()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass25.<BeginInvokeAction>b__22(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.<>c__DisplayClass1d.<BeginExecuteCore>b__18(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.<>c__DisplayClass8.<BeginProcessRequest>b__3(IAsyncResult asyncResult)
-   at System.Web.Mvc.Async.AsyncResultWrapper.<>c__DisplayClass4.<MakeVoidDelegate>b__3(IAsyncResult ar)
-   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.End()
-   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
-   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
-   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 16:52:21,710 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/signalr/abort?transport=serverSentEvents&connectionToken=c1HLYuYqwX8PgQy-tUO5Egano3fOaMFgWXTGszUeTn29kwcZlTF30Wtdog2oHb7W8OXDIfiH6z6E-IK6mN86rsKaaUEfzCBxu8iYGpjJTpSlob3hKC2ryuFxYLry_cZmQ0OklcpgEAmInukkPLCyog2
-ExceptionType: System.InvalidOperationException
-Message: Unrecognized user identity.  The user identity cannot change during an active SignalR connection.
-Source: Microsoft.AspNet.SignalR.Core
-Target site: System.String GetConnectionId(Microsoft.AspNet.SignalR.Hosting.HostContext, System.String)
-   à Microsoft.AspNet.SignalR.PersistentConnection.GetConnectionId(HostContext context, String connectionToken)
-   à Microsoft.AspNet.SignalR.PersistentConnection.ProcessRequest(HostContext context)
-   à Microsoft.AspNet.SignalR.Hubs.HubDispatcher.ProcessRequest(HostContext context)
-   à Microsoft.AspNet.SignalR.Owin.CallHandler.Invoke(IDictionary`2 environment)
-   à Microsoft.AspNet.SignalR.Owin.Handlers.HubDispatcherHandler.Invoke(IDictionary`2 environment)
-   à Microsoft.Owin.Host.SystemWeb.OwinCallContext.Execute()
-   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object extraData)
---- Fin de la trace de la pile à partir de l'emplacement précédent au niveau duquel l'exception a été levée ---
-   à System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-   à Microsoft.Owin.Host.SystemWeb.Infrastructure.ErrorState.Rethrow()
-   à Microsoft.Owin.Host.SystemWeb.CallContextAsyncResult.End(IAsyncResult result)
-   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.EndProcessRequest(IAsyncResult result)
-   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 16:52:23,556 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/signalr/abort?transport=serverSentEvents&connectionToken=bxSikQXd1vwXc9kmEAyXwAfKgEwzrGVANU4HglS-WUrf2G3DQoQZ-sx1Xs41ZOCg4F5ht_OMqEPomCYtLLIohnpVBMHTW3A-2cHTR6qewHsIE15G3B0XU_9vqxf3dX970
-ExceptionType: System.InvalidOperationException
-Message: Unrecognized user identity.  The user identity cannot change during an active SignalR connection.
-Source: Microsoft.AspNet.SignalR.Core
-Target site: System.String GetConnectionId(Microsoft.AspNet.SignalR.Hosting.HostContext, System.String)
-   à Microsoft.AspNet.SignalR.PersistentConnection.GetConnectionId(HostContext context, String connectionToken)
-   à Microsoft.AspNet.SignalR.PersistentConnection.ProcessRequest(HostContext context)
-   à Microsoft.AspNet.SignalR.Hubs.HubDispatcher.ProcessRequest(HostContext context)
-   à Microsoft.AspNet.SignalR.Owin.CallHandler.Invoke(IDictionary`2 environment)
-   à Microsoft.AspNet.SignalR.Owin.Handlers.HubDispatcherHandler.Invoke(IDictionary`2 environment)
-   à Microsoft.Owin.Host.SystemWeb.OwinCallContext.Execute()
-   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object extraData)
---- Fin de la trace de la pile à partir de l'emplacement précédent au niveau duquel l'exception a été levée ---
-   à System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
-   à Microsoft.Owin.Host.SystemWeb.Infrastructure.ErrorState.Rethrow()
-   à Microsoft.Owin.Host.SystemWeb.CallContextAsyncResult.End(IAsyncResult result)
-   à Microsoft.Owin.Host.SystemWeb.OwinHttpHandler.EndProcessRequest(IAsyncResult result)
-   à System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   à System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
- ----------------------------------------------------- 
-2013-10-14 17:28:21,348 FATAL (c:\PROJETS\working\Intercamber\IntercamberBusiness\Helper\LogHelper.cs:109) - Server: CEDRIC-PC
-Url: http://localhost:8080/Contact/SearchData?_search=false&nd=1381764501207&rows=5&page=1&sidx=&sord=asc
-ExceptionType: System.InvalidOperationException
-Message: This request has been blocked because sensitive information could be disclosed to third party web sites when this is used in a GET request. To allow GET requests, set JsonRequestBehavior to AllowGet.
-Source: System.Web.Mvc
-Target site: Void ExecuteResult(System.Web.Mvc.ControllerContext)
-   at System.Web.Mvc.JsonResult.ExecuteResult(ControllerContext context)
    at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
    at System.Web.Mvc.ControllerActionInvoker.<>c__DisplayClass1a.<InvokeActionResultWithFilters>b__17()
    at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilter(IResultFilter filter, ResultExecutingContext preContext, Func`1 continuation)

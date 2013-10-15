@@ -29,7 +29,7 @@ namespace CML.Intercamber.Business.Dao
             return res;
         }
 
-        public GridData<UsersDetail> SearchUsers(GridSettings gridSettings, long userId, List<string> spokenLanguages, List<string> learnLanguages)
+        public GridData<UsersDetail> SearchUsers(GridSettings gridSettings, long userId, string country, string spokenLanguage, List<string> learnLanguages)
         {
             List<UsersDetail> res;
             int totalRecords = 0;
@@ -38,8 +38,9 @@ namespace CML.Intercamber.Business.Dao
             {
                 var req = (from u in context.Users
                            where u.Enabled //&& u.IdProfil == ProfilsConst.Student.Id
-                                && learnLanguages.Any(x => u.UsersSpokenLanguages.Any(y => y.IdLanguage == x))
-                                && spokenLanguages.Any(x => u.UsersLearnLanguages.Any(y => y.IdLanguage == x))
+                                && u.UsersSpokenLanguages.Any(y => y.IdLanguage == spokenLanguage)
+                                && learnLanguages.Any(x => u.UsersLearnLanguages.Any(y => y.IdLanguage == x))
+                                && u.IdCountry == country
                                 && !context.Contacts.Any(x => x.IdUser == userId && x.IdUserContact == u.IdUser)
                            select new UsersDetail
                            {

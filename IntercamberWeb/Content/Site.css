@@ -1,6 +1,6 @@
 ﻿html, body
 {
-    font-size: 13px;
+    font-size: 14px;
     font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
     font-weight: normal;
     cursor: default;
@@ -110,6 +110,11 @@ textarea
     text-align: center;
 }
 
+.infoBarTitle {
+    font-size: 16px;
+
+}
+
 .intermediaryTitle
 {
     font-size: 14px;
@@ -184,6 +189,19 @@ ul#menu > li
     z-index: 100000;
 }
 
+.ui-menu-base {
+    border: 1px solid white;
+    background-color: #F8BE60;
+}
+
+.ui-menu-sel
+{
+    border: 1px solid rgb(170, 170, 170);
+    background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% rgb(255, 255, 255);
+    color: #232323 !important;
+    margin: -1px;
+}
+
 .contactsTitle
 {
     background-color: #F7AF39;
@@ -239,14 +257,6 @@ ul#menu > li
 .nameUser
 {
     color: white;
-}
-
-.ui-menu-sel
-{
-    border: 1px solid rgb(170, 170, 170);
-    background: url("images/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% rgb(255, 255, 255);
-    color: #232323 !important;
-    margin: -1px;
 }
 
 .unreadMsg

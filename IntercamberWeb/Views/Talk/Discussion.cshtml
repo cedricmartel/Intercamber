@@ -1,6 +1,4 @@
-﻿@using System.Web.UI.WebControls
-@using CML.Intercamber.Business.Model
-@{
+﻿@{
     ViewBag.PageTitle = Resources.Intercamber.Chat_PageName;
 }
 
@@ -97,7 +95,7 @@
         function resizeComplement() {
             // resize of chat: leave 200px right, fullheight
             var discussionDiv = $('#discussion');
-            discussionDiv.height($(".calcHeight").height() - 100);
+            discussionDiv.height($(".calcHeight").height() - 110);
             discussionDiv.width($(".pageContent").width() - $(".infoBar").width() - 200);
             $("#talkDiv").height(discussionDiv.height + $('#discussionInput').height());
         }
@@ -107,14 +105,14 @@
         <br />
     </div>
 
-    <table id="talkDiv" style="padding-left: 5px; border: 1px solid #EEEEEE; min-width: 600px;" cellpadding="0" cellspacing="0">
+    <table id="talkDiv " style="margin-left: 20px; border: 2px solid #F8B74D; min-width: 600px;" class="ui-corner-all">
         <tr>
-            <td>
-                <div id="discussion" style="min-height: 30px; width: 600px; overflow: auto"></div>
+            <td style="border-bottom: 2px solid #F8B74D;">
+                <div id="discussion" style="padding:5px; min-height: 30px; width: 600px; overflow: auto"></div>
             </td>
         </tr>
         <tr id="discussionInput">
-            <td style="border-top: 1px solid #EEEEEE;">
+            <td >
                 <input type="text" style="width: 85%" id="message" />
                 <input type="button" id="sendmessage" value="Send" /></td>
         </tr>

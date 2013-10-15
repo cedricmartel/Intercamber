@@ -76,6 +76,7 @@ $(function () {
     
     // highlight selected menu 
     var currentMenu = $("a[href='" + window.pageCode + "']");
+    $(".ui-menu-item").children().addClass("ui-menu-base");
     if (currentMenu.length > 0)
         currentMenu.addClass("ui-menu-sel");
 

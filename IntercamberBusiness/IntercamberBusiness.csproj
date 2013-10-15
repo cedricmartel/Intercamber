@@ -69,6 +69,8 @@
     </Compile>
     <Compile Include="Dao\ContactRequestsDao.cs" />
     <Compile Include="Dao\ContactsDao.cs" />
+    <Compile Include="Dao\CountriesDao.cs" />
+    <Compile Include="Dao\LanguagesDao.cs" />
     <Compile Include="Dao\ThreadMessagesDao.cs" />
     <Compile Include="Dao\ThreadsDao.cs" />
     <Compile Include="Dao\ThreadUsersDao.cs" />
@@ -79,6 +81,9 @@
     <Compile Include="Helper\DateTimeHelper.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Helper\IntHelper.cs" />
+    <Compile Include="Hobbies.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IntercamberModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +122,9 @@
       <DependentUpon>IntercamberModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ThreadUsers.cs">
+      <DependentUpon>IntercamberModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserActivities.cs">
       <DependentUpon>IntercamberModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">

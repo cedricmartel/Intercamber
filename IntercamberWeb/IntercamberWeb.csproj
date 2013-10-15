@@ -232,10 +232,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BingMapsHelper.cs" />
     <Compile Include="Helpers\ConnectedUserHelper.cs" />
     <Compile Include="Helpers\ContactsHelper.cs" />
+    <Compile Include="Helpers\CountryHelper.cs" />
+    <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
+    <Compile Include="Helpers\ResourcesHelper.cs" />
     <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Helpers\ThreadHelper.cs" />
     <Compile Include="Models\AccountModels.cs">
@@ -245,16 +247,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.log4net.cs" />
-    <Compile Include="Service References\GeocodeServices\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\ImageryServices\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="appicon.png" />
@@ -340,6 +332,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\AddContact.png" />
+    <Content Include="Images\Check.png" />
     <Content Include="Images\ico-disconnect.gif" />
     <Content Include="Images\Flags\en.png" />
     <Content Include="Images\Flags\es.png" />
@@ -379,6 +372,11 @@
     <Content Include="Images\RoundFlags\RoundFlag_uk.png" />
     <Content Include="Images\RoundFlags\RoundFlag_us.png" />
     <Content Include="Images\TitreIntercambers.png" />
+    <Content Include="Images\Workflow\Bubble.png" />
+    <Content Include="Images\Workflow\BubbleCheck.png" />
+    <Content Include="Images\Workflow\BubbleSelected.png" />
+    <Content Include="Images\Workflow\Link.png" />
+    <Content Include="Images\Workflow\LinkCheck.png" />
     <Content Include="metadata.xml" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
@@ -440,18 +438,6 @@
     <Content Include="Scripts\qtip\jquery.qtip.js" />
     <Content Include="Scripts\qtip\jquery.qtip.min.css" />
     <Content Include="Scripts\qtip\jquery.qtip.min.js" />
-    <Content Include="Service References\GeocodeServices\configuration91.svcinfo" />
-    <Content Include="Service References\GeocodeServices\configuration.svcinfo" />
-    <Content Include="Service References\GeocodeServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Service References\ImageryServices\configuration91.svcinfo" />
-    <Content Include="Service References\ImageryServices\configuration.svcinfo" />
-    <Content Include="Service References\ImageryServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -468,47 +454,8 @@
     <Content Include="Views\Talk\Discussion.cshtml" />
     <Content Include="Views\Shared\_LeftBarUserDetailPartial.cshtml" />
     <Content Include="Views\Contact\Search.cshtml" />
-    <Content Include="Service References\GeocodeServices\GeocodeService.wsdl" />
-    <None Include="Service References\GeocodeServices\GeocodeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\GeocodeServices\GeocodeService1.wsdl" />
-    <None Include="Service References\GeocodeServices\GeocodeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GeocodeServices\GeocodeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GeocodeServices\GeocodeService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GeocodeServices\GeocodeService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\ImageryServices\ImageryService.wsdl" />
-    <None Include="Service References\ImageryServices\ImageryService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\ImageryServices\imageryservice1.wsdl" />
-    <None Include="Service References\ImageryServices\ImageryService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ImageryServices\ImageryService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ImageryServices\ImageryService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ImageryServices\ImageryService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ImageryServices\ImageryService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -530,13 +477,6 @@
       <Project>{f9fcbae1-3351-4bc2-9185-325d89974add}</Project>
       <Name>IntercamberBusiness</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\GeocodeServices\" />
-    <WCFMetadataStorage Include="Service References\ImageryServices\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

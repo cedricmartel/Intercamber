@@ -1,4 +1,6 @@
-﻿@using MvcJqGrid
+﻿@using CML.Intercamber.Business
+@using CML.Intercamber.Web.Helpers
+@using MvcJqGrid
 @using MvcJqGrid.DataReaders
 @using MvcJqGrid.Enums
 
@@ -8,12 +10,77 @@
 @section PageHead
 {
     <script>
+        $(function() {
+            $("#buttonValidate").button();
+        });
+
+        // workflow management 
+        var currentStep = 1;
+        var totalSteps = 3;
+
+        function validateStep() {
+            // TODO step validation
+            initNextStep();
+        }
+
+        function initNextStep() {
+            $("#numStep" + currentStep).css("background-image", "url(/Images/Workflow/BubbleCheck.png)");
+            $("#numStep" + currentStep).html("");
+            if (currentStep < totalSteps)
+                $("#linkStep" + currentStep).css("background-image", "url(/Images/Workflow/LinkCheck.png)");
+            $("#contentStep" + currentStep).hide();
+            currentStep++;
+            $("#contentStep" + currentStep).show();
+            $(".stepSelected").removeClass("stepSelected");
+            $("#step" + currentStep).addClass("stepSelected");
+            if (currentStep == totalSteps)
+                $("#buttonValidate").hide();
+
+            if (currentStep == totalSteps) {
+                // load grid
+                //.setGridParam({ datatype: 'json',
+               jQuery("#grid").jqGrid()
+                    .setGridParam({
+                        datatype: 'json',
+                        url: '/Contact/SearchData?country=' + $("#ddlCountry").val() + '&language=' + $("#ddlLanguage").val() 
+                    })
+                    .trigger("reloadGrid", [{ page: 1 }]);
+            }
+        }
+
+        function initFirstStep() {
+            currentStep = 1;
+            $(".contentStep").hide();
+            $("#contentStep1").show();
+            $(".stepLink").css("background-image", "url(/Images/Workflow/Link.png)");
+            $(".stepNumber").each(function() {
+                var numStep = this.id.replace("numStep", "");
+                var dt = $(this);
+                dt.html(numStep);
+                dt.css("background-image", "url(/Images/Workflow/Bubble.png)");
+            });
+            $(".stepSelected").removeClass("stepSelected");
+            $("#step1").addClass("stepSelected");
+            $("#buttonValidate").show();
+        }
+
+        function goToStep(stepNum) {
+            if (stepNum >= currentStep)
+                return;
+            initFirstStep();
+            for (var i = 2; i <= totalSteps && i <= stepNum; i++)
+                initNextStep();
+        }
+
+        // grid management 
         var ttAdd = null, ttAddTitle = "";
+
         function gridColumnAdd(cellvalue, options, rowobject) {
             return "<img id=\"add" + cellvalue + "\" class='imgButton' src='/Images/AddContact.png' onclick=\"formAddContact('" + cellvalue + "', '" + rowobject.FirstName.replace("\"", "").replace("'", "") + " " + rowobject.LastName.replace("\"", "").replace("'", "") + "')\" />";
         }
 
         var currentIdUser = null, currentUserName = "";
+
         function formAddContact(idUser, userName) {
             currentIdUser = idUser;
             currentUserName = userName;
@@ -28,27 +95,31 @@
                     content: $('#ttAdd'),
                     position: { my: 'center', at: 'center', target: $(window), viewport: $(window), adjust: { method: "shift", x: 0, y: 0 }, effect: false },
                     events: {
-                        show: function () {
+                        show: function() {
                             $(this).draggable();
                             $(this).qtip('option', { 'content.title': ttAddTitle, 'content.title.button': 'true' });
                         },
-                        hide: function () {
+                        hide: function() {
                             $(this).qtip('option', { 'position.my': 'top left', 'position.target': [$(this).offset().left, $(this).offset().top] });
                         }
                     },
                     hide: false,
                     style: { classes: "qtip-light qtip-rounded tipWidth", tip: false }
                 });
-            }
-            else {
-                try { ttAdd.qtip('option', 'content.title', ttAddTitle); } catch (err) { }
+            } else {
+                try {
+                    ttAdd.qtip('option', 'content.title', ttAddTitle);
+                } catch(err) {
+                }
             }
             $("#addContactMessage").val("");
             ttAdd.qtip('show');
         }
+
         function hideTtAdd() {
             ttAdd.qtip('hide');
         }
+
         function sendContactRequest() {
             var message = $("#addContactMessage").val();
             $.ajax({
@@ -57,7 +128,7 @@
                 contentType: "application/json; charset=utf-8",
                 data: "{'idUser':\"" + currentIdUser + "\", 'message': \"" + message + "\"}",
                 dataType: "json",
-                success: function (result) {
+                success: function(result) {
                     if (result == true) {
                         alert("@Resources.Intercamber.SearchContacts_RequestSentTo " + currentUserName);
                         hideTtAdd();
@@ -66,33 +137,141 @@
                         alert("@Resources.Intercamber.SearchContacts_RequestSentError");
                     }
                 },
-                error: function (result) {
+                error: function(result) {
                     debugger;
                 }
             });
         }
     </script>
+
     <style>
-    .tipWidth {
-        width: 400px;
-	    max-width: 400px;
-	    min-width: 400px;
-    }
-    #gview_basic
-    {
-    position:relative;
-    z-index:1;
-    }
+        .tipWidth
+        {
+            width: 400px;
+            max-width: 400px;
+            min-width: 400px;
+        }
+
+        #gview_basic
+        {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stepItem
+        {
+            width: 250px;
+            height: 60px;
+            line-height: 70px;
+            border: 1px solid #E5E5E5;
+            display: inline-block;
+            margin-top: 55px;
+            text-align: center;
+        }
+
+        .stepNumber
+        {
+            width: 250px;
+            height: 60px;
+            line-height: 60px;
+            display: block;
+            position: absolute;
+            background-image: url(/Images/Workflow/Bubble.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 250px;
+            text-align: center;
+            vertical-align: middle;
+            margin-top: -30px;
+        }
+
+        .stepLink
+        {
+            width: 250px;
+            height: 82px;
+            display: block;
+            position: absolute;
+            background-image: url(/Images/Workflow/Link.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: -70px;
+            margin-left: 130px;
+        }
+
+        .stepSelected
+        {
+            background-color: #DEECF8;
+        }
+
+        .stepTitle
+        {
+            display: inline-block;
+            width: 750px;
+            border: 1px solid #E5E5E5;
+            padding: 6px;
+            text-align: center;
+            font-size: 16px;
+            color: #3D556C;
+        }
     </style>
 }
-@section PageLeftBar
-{
+@section PageLeftBar {
     @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
 }
 @section PageContent {
-    <div id="grid" style="width: 96%; text-align: center;">
-        @(Html.Grid("basic")
-              .SetDataType(DataType.Json)
+
+    <br />
+    <span id="wfl" style="display: block; height: 100px; vertical-align: bottom;">
+        <span class="stepItem stepSelected ui-corner-all" id="step1">
+            <div class="stepNumber" id="numStep1">1</div>
+            <div class="stepLink" id="linkStep1"></div>
+            <a onclick="goToStep(1); return false;">@Resources.Intercamber.SearchContacts_Step1</a>
+        </span>
+        <div class="stepItem ui-corner-all" id="step2">
+            <div class="stepNumber" id="numStep2">2</div>
+            <div class="stepLink" id="linkStep2"></div>
+            <a onclick="goToStep(2); return false;">@Resources.Intercamber.SearchContacts_Step2</a>
+        </div>
+        <div class="stepItem ui-corner-all" id="step3">
+            <div class="stepNumber" id="numStep3">3</div>
+            @Resources.Intercamber.SearchContacts_Step3
+        </div>
+    </span>
+    <br />
+    <br />
+
+    <div id="contentStep1" class="contentStep">
+        <span class="stepTitle ui-corner-all">
+            @Resources.Intercamber.SearchContacts_LookingForPenpal
+        </span>
+        <br />
+        <br />
+        @Resources.Intercamber.SearchContacts_SelectContactCountry
+        <select id="ddlCountry">
+            @foreach (Countries c in ViewBag.ContactCountries)
+            {
+                <text><option value="@c.IdCountry" @(c.IdCountry == ViewBag.PreferedCountry ? " selected" : "")>@ResourcesHelper.GetString("Countries_" + c.IdCountry)</option></text>
+            }
+        </select>
+        @Resources.Intercamber.SearchContacts_SelectContactLanguage
+        <select id="ddlLanguage">
+            @foreach (Languages l in ViewBag.ContactLanguages)
+            {
+                <text><option value="@l.IdLanguage">@ResourcesHelper.GetString("Languages_" + l.IdLanguage)</option></text>
+            }
+        </select>
+    </div>
+    <div id="contentStep2" style="display: none;" class="contentStep">
+        @Resources.Intercamber.SearchContacts_SelectContactHobbies
+        <br />
+        // work in progress 
+    </div>
+    <div id="contentStep3" style="display: none; width: 96%;" class="contentStep">
+        @Resources.Intercamber.SearchContacts_ProposedPenpals
+        <br />
+        <br />
+        <table id='grid' />
+        @(Html.Grid("grid")
               .SetLoadOnce(false)
               .AddColumn(new Column("IdUser")
                   .SetLabel(Resources.Intercamber.SearchContacts_Add)
@@ -105,15 +284,17 @@
               .AddColumn(new Column("FirstName"))
               .AddColumn(new Column("LastName"))
               .AddColumn(new Column("City"))
-              .SetUrl("/Contact/SearchData/")
               .SetAutoWidth(true)
               .SetViewRecords(true)
               .SetJsonReader(new JsonReader { RepeatItems = false, Id = "IdUser" })
-              .SetRowNum(20)
-              .SetRowList(new[] { 20, 40, 60 })
+              .SetRowNum(5)
+              .SetRowList(new[] { 5, 10, 15 })
               .SetPager("pager")
+              .SetUrl("/Contact/SearchData")
+              .SetDataType(DataType.Json)
               )
     </div>
+
     <div id="ttAdd" style="display: none">
         @Resources.Intercamber.SearchContacts_YourMessage:<br />
         <textarea id="addContactMessage" rows="5"></textarea>
@@ -122,4 +303,9 @@
         &nbsp;
         <button onclick="hideTtAdd()">@Resources.Intercamber.Cancel</button>
     </div>
+    <br />
+    <button onclick="validateStep()" id="buttonValidate">
+        <img src="~/Images/Check.png" style="position: relative; margin: 0 8px 4px 0;" />
+        @Resources.Intercamber.Next
+    </button>
 }

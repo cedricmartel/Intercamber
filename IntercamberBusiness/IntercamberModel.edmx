@@ -10,11 +10,13 @@
           <EntitySet Name="Contacts" EntityType="IntercamberModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Countries" EntityType="IntercamberModel.Store.Countries" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Establishments" EntityType="IntercamberModel.Store.Establishments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Hobbies" EntityType="IntercamberModel.Store.Hobbies" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Languages" EntityType="IntercamberModel.Store.Languages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Profils" EntityType="IntercamberModel.Store.Profils" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ThreadMessages" EntityType="IntercamberModel.Store.ThreadMessages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Threads" EntityType="IntercamberModel.Store.Threads" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ThreadUsers" EntityType="IntercamberModel.Store.ThreadUsers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserActivities" EntityType="IntercamberModel.Store.UserActivities" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Users" EntityType="IntercamberModel.Store.Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersLearnLanguages" EntityType="IntercamberModel.Store.UsersLearnLanguages" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UsersSpokenLanguages" EntityType="IntercamberModel.Store.UsersSpokenLanguages" store:Type="Tables" Schema="dbo" />
@@ -45,6 +47,10 @@
           <AssociationSet Name="FK_ThreadUsers_Users" Association="IntercamberModel.Store.FK_ThreadUsers_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="ThreadUsers" EntitySet="ThreadUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserActivities_Users" Association="IntercamberModel.Store.FK_UserActivities_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Countries" Association="IntercamberModel.Store.FK_Users_Countries">
             <End Role="Countries" EntitySet="Countries" />
@@ -93,6 +99,7 @@
             <PropertyRef Name="IdCountry" />
           </Key>
           <Property Name="IdCountry" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Establishments">
           <Key>
@@ -104,11 +111,21 @@
           <Property Name="DateCreate" Type="datetime2" Nullable="false" />
           <Property Name="TimeZone" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Hobbies">
+          <Key>
+            <PropertyRef Name="IdHobby" />
+          </Key>
+          <Property Name="IdHobby" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LblHobby" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="OrderHobby" Type="int" Nullable="false" />
+          <Property Name="IdHobbyParent" Type="bigint" />
+        </EntityType>
         <EntityType Name="Languages">
           <Key>
             <PropertyRef Name="IdLanguage" />
           </Key>
           <Property Name="IdLanguage" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="PreferedCountry" Type="varchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
@@ -146,6 +163,15 @@
           <Property Name="DateCreate" Type="datetime2" Nullable="false" />
           <Property Name="DateLastSeen" Type="datetime2" />
         </EntityType>
+        <EntityType Name="UserActivities">
+          <Key>
+            <PropertyRef Name="IdUserActivity" />
+          </Key>
+          <Property Name="IdUserActivity" Type="bigint" Nullable="false" />
+          <Property Name="IdUser" Type="bigint" Nullable="false" />
+          <Property Name="DateActivity" Type="datetime2" Nullable="false" />
+          <Property Name="ActivityMessage" Type="varchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="IdUser" />
@@ -164,6 +190,7 @@
           <Property Name="DateCreate" Type="datetime2" Nullable="false" />
           <Property Name="IdCountry" Type="varchar" MaxLength="2" />
           <Property Name="City" Type="nvarchar" MaxLength="128" />
+          <Property Name="DisplayInContactRequests" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UsersLearnLanguages">
           <Key>
@@ -267,6 +294,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserActivities_Users">
+          <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="1" />
+          <End Role="UserActivities" Type="IntercamberModel.Store.UserActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Countries">
           <End Role="Countries" Type="IntercamberModel.Store.Countries" Multiplicity="0..1" />
           <End Role="Users" Type="IntercamberModel.Store.Users" Multiplicity="*" />
@@ -336,11 +375,13 @@
           <EntitySet Name="Contacts" EntityType="IntercamberModel.Contacts" />
           <EntitySet Name="Countries" EntityType="IntercamberModel.Countries" />
           <EntitySet Name="Establishments" EntityType="IntercamberModel.Establishments" />
+          <EntitySet Name="Hobbies" EntityType="IntercamberModel.Hobbies" />
           <EntitySet Name="Languages" EntityType="IntercamberModel.Languages" />
           <EntitySet Name="Profils" EntityType="IntercamberModel.Profils" />
           <EntitySet Name="ThreadMessages" EntityType="IntercamberModel.ThreadMessages" />
           <EntitySet Name="Threads" EntityType="IntercamberModel.Threads" />
           <EntitySet Name="ThreadUsers" EntityType="IntercamberModel.ThreadUsers" />
+          <EntitySet Name="UserActivities" EntityType="IntercamberModel.UserActivities" />
           <EntitySet Name="Users" EntityType="IntercamberModel.Users" />
           <EntitySet Name="UsersLearnLanguages" EntityType="IntercamberModel.UsersLearnLanguages" />
           <EntitySet Name="UsersSpokenLanguages" EntityType="IntercamberModel.UsersSpokenLanguages" />
@@ -384,6 +425,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="ThreadUsers" EntitySet="ThreadUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserActivities_Users" Association="IntercamberModel.FK_UserActivities_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserActivities" EntitySet="UserActivities" />
+          </AssociationSet>
           <AssociationSet Name="FK_usersLearnLanguages_Users" Association="IntercamberModel.FK_usersLearnLanguages_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersLearnLanguages" EntitySet="UsersLearnLanguages" />
@@ -423,6 +468,7 @@
             <PropertyRef Name="IdCountry" />
           </Key>
           <Property Type="String" Name="IdCountry" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Countries" ToRole="Users" />
         </EntityType>
         <EntityType Name="Establishments">
@@ -435,11 +481,21 @@
           <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
           <Property Type="Int32" Name="TimeZone" Nullable="false" />
         </EntityType>
+        <EntityType Name="Hobbies">
+          <Key>
+            <PropertyRef Name="IdHobby" />
+          </Key>
+          <Property Type="Int64" Name="IdHobby" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LblHobby" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OrderHobby" Nullable="false" />
+          <Property Type="Int64" Name="IdHobbyParent" />
+        </EntityType>
         <EntityType Name="Languages">
           <Key>
             <PropertyRef Name="IdLanguage" />
           </Key>
           <Property Type="String" Name="IdLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PreferedCountry" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UsersLearnLanguages" Relationship="IntercamberModel.FK_UsersLearnLanguages_Languages" FromRole="Languages" ToRole="UsersLearnLanguages" />
           <NavigationProperty Name="UsersSpokenLanguages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_Languages" FromRole="Languages" ToRole="UsersSpokenLanguages" />
         </EntityType>
@@ -484,6 +540,16 @@
           <NavigationProperty Name="Threads" Relationship="IntercamberModel.FK_ThreadUsers_Threads" FromRole="ThreadUsers" ToRole="Threads" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_ThreadUsers_Users" FromRole="ThreadUsers" ToRole="Users" />
         </EntityType>
+        <EntityType Name="UserActivities">
+          <Key>
+            <PropertyRef Name="IdUserActivity" />
+          </Key>
+          <Property Type="Int64" Name="IdUserActivity" Nullable="false" />
+          <Property Type="Int64" Name="IdUser" Nullable="false" />
+          <Property Type="DateTime" Name="DateActivity" Nullable="false" Precision="7" />
+          <Property Type="String" Name="ActivityMessage" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_UserActivities_Users" FromRole="UserActivities" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="IdUser" />
@@ -502,12 +568,14 @@
           <Property Type="DateTime" Name="DateCreate" Nullable="false" Precision="7" />
           <Property Type="String" Name="IdCountry" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="City" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="DisplayInContactRequests" Nullable="false" />
           <NavigationProperty Name="ContactRequests" Relationship="IntercamberModel.FK_ContactRequests_Users_Ask" FromRole="Users" ToRole="ContactRequests" />
           <NavigationProperty Name="ContactRequests1" Relationship="IntercamberModel.FK_ContactRequests_Users_Requested" FromRole="Users" ToRole="ContactRequests" />
           <NavigationProperty Name="Contacts" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Users" ToRole="Contacts" />
           <NavigationProperty Name="Contacts1" Relationship="IntercamberModel.FK_Contacts_Users1" FromRole="Users" ToRole="Contacts" />
           <NavigationProperty Name="Countries" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Users" ToRole="Countries" />
           <NavigationProperty Name="ThreadUsers" Relationship="IntercamberModel.FK_ThreadUsers_Users" FromRole="Users" ToRole="ThreadUsers" />
+          <NavigationProperty Name="UserActivities" Relationship="IntercamberModel.FK_UserActivities_Users" FromRole="Users" ToRole="UserActivities" />
           <NavigationProperty Name="UsersLearnLanguages" Relationship="IntercamberModel.FK_usersLearnLanguages_Users" FromRole="Users" ToRole="UsersLearnLanguages" />
           <NavigationProperty Name="UsersSpokenLanguages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages" FromRole="Users" ToRole="UsersSpokenLanguages" />
         </EntityType>
@@ -653,6 +721,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserActivities_Users">
+          <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="IntercamberModel.UserActivities" Role="UserActivities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="UserActivities">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_usersLearnLanguages_Users">
           <End Type="IntercamberModel.Users" Role="Users" Multiplicity="1" />
           <End Type="IntercamberModel.UsersLearnLanguages" Role="UsersLearnLanguages" Multiplicity="*" />
@@ -708,6 +788,7 @@
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="IntercamberModel.Countries">
               <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -723,9 +804,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Hobbies">
+            <EntityTypeMapping TypeName="IntercamberModel.Hobbies">
+              <MappingFragment StoreEntitySet="Hobbies">
+                <ScalarProperty Name="IdHobbyParent" ColumnName="IdHobbyParent" />
+                <ScalarProperty Name="OrderHobby" ColumnName="OrderHobby" />
+                <ScalarProperty Name="LblHobby" ColumnName="LblHobby" />
+                <ScalarProperty Name="IdHobby" ColumnName="IdHobby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Languages">
             <EntityTypeMapping TypeName="IntercamberModel.Languages">
               <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="PreferedCountry" ColumnName="PreferedCountry" />
                 <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -769,9 +861,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserActivities">
+            <EntityTypeMapping TypeName="IntercamberModel.UserActivities">
+              <MappingFragment StoreEntitySet="UserActivities">
+                <ScalarProperty Name="ActivityMessage" ColumnName="ActivityMessage" />
+                <ScalarProperty Name="DateActivity" ColumnName="DateActivity" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdUserActivity" ColumnName="IdUserActivity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="IntercamberModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="DisplayInContactRequests" ColumnName="DisplayInContactRequests" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
