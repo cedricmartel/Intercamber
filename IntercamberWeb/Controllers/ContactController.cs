@@ -22,6 +22,15 @@ namespace CML.Intercamber.Web.Controllers
             if (ConnectedUserHelper.connectedUserLearnLanguages != null && ConnectedUserHelper.connectedUserLearnLanguages.Count > 0)
                 firstLanguage = allLanguages.FirstOrDefault(x => x.IdLanguage == ConnectedUserHelper.connectedUserLearnLanguages[0]);
             ViewBag.PreferedCountry = firstLanguage != null ? firstLanguage.PreferedCountry : "";
+            ViewBag.ContactsTableDataUrl = "/Contact/SearchData";
+
+            return View();
+        }
+
+
+        public ActionResult MyPenpals()
+        {
+            // TODO 
 
             return View();
         }
@@ -31,22 +40,40 @@ namespace CML.Intercamber.Web.Controllers
             if (country == null || language == null)
                 return Json(null);
 
+            var connectedUsers = ChatHub.ListUserConnected;
             UsersDao dao = new UsersDao();
-            return Json(dao.SearchUsers(gridSettings, ConnectedUserHelper.ConnectedUserId, country, language, ConnectedUserHelper.connectedUserSpokenLanguages), JsonRequestBehavior.AllowGet);
+            var res = dao.SearchUsers(gridSettings, ConnectedUserHelper.ConnectedUserId, country, language, ConnectedUserHelper.connectedUserSpokenLanguages);
+
+            // fill country & connected status
+            foreach (var contact in res.rows)
+            {
+                var contactCountry = contact.IdCountry;
+                if (!string.IsNullOrEmpty(contactCountry))
+                    contact.City += " (" + ResourcesHelper.GetString("Countries_" + contactCountry) + ")";
+                contact.Connected = connectedUsers.Contains(contact.IdUser);
+            }
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult AskContact(long idUser, string message)
         {
             ContactRequestsDao dao = new ContactRequestsDao();
-            return Json(dao.InsertContactRequest(new ContactRequests
+
+            bool resInsert = dao.InsertContactRequest(new ContactRequests
             {
-                IdUserAsk = ConnectedUserHelper.ConnectedUserId, 
-                IdUserRequester = idUser, 
+                IdUserAsk = idUser,
+                IdUserRequester = ConnectedUserHelper.ConnectedUserId,
                 Message = message
-            }));
+            });
+
+            if (resInsert)
+                ContactRequestsHelper.RefreshCache(idUser);
+
+            return Json(resInsert);
         }
-    
+
 
 
     }

@@ -1,0 +1,88 @@
+﻿<table id='@(ViewBag.GridName)' style="width: 100%"></table>
+<div id="@(ViewBag.GridName)_pager"></div>
+<script type="text/javascript">
+    function gridColumnAdd_@(ViewBag.GridName)(cellvalue, options, rowobject) {
+        return "<img id=\"add" + cellvalue + "\" class='imgButton' src='/Images/AddContact.png' onclick=\"formAddContact('" + cellvalue + "', '" + rowobject.FirstName.replace("\"", "").replace("'", "") + " " + rowobject.LastName.replace("\"", "").replace("'", "") + "')\" />";
+    }
+
+    function gridColumnConnected_@(ViewBag.GridName)(cellvalue, options, rowobject) {
+        var connected = rowobject.Connected;
+        return "<img src='/Images/" + (connected ? "Online.png" : "Offline.png") + "' title='" + (connected ? "@(Resources.Intercamber.Connected)" : "@(Resources.Intercamber.Disconnected)") + "'  />";
+    }
+
+    function GridExpandFormatter_@(ViewBag.GridName)(subgridId, rowId) {
+        var userInfos = $("#@(ViewBag.GridName)").getRowData(rowId);;
+        var dest = $("#" + subgridId);
+        dest.css("background-color", "white");
+        dest.css("padding-left", "48px");
+        dest.html(userInfos.PresentationText);
+    }
+
+    $(function () {
+        $("#@(ViewBag.GridName)").jqGrid({
+            autowidth: true,
+            datatype: 'json',
+            width: '100%',
+            height: '100%',
+            jsonReader: { 'repeatitems': false, 'id': 'IdUser' },
+            loadonce: false,
+            pager: '#@(ViewBag.GridName)_pager',
+            rowList: [5, 10, 15],
+            rowNum: 5,
+            url: '@(ViewBag.GridUrl)',
+            viewrecords: true,
+            colModel: [
+                @if (ViewBag.ColumnAddContact != null && ViewBag.ColumnAddContact == true)
+                {
+                    <text>{
+                    name: 'IdUser',
+                    fixed: true,
+                    formatter: gridColumnAdd_@(ViewBag.GridName),
+                    label: "@Resources.Intercamber.SearchContacts_ColAdd",
+                    resizable: false,
+                    sortable: false,
+                    width: 40,
+                    index: 'IdUser',
+                    align: 'center',
+                },</text>
+                } 
+                {
+                    name: 'Name',
+                    label: '@Resources.Intercamber.SearchContacts_ColName',
+                        }, {
+                            align: 'center',
+                            name: 'Age',
+                            fixed: true,
+                            label: '@Resources.Intercamber.SearchContacts_ColAge',
+                            width: 80,
+                        }, {
+                            name: 'City',
+                            label: '@Resources.Intercamber.SearchContacts_ColLocation',
+                            index: 'City'
+                        }, {
+                            align: 'center',
+                            name: 'Connected',
+                            fixed: true,
+                            formatter: gridColumnConnected_@(ViewBag.GridName),
+                            label: '@Resources.Intercamber.SearchContacts_ColConnected',
+                            width: 100,
+                            index: 'Connected'
+                        }, {
+                            name: 'PresentationText',
+                            hidden: true
+                        }
+            ],
+            subGrid: true,
+            subGridRowExpanded: GridExpandFormatter_@(ViewBag.GridName),
+                    subGridOptions: {
+                        expandOnLoad: true,
+                        selectOnExpand: false,
+                        reloadOnExpand: false
+                    },
+                    loadComplete: function () {
+                        $("#@(ViewBag.GridName)").jqGrid('setGridWidth', 800, true);
+                        $("#@(ViewBag.GridName)").jqGrid("hideCol", "subgrid");
+                    },
+        });
+    });
+</script>

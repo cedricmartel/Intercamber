@@ -4,8 +4,10 @@
     font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
     font-weight: normal;
     cursor: default;
-    background-color: White;
+    text-align: center;
     color: #000000;
+    background-color: #F9FFFF;
+    background-image: url('/Images/BgGrains.png');
     height: 100%;
     width: 100%;
     margin: 0;
@@ -24,6 +26,11 @@ a, a:visited
         color: #0875a0;
         text-decoration: underline;
     }
+
+.smallLink {
+    font-size: 11px;       
+}
+
 
 img
 {
@@ -52,10 +59,11 @@ textarea
 .footerLeft
 {
     position: relative;
-    margin-top: -17px;
-    left: 0;
-    bottom: 1;
+    margin-top: -18px;
+    left: 2px;
+    font-size: 10pt;
     padding-left: 3px;
+    font-style: italic;
 }
 
 .footerRight
@@ -70,10 +78,16 @@ textarea
 #centpourcent
 {
     height: 100%;
-    width: 100%;
+    width: 1024px; /* 100% */
     margin: 0;
     padding: 0;
     position: absolute;
+    text-align: left;
+}
+.mainTable {
+    border-left: 1px solid #F7AF39;
+    border-right: 1px solid #F7AF39;
+    background-color: white;
 }
 
 .logo
@@ -101,7 +115,7 @@ textarea
     background: #DEECF8; /*#EEEEEE;*/
     width: auto;
     font-size: 13px;
-    padding: 0 5px 0 5px;
+    padding: 0 5px 25px 5px;
     margin: 0;
     color: #00156e;
     position: relative;
@@ -112,7 +126,13 @@ textarea
 
 .infoBarTitle {
     font-size: 16px;
-
+}
+.buttonSimpleText {
+    font-size: 12px;
+    color: #F39807;
+}
+.leftButton {
+    width: 100%;
 }
 
 .intermediaryTitle
@@ -187,11 +207,13 @@ ul#menu > li
     float: left; /* définit le positionnement des items de niveau 1 */
     padding: 0px 20px 0px 20px;
     z-index: 100000;
+    white-space: nowrap;
 }
 
 .ui-menu-base {
     border: 1px solid white;
     background-color: #F8BE60;
+    white-space: nowrap;
 }
 
 .ui-menu-sel
@@ -207,7 +229,7 @@ ul#menu > li
     background-color: #F7AF39;
     color: #232323;
     border: 1px solid #CCCCCC;
-    position: absolute;
+    position: fixed;
     z-index: 10000;
     right: 18px;
     bottom: 0;
@@ -231,9 +253,9 @@ ul#menu > li
     background-color: #F8F8F8;
     color: #232323;
     border: 1px solid #CCCCCC;
-    position: absolute;
+    position: fixed;
     z-index: 10000;
-    right: 18px;
+    right: 12px;
     bottom: 28px;
     width: 174px;
     font-size: 13px;
@@ -264,3 +286,14 @@ ul#menu > li
     font-weight: bold;
 }
 
+.innerTitle
+{
+    display: inline-block;
+    width: 98%;
+    border: 1px solid #E5E5E5;
+    padding: 6px;
+    margin: 5px 0 5px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #3D556C;
+}

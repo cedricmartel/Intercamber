@@ -1,7 +1,7 @@
 ﻿@using System.Linq
 @using CML.Intercamber.Business
 <script>
-    $(function() {
+    $(function () {
         $(".leftButton").button();
     });
 
@@ -12,9 +12,9 @@
     <img style="position: relative; padding-left: 130px; margin-bottom: -25px; margin-top: -5px;" src="~/Images/RoundFlagsSmall/RoundFlag_@(ViewBag.ConnectedUserInfo.IdCountry).png" />
     <img src="~/Images/NoAvatar.png" />
     <br />
-    @(string.Format(Resources.Intercamber.LeftBar_Learning, ((Users) ViewBag.ConnectedUserInfo).UsersLearnLanguages.Select(x => Resources.Intercamber.ResourceManager.GetString("Languages_" + x.IdLanguage)).Aggregate((i, j) => i + ", " + j)))
+    @(string.Format(Resources.Intercamber.LeftBar_Learning, ((Users)ViewBag.ConnectedUserInfo).UsersLearnLanguages.Select(x => Resources.Intercamber.ResourceManager.GetString("Languages_" + x.IdLanguage)).Aggregate((i, j) => i + ", " + j)))
     <br />
-    @(string.Format(Resources.Intercamber.LeftBar_Speaking, ((Users) ViewBag.ConnectedUserInfo).UsersSpokenLanguages.Select(x => Resources.Intercamber.ResourceManager.GetString("Languages_" + x.IdLanguage)).Aggregate((i, j) => i + ", " + j)))
+    @(string.Format(Resources.Intercamber.LeftBar_Speaking, ((Users)ViewBag.ConnectedUserInfo).UsersSpokenLanguages.Select(x => Resources.Intercamber.ResourceManager.GetString("Languages_" + x.IdLanguage)).Aggregate((i, j) => i + ", " + j)))
     <br />
     <br />
 
@@ -22,23 +22,25 @@
         <span class="leftButton">
             <span class="infoBarTitle" style="">@Resources.Intercamber.LeftBar_MyProfile</span>
             <span style="">
-                LeftBar_CumulatedIn
-                LeftBar_TimeUnit
+                @*LeftBar_CumulatedIn
+                LeftBar_TimeUnit*@
+            </span>
+        </span>
+        <br />
+        <br />
+        <span class="leftButton" onclick="document.location='/Contact/MyPenpals';">
+            <span class="infoBarTitle">@Resources.Intercamber.LeftBar_MyPenpals</span>
+            <br />
+            <span class="buttonSimpleText">
+                @(ViewBag.NumContactRequests == 0 ? "" : String.Format(Resources.Intercamber.LeftBar_NContactRequests, ViewBag.NumContactRequests))
             </span>
         </span>
         <br />
         <br />
         <span class="leftButton">
-            <span class="infoBarTitle">@Resources.Intercamber.LeftBar_MyPenpals</span>
-            LeftBar_NContactRequests
-            LeftBar_0ContactRequests
-        </span>
-        <br />
-        <br />
-        <span class="leftButton">
             <span class="infoBarTitle">@Resources.Intercamber.LeftBar_MyDiscussions</span>
-            LeftBar_NNewMessages
-            LeftBar_0NewMessages=
+            @*LeftBar_NNewMessages
+            LeftBar_0NewMessages*@
         </span>
     </div>
 }

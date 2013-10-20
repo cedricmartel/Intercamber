@@ -246,7 +246,7 @@
   <data name="LeftBar_ContactRequests" xml:space="preserve">
     <value>Contacts requests</value>
   </data>
-  <data name="SearchContacts_Add" xml:space="preserve">
+  <data name="SearchContacts_ColAdd" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="Cancel" xml:space="preserve">
@@ -266,9 +266,6 @@
   </data>
   <data name="SearchContacts_RequestSentError" xml:space="preserve">
     <value>Error: could not send request</value>
-  </data>
-  <data name="LeftBar_0ContactRequests" xml:space="preserve">
-    <value>You have no pending contact requests</value>
   </data>
   <data name="LeftBar_0NewMessages" xml:space="preserve">
     <value>You have no new messages</value>
@@ -323,5 +320,32 @@
   </data>
   <data name="SearchContacts_SelectContactLanguage" xml:space="preserve">
     <value>who is fluent in </value>
+  </data>
+  <data name="Login_ConnectTitle" xml:space="preserve">
+    <value>Connect to Intercambers</value>
+  </data>
+  <data name="MyPenpals_MyPenpals" xml:space="preserve">
+    <value>My penpals</value>
+  </data>
+  <data name="MyPenpals_PendingRequests" xml:space="preserve">
+    <value>My contact requests</value>
+  </data>
+  <data name="SearchContacts_ColAge" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="SearchContacts_ColConnected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="SearchContacts_ColLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="SearchContacts_ColName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="Disconnected" xml:space="preserve">
+    <value>Disconnected</value>
   </data>
 </root>

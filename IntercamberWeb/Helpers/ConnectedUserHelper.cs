@@ -55,6 +55,24 @@ namespace CML.Intercamber.Web.Helpers
             }
         }
 
+        public static Users FindConnectedUser(long connectedIdUser)
+        {
+            bool userConected = ChatHub.ListUserConnected.Contains(connectedIdUser);
+            if (!userConected)
+                return null;
+            foreach (var userMail in SessionHelper.StaticSession.Keys)
+            {
+                var val = SessionHelper.StaticSession[userMail];
+                if (val.ContainsKey(SessionHelper.SessionKeyUser))
+                {
+                    Users u = (Users) val[SessionHelper.SessionKeyUser];
+                    if (u != null && u.IdUser == connectedIdUser)
+                        return u;
+                }
+            }
+            return null;
+        }
+
         public static List<string> connectedUserSpokenLanguages
         {
             get

@@ -6,15 +6,21 @@
         .loginDiv
         {
             text-align: center;
-            padding: 10px 35px 5px 35px;
-            width: 400px;
-            border: 1px solid #3C3C3C;
-            background: transparent url("../../Images/Lock.png") no-repeat 15px 15px;
+            padding: 30px; /*10px 35px 5px 35px;*/
+            width: 500px;
+            border: 1px solid gray;
+            background-color: white;
+            /*background: transparent url("../../Images/Lock.png") no-repeat 15px 15px;*/
+        }
+        .title1
+        {
+            font-size: 22px;
+            font-weight: 700;
         }
     </style>
     <script type="text/javascript">
-        $(function () {
-            document.onkeypress = function (e) {
+        $(function() {
+            document.onkeypress = function(e) {
                 var key = window.event ? window.event.keyCode : e.which;
                 if (key == 13) {
                     $("#ConnectButton").click();
@@ -23,6 +29,12 @@
                 return true;
             };
             $("#login").focus();
+            $(".pageContent").css("background-image", "url('/Images/BgGrains.png')");
+            $("#ConnectButton").button();
+            $("#centpourcent").css("border-left", "0");
+            $("#centpourcent").css("border-right", "0");
+            $("#centpourcent").css("width", "100%");
+            $("#centpourcent").css("left", "0");
         });
 
         function CryptPassword() {
@@ -38,11 +50,11 @@
         <div align="center">
             <table style="" width="100%" class="ui-corner-all loginDiv">
                 <tr>
-                    <td valign="middle" align="right" width="100px">
+                    <td valign="middle" align="right" width="80px">
                         @Resources.Intercamber.Login_Email
                     </td>
                     <td valign="middle" align="left">
-                        <input type="text" id="login" name="Email" class="loginInput" style="width:200px;" />
+                        <input type="text" id="login" name="Email" class="loginInput" style="width: 200px;" />
                     </td>
                 </tr>
                 <tr>
@@ -50,20 +62,21 @@
                         @Resources.Intercamber.Login_Password
                     </td>
                     <td valign="middle" align="left">
-                        <input id="PasswordInput" type="password" class="loginInput" style="width:200px;" />
+                        <input id="PasswordInput" type="password" class="loginInput" style="width: 200px;" />
                         <input id="Password" name="Password" type="hidden" runat="server" />
+                        <a href="" class="smallLink" runat="server">@Resources.Intercamber.Login_ForgottenPassword</a>
                     </td>
                 </tr>
                 <tr>
-                    <td height="35" valign="middle" align="center" colspan="2">
-                        <input id="ConnectButton" type="submit" onclick=" CryptPassword()" value="Connexion" />
+                    <td valign="middle" align="center" colspan="2">
+                        <br/>
+                        <button id="ConnectButton" onclick=" CryptPassword() " value="Connexion" >Connexion</button>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">@Html.Raw(ViewBag.ErrorMessage)</td>
                 </tr>
             </table>
-            <a href="" class="smallLink" runat="server">@Resources.Intercamber.Login_ForgottenPassword</a>
         </div>
     }
 }

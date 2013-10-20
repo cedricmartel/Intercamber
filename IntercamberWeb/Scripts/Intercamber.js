@@ -103,8 +103,8 @@ $(function () {
     };
 
     // window size 
-    $(window).resize(ResizeApp);
-    ResizeApp();
+    $(window).resize(resizeApp);
+    resizeApp();
 });
 
 function PositionnerSousMenu(position, elements) {
@@ -123,10 +123,18 @@ function PositionnerSousMenu(position, elements) {
     elements.element.element.position(options);
 };
 
-function ResizeApp() {
-    var h = $(window).height() - $('#titleTd').height() - $("#menuTd").height() - 3;
+function resizeApp() {
+
+    var h = $(window).height() - $('#titleTd').height() - $("#menuTd").height() - 4;
     $(".calcHeight").height(h);
     $(".pageContent").height(h - 20);
+
+    var totWidth = $(window).width();
+    //var leftBar = $(".contactsContent");
+    var reservedWidth = 0; // leftBar.length > 0 ? $(leftBar[0]).width() + 10 : 0;
+    var leftPos = (totWidth - 1024 - reservedWidth) / 2;
+    $("#centpourcent").css("left", leftPos > 0 ? leftPos : 0);   
+
     if (typeof (resizeComplement) == "function")
         resizeComplement();
 }

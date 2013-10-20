@@ -32,7 +32,7 @@
 </head>
 <body>
     <div id="centpourcent">
-        <table width="100%" style="height: 100%" cellspacing="0" cellpadding="0">
+        <table width="100%" style="height: 100%" cellspacing="0" cellpadding="0" class="mainTable">
             <tr>
                 <td id="titleTd" class="titreApplication" colspan="2">
                     <img src="~/Images/TitreIntercambers.png" />
@@ -49,31 +49,37 @@
                 </td>
             </tr>
             <tr class="ui-widget-header">
-                <td height="30px" id="menuTd" class="menu" style="padding-left: 170px">
-                    @if (Request.IsAuthenticated)
-                    {
-                        <ul id="menu" style="border: 0;">
+                <td height="30px" id="menuTd" class="menu" @*style="padding-left: 170px"*@>
+                    <ul id="menu" style="border: 0;">
+                        @if (Request.IsAuthenticated)
+                        {
                             <li><a href="~/Home/Index">@Resources.Intercamber.Home_PageName</a></li>
                             <li><a href="~/Contact/Search">@Resources.Intercamber.SearchContacts_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Project_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Toolbox_PageName</a></li>
                             <li><a href="#">@Resources.Intercamber.Assistance_PageName</a></li>
-                            @if (ViewBag.IsAdmin)
+                            if (ViewBag.IsAdmin)
                             {
-                                <text>
-                                <li>
-                                    <a href="#">@Resources.Intercamber.Admin_PageName</a>
-                                    <ul>
-                                        <li><a href="#" style="color: black;">@Resources.Intercamber.UserAdmin_PageName</a></li>
-                                        <li><a href="#" style="color: black;">@Resources.Intercamber.EstablishmentAdmin_PageName</a></li>
-                                        <li><a href="#" style="color: black;">@Resources.Intercamber.Moderate_PageName</a></li>
-                                        <li><a href="#" style="color: black;">@Resources.Intercamber.Reporting_PageName</a></li>
-                                    </ul>
-                                </li>
-                                </text>
+                            <text>
+                            <li>
+                                <a href="#">@Resources.Intercamber.Admin_PageName &nbsp;</a>
+                                <ul>
+                                    <li><a href="#" style="color: black;">@Resources.Intercamber.UserAdmin_PageName</a></li>
+                                    <li><a href="#" style="color: black;">@Resources.Intercamber.EstablishmentAdmin_PageName</a></li>
+                                    <li><a href="#" style="color: black;">@Resources.Intercamber.Moderate_PageName</a></li>
+                                    <li><a href="#" style="color: black;">@Resources.Intercamber.Reporting_PageName</a></li>
+                                </ul>
+                            </li>
+                            </text>
                             }
-                        </ul>
-                    }
+                        }
+                        @if (!Request.IsAuthenticated)
+                        {
+                            <text>
+                            <li><a href="~/Account/Login">@Resources.Intercamber.Login_ConnectTitle</a></li>
+                            </text>
+                        }
+                    </ul>
                 </td>
                 <td align="right" style="vertical-align: top;" class="menu">
                     @if (Request.IsAuthenticated)
@@ -84,10 +90,10 @@
                         <span class="nameUser">
                             @(ViewBag.ConnectedUserInfo != null ? ViewBag.ConnectedUserInfo.UserNameComplete : "null")
                         </span>&nbsp;
-                            <a href="javascript:document.getElementById('logoutForm').submit()">
-                                <img title="@(Resources.Intercamber.Logout)" src="/Images/ico-disconnect.gif" class="imgButton" /></a>
+                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                    <img title="@(Resources.Intercamber.Logout)" src="/Images/ico-disconnect.gif" class="imgButton" /></a>
                         &nbsp;
-                        @Html.AntiForgeryToken()
+                                @Html.AntiForgeryToken()
                         </text>
                         }
                     }
@@ -98,18 +104,14 @@
                     @*<div align="left" class="titleDiv" id="pageTitle">
                             @ViewBag.PageTitle
                         </div>*@
-                    <table class="calcHeight" style="width: 100%" cellspacing="0" cellpadding="0">
+                    <table class="calcHeight" style="width: 100%;" cellspacing="0" cellpadding="0">
                         <tr>
                             <td class="infoBar" @if (ViewBag.HideLeftBar == true)
                                                 {<text>style='display:none;'</text>}>
                                 @RenderSection("PageLeftBar", false)
                             </td>
-                            <td class="pageContent">
-                                <div style="overflow: auto;" class="calcHeight" >
-                                    <div class="paddedContent">
-                                    @RenderSection("PageContent")
-                                    </div>
-                                </div>
+                            <td class="pageContent paddedContent">
+                                @RenderSection("PageContent")
                             </td>
                         </tr>
                     </table>
@@ -120,24 +122,26 @@
         <div id="footerLeft" class="footerLeft">
             ©Intercamber v0.2, 2013
         </div>
-        @if (Request.IsAuthenticated)
-        {
-            <div class="contactsTitle ui-widget-header" onmouseover="$(this).removeClass('ui-widget-header')" onmouseout="$(this).addClass('ui-widget-header')" onclick="ToggleDisplayContacts()">
-                Contacts
-                <img style="padding-left: 10px" id="contactToggle" src="/Images/Minimize.png" />
-            </div>
-            <div class="contactsContent">
-                @foreach (ContactDetail cd in ViewBag.MyContacts)
-                {
-                    <text>
-                    <span class="contactItem">
-                        <img id="contactCnx@(cd.IdUser)" src="@(ChatHub.IsUserConnected(cd.IdUser) ? "/Images/Online.png" : "/Images/Offline.png")" />
-                        &nbsp;<a href="~/Talk/Discussion/@(cd.IdUser)">@(cd.FirstName)&nbsp;@(cd.LastName)&nbsp;<span id="UM@(cd.IdUser)" class="unreadMsg ui-state-highlight ui-corner-all" style="@(cd.NumUnreadMessages == 0 ? "display:none" : "")">@cd.NumUnreadMessages</span></a><br />
-                    </span>
-                    </text>
-                }
-            </div>
-        }
     </div>
+    @if (Request.IsAuthenticated)
+    {
+        
+        <div class="contactsTitle ui-widget-header" onmouseover="$(this).removeClass('ui-widget-header')" onmouseout="$(this).addClass('ui-widget-header')" onclick="ToggleDisplayContacts()">
+            Contacts
+            <img style="padding-left: 10px" id="contactToggle" src="/Images/Minimize.png" />
+        </div>
+        <div class="contactsContent">
+            @foreach (ContactDetail cd in ViewBag.MyContacts)
+            {
+                <text>
+                <span class="contactItem">
+                    <img id="contactCnx@(cd.IdUser)" src="@(ChatHub.IsUserConnected(cd.IdUser) ? "/Images/Online.png" : "/Images/Offline.png")" />
+                    &nbsp;<a href="~/Talk/Discussion/@(cd.IdUser)">@(cd.FirstName)&nbsp;@(cd.LastName)&nbsp;<span id="UM@(cd.IdUser)" class="unreadMsg ui-state-highlight ui-corner-all" style="@(cd.NumUnreadMessages == 0 ? "display:none" : "")">@cd.NumUnreadMessages</span></a><br />
+                </span>
+                </text>
+            }
+        </div>
+    }
+
 </body>
 </html>

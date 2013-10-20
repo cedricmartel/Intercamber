@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using CML.Intercamber.Business.Model;
 
 namespace CML.Intercamber.Business.Dao
@@ -47,11 +48,16 @@ namespace CML.Intercamber.Business.Dao
                 res = (from x in context.ContactRequests
                     join u in context.Users on x.IdUserRequester equals u.IdUser
                     where x.IdUserAsk == idUserConnected && x.DateDismissed == null && x.DateValidated == null
-                    select new ContactRequestDetail
+                    select new
+                       {
+                           FirstName = u.FirstName,
+                           LastName = u.LastName,
+                           SpokenLanguages = u.UsersSpokenLanguages.Select(y => y.IdLanguage)
+                       }).ToList().Select(x => new ContactRequestDetail
                     {
-                        FirstName = u.FirstName, 
-                        LastName = u.LastName, 
-                        SpokenLanguages = u.UsersSpokenLanguages.Select(y => y.IdLanguage).ToList() // TODO voir si on peut faire comme ca
+                        FirstName = x.FirstName,
+                        LastName = x.LastName, 
+                        SpokenLanguages = string.Join(",", x.SpokenLanguages)
                     }).ToList();
             }
             return res;

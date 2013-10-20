@@ -234,6 +234,7 @@
     </Compile>
     <Compile Include="Helpers\ConnectedUserHelper.cs" />
     <Compile Include="Helpers\ContactsHelper.cs" />
+    <Compile Include="Helpers\ContactRequestsHelper.cs" />
     <Compile Include="Helpers\CountryHelper.cs" />
     <Compile Include="Helpers\LanguageHelper.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
@@ -332,6 +333,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\AddContact.png" />
+    <Content Include="Images\BgGrains.png" />
     <Content Include="Images\Check.png" />
     <Content Include="Images\ico-disconnect.gif" />
     <Content Include="Images\Flags\en.png" />
@@ -454,6 +456,8 @@
     <Content Include="Views\Talk\Discussion.cshtml" />
     <Content Include="Views\Shared\_LeftBarUserDetailPartial.cshtml" />
     <Content Include="Views\Contact\Search.cshtml" />
+    <Content Include="Views\Contact\MyPenpals.cshtml" />
+    <Content Include="Views\Shared\_TableContactsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

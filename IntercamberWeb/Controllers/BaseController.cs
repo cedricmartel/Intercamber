@@ -48,6 +48,7 @@ namespace CML.Intercamber.Web.Controllers
             if (Request.IsAuthenticated)
             {
                 var contactInfos = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId);
+                
                 // TODO gérer un cache pour les messages non lus
                 ThreadMessagesDao messagesDao = new ThreadMessagesDao();
                 var unreadMessagesInfos = messagesDao.UnreadMessagesCount(ConnectedUserHelper.ConnectedUserId);
@@ -57,6 +58,7 @@ namespace CML.Intercamber.Web.Controllers
                 });
                 ViewBag.MyContacts = contactInfos;
                 ViewBag.ConnectedUserInfo = ConnectedUserHelper.ConnectedUser;
+                ViewBag.NumContactRequests = ContactRequestsHelper.ContactRequestDetails(ConnectedUserHelper.ConnectedUserId).Count;
             }
             ViewBag.IsAdmin = ConnectedUserHelper.IsAdmin;
 

@@ -43,6 +43,7 @@ namespace CML.Intercamber.Web.Controllers
             }
             // connection failed
             ViewBag.ErrorMessage = "<span style='color:red;'>" + Resources.Intercamber.Login_BadLoginOrPassword + "</span>";
+
             return View(model);
         }
 

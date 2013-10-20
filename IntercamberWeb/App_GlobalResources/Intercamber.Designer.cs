@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connected.
+        /// </summary>
+        internal static string Connected {
+            get {
+                return ResourceManager.GetString("Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à My contacts.
         /// </summary>
         internal static string Contacts_PageName {
@@ -214,6 +223,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Disconnected.
+        /// </summary>
+        internal static string Disconnected {
+            get {
+                return ResourceManager.GetString("Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Talking with .
         /// </summary>
         internal static string Discussion_TalkWith {
@@ -282,15 +300,6 @@ namespace Resources {
         internal static string Languages_sp {
             get {
                 return ResourceManager.GetString("Languages_sp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à You have no pending contact requests.
-        /// </summary>
-        internal static string LeftBar_0ContactRequests {
-            get {
-                return ResourceManager.GetString("LeftBar_0ContactRequests", resourceCulture);
             }
         }
         
@@ -412,6 +421,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connect to Intercambers.
+        /// </summary>
+        internal static string Login_ConnectTitle {
+            get {
+                return ResourceManager.GetString("Login_ConnectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Email.
         /// </summary>
         internal static string Login_Email {
@@ -466,6 +484,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à My penpals.
+        /// </summary>
+        internal static string MyPenpals_MyPenpals {
+            get {
+                return ResourceManager.GetString("MyPenpals_MyPenpals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à My contact requests.
+        /// </summary>
+        internal static string MyPenpals_PendingRequests {
+            get {
+                return ResourceManager.GetString("MyPenpals_PendingRequests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Next.
         /// </summary>
         internal static string Next {
@@ -513,9 +549,45 @@ namespace Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Add.
         /// </summary>
-        internal static string SearchContacts_Add {
+        internal static string SearchContacts_ColAdd {
             get {
-                return ResourceManager.GetString("SearchContacts_Add", resourceCulture);
+                return ResourceManager.GetString("SearchContacts_ColAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Age.
+        /// </summary>
+        internal static string SearchContacts_ColAge {
+            get {
+                return ResourceManager.GetString("SearchContacts_ColAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connected.
+        /// </summary>
+        internal static string SearchContacts_ColConnected {
+            get {
+                return ResourceManager.GetString("SearchContacts_ColConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Location.
+        /// </summary>
+        internal static string SearchContacts_ColLocation {
+            get {
+                return ResourceManager.GetString("SearchContacts_ColLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        internal static string SearchContacts_ColName {
+            get {
+                return ResourceManager.GetString("SearchContacts_ColName", resourceCulture);
             }
         }
         

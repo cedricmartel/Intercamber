@@ -36,6 +36,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
+          <AssociationSet Name="FK_Languages_Countries" Association="IntercamberModel.Store.FK_Languages_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Languages" EntitySet="Languages" />
+          </AssociationSet>
           <AssociationSet Name="FK_ThreadMessages_Threads" Association="IntercamberModel.Store.FK_ThreadMessages_Threads">
             <End Role="Threads" EntitySet="Threads" />
             <End Role="ThreadMessages" EntitySet="ThreadMessages" />
@@ -125,7 +129,7 @@
             <PropertyRef Name="IdLanguage" />
           </Key>
           <Property Name="IdLanguage" Type="varchar" Nullable="false" MaxLength="2" />
-          <Property Name="PreferedCountry" Type="varchar" MaxLength="2" />
+          <Property Name="PreferedCountry" Type="varchar" Nullable="false" MaxLength="2" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
@@ -255,6 +259,18 @@
             </Principal>
             <Dependent Role="Contacts">
               <PropertyRef Name="IdUserContact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Languages_Countries">
+          <End Role="Countries" Type="IntercamberModel.Store.Countries" Multiplicity="1" />
+          <End Role="Languages" Type="IntercamberModel.Store.Languages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="Languages">
+              <PropertyRef Name="PreferedCountry" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -437,6 +453,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersSpokenLanguages" EntitySet="UsersSpokenLanguages" />
           </AssociationSet>
+          <AssociationSet Name="FK_Languages_Countries" Association="IntercamberModel.FK_Languages_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Languages" EntitySet="Languages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ContactRequests">
           <Key>
@@ -470,6 +490,7 @@
           <Property Type="String" Name="IdCountry" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="Enabled" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Countries" ToRole="Users" />
+          <NavigationProperty Name="Languages" Relationship="IntercamberModel.FK_Languages_Countries" FromRole="Countries" ToRole="Languages" />
         </EntityType>
         <EntityType Name="Establishments">
           <Key>
@@ -495,9 +516,10 @@
             <PropertyRef Name="IdLanguage" />
           </Key>
           <Property Type="String" Name="IdLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PreferedCountry" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PreferedCountry" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UsersLearnLanguages" Relationship="IntercamberModel.FK_UsersLearnLanguages_Languages" FromRole="Languages" ToRole="UsersLearnLanguages" />
           <NavigationProperty Name="UsersSpokenLanguages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_Languages" FromRole="Languages" ToRole="UsersSpokenLanguages" />
+          <NavigationProperty Name="Countries" Relationship="IntercamberModel.FK_Languages_Countries" FromRole="Languages" ToRole="Countries" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
@@ -754,6 +776,18 @@
             </Principal>
             <Dependent Role="UsersSpokenLanguages">
               <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Languages_Countries">
+          <End Type="IntercamberModel.Countries" Role="Countries" Multiplicity="1" />
+          <End Type="IntercamberModel.Languages" Role="Languages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="Languages">
+              <PropertyRef Name="PreferedCountry" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

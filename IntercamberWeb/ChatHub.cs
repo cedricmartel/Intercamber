@@ -34,10 +34,10 @@ namespace CML.Intercamber.Web
             ThreadMessagesDao dao = new ThreadMessagesDao();
             dao.InsertThreadMessages(new ThreadMessages
             {
-                DateMessage = DateTime.Now, 
+                DateMessage = DateTime.Now,
                 IdThread = idThread,
-                IdUser = ConnectedUserHelper.ConnectedUserId, 
-                Message = message, 
+                IdUser = ConnectedUserHelper.ConnectedUserId,
+                Message = message,
                 MessageCorrection = null
             });
             // send message to anybody in thread but sender
@@ -45,14 +45,16 @@ namespace CML.Intercamber.Web
                 Clients.Group(thread.IdUser.ToString()).addMessage(ConnectedUserHelper.ConnectedUserId, idThread, name, message, DateTime.Now);
         }
 
-        #endregion 
+        #endregion
 
         #region connecter users counter
-        private static readonly List<long> listUserConnected = new List<long>();
+        public static readonly List<long> listUserConnected = new List<long>();
+
+        public static List<long> ListUserConnected { get { return listUserConnected; } }
 
         public static void RegisterUserConnected(long idUser, string emailUser)
         {
-            if(!listUserConnected.Contains(idUser))
+            if (!listUserConnected.Contains(idUser))
                 listUserConnected.Add(idUser);
             PublishUserCountAndFriendsOnlineStatus(idUser, emailUser);
         }

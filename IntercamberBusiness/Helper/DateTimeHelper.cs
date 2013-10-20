@@ -54,5 +54,13 @@ namespace CML.Intercamber.Business.Helper
             return dt.AddDays(-1 * diff).Date;
         }
 
+        public static int Age(DateTime birthday)
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - birthday.Year;
+            if (now < birthday.AddYears(age)) age--;
+            return age;
+        }
+
     }
 }

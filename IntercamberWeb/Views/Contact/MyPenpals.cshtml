@@ -1,0 +1,65 @@
+﻿@using System.ServiceModel.PeerResolvers
+@using MvcJqGrid
+@using MvcJqGrid.DataReaders
+@using MvcJqGrid.Enums
+
+@{
+    ViewBag.PageTitle = Resources.Intercamber.LeftBar_MyPenpals;
+}
+@section PageHead
+{
+    <script>
+        $(function() {
+            $("#buttonValidate").button();
+        });
+
+    </script>
+}
+
+@section PageLeftBar {
+    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
+}
+
+@section PageContent {
+    <br />
+    <div class="innerTitle ui-corner-all">
+        @Resources.Intercamber.MyPenpals_PendingRequests
+    </div>
+    <table id='gridPendingRequests'></table>
+        @(Html.Grid("gridPendingRequests")
+              .SetLoadOnce(false)
+              .AddColumn(new Column("Name"))
+              .AddColumn(new Column("LastName"))
+              .AddColumn(new Column("City"))
+              .SetAutoWidth(true)
+              .SetViewRecords(true)
+              .SetJsonReader(new JsonReader { RepeatItems = false, Id = "IdUser" })
+              .SetRowNum(5)
+              .SetRowList(new[] { 5, 10, 15 })
+              .SetPager("pager")
+              .SetUrl("/Contact/PendingRequestsData")
+              .SetDataType(DataType.Json)
+              )
+    
+    <br/>
+    <br/>
+    <div class="innerTitle ui-corner-all">
+        @Resources.Intercamber.MyPenpals_MyPenpals
+    </div>
+    <table id='gridContacts'></table>
+        @(Html.Grid("gridContacts")
+              .SetLoadOnce(false)
+              .AddColumn(new Column("Name"))
+              .AddColumn(new Column("LastName"))
+              .AddColumn(new Column("City"))
+              .SetAutoWidth(true)
+              .SetViewRecords(true)
+              .SetJsonReader(new JsonReader { RepeatItems = false, Id = "IdUser" })
+              .SetRowNum(5)
+              .SetRowList(new[] { 5, 10, 15 })
+              .SetPager("pager")
+              .SetUrl("/Contact/PenpalsData")
+              .SetDataType(DataType.Json)
+              )
+
+}

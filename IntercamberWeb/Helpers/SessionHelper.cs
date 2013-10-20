@@ -11,12 +11,12 @@ namespace CML.Intercamber.Web.Helpers
         public const string SessionKeyUserEmail = "Email";
         public const string SessionKeyThreads = "Threads";
         public const string SessionKeyContacts = "Contacts";
+        public const string SessionKeyContactRequests = "ContactRequests";
         public const string SessionKeyCountries = "Countries";
         public const string SessionKeyLanguages = "Languages";
 
         // object for stocking sessions data (.net sessions object is not viable)
-        private static readonly Dictionary<string, Dictionary<string, object>> StaticSession = new Dictionary<string, Dictionary<string, object>>();
-
+        public static readonly Dictionary<string, Dictionary<string, object>> StaticSession = new Dictionary<string, Dictionary<string, object>>();
 
         public static object GetSessionItem(string code)
         {

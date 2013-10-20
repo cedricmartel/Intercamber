@@ -32,6 +32,7 @@
         <AssociationConnector Association="IntercamberModel.FK_UserActivities_Users" />
         <AssociationConnector Association="IntercamberModel.FK_usersLearnLanguages_Users" />
         <AssociationConnector Association="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages" />
+        <AssociationConnector Association="IntercamberModel.FK_Languages_Countries" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
