@@ -8,8 +8,13 @@
 {
     <script language="javascript">
         $(function () {
-            $("#buttonValidate").button();
+            $(".jqbutton").button();
         });
+
+        // grid renderers
+        function gridColumnAdd(cellvalue, options, rowobject) {
+            return "<img id=\"add" + cellvalue + "\" class='imgButton' src='/Images/AddContact.png' onclick=\"formAddContact('" + cellvalue + "', '" + rowobject.Name.replace("\"", "").replace("'", "") + "')\" />";
+        }
 
         // workflow management 
         var currentStep = 1;
@@ -35,8 +40,7 @@
 
             if (currentStep == totalSteps) {
                 // load grid
-                //.setGridParam({ datatype: 'json',
-                $("#grid").jqGrid()
+                $("#gridContact").jqGrid()
                     .setGridParam({
                         datatype: 'json',
                         url: '/Contact/SearchData?country=' + $("#ddlCountry").val() + '&language=' + $("#ddlLanguage").val()
@@ -106,10 +110,6 @@
             }
             $("#addContactMessage").val("");
             ttAdd.qtip('show');
-        }
-
-        function hideTtAdd() {
-            ttAdd.qtip('hide');
         }
 
         function sendContactRequest() {
@@ -260,9 +260,13 @@
         <br />
         @Html.Partial("~/Views/Shared/_TableContactsPartial.cshtml", null, new ViewDataDictionary
         {
-            { "GridName", "grid" }, 
+            { "GridName", "gridContact" }, 
             { "GridUrl", "/Contact/SearchData" }, 
-            { "ColumnAddContact", true}
+            { "ColumnAddContact", "gridColumnAdd"}, 
+            {
+                "CustomColumns", 
+                @"{name: 'IdUser', fixed: true, formatter: gridColumnAdd, label: '" + Resources.Intercamber.SearchContacts_ColAdd + @"',  resizable: false, sortable: false, width: 40, index: 'IdUser', align: 'center' }, "
+            },
         })
     </div>
 
@@ -270,12 +274,14 @@
         @Resources.Intercamber.SearchContacts_YourMessage:<br />
         <textarea id="addContactMessage" rows="5"></textarea>
         <br />
-        <button onclick=" sendContactRequest() ">@Resources.Intercamber.SearchContacts_SendRequest</button>
-        &nbsp;
-        <button onclick=" hideTtAdd() ">@Resources.Intercamber.Cancel</button>
+        <div class="ttButtons">
+            <button class="jqbutton" onclick=" sendContactRequest() ">@Resources.Intercamber.SearchContacts_SendRequest</button>
+            &nbsp;
+            <button class="jqbutton" onclick="ttAdd.qtip('hide');">@Resources.Intercamber.Cancel</button>
+        </div>
     </div>
     <br />
-    <button onclick=" validateStep() " id="buttonValidate">
+    <button onclick="validateStep()"  class="jqbutton" id="buttonValidate">
         <img src="~/Images/Check.png" style="position: relative; margin: 0 8px 4px 0;" />
         @Resources.Intercamber.Next
     </button>

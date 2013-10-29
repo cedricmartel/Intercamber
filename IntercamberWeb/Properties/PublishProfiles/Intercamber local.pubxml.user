@@ -15,61 +15,61 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/18/2013 19:22:20</publishTime>
     </File>
     <File Include="App_GlobalResources/Intercamber.resx">
-      <publishTime>10/19/2013 17:50:02</publishTime>
+      <publishTime>10/28/2013 11:10:52</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/Castle.DynamicProxy.dll">
       <publishTime>09/17/2013 18:53:44</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/de/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/de/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
-      <publishTime>10/19/2013 16:17:39</publishTime>
+      <publishTime>10/28/2013 09:48:14</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.Core.dll">
-      <publishTime>10/19/2013 16:17:39</publishTime>
+      <publishTime>10/28/2013 09:48:14</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
-      <publishTime>10/19/2013 16:17:39</publishTime>
+      <publishTime>10/28/2013 09:48:14</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.dll">
-      <publishTime>10/19/2013 16:17:39</publishTime>
+      <publishTime>10/28/2013 09:48:14</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.dll">
-      <publishTime>10/19/2013 16:17:39</publishTime>
+      <publishTime>10/28/2013 09:48:14</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
-      <publishTime>10/19/2013 16:17:39</publishTime>
+      <publishTime>10/28/2013 09:48:14</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/es/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/es/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/es/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/fr/EntityFramework.resources.dll">
       <publishTime>09/14/2013 18:32:25</publishTime>
     </File>
     <File Include="bin/fr/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/fr/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/fr/Microsoft.Web.WebPages.OAuth.resources.dll">
       <publishTime>09/14/2013 18:32:25</publishTime>
@@ -78,7 +78,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/14/2013 18:32:23</publishTime>
     </File>
     <File Include="bin/fr/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/fr/System.Web.Helpers.resources.dll">
       <publishTime>09/14/2013 18:32:22</publishTime>
@@ -126,154 +126,154 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/17/2013 18:53:44</publishTime>
     </File>
     <File Include="bin/IntercamberBusiness.dll">
-      <publishTime>10/19/2013 17:55:06</publishTime>
+      <publishTime>10/28/2013 12:01:43</publishTime>
     </File>
     <File Include="bin/IntercamberBusiness.pdb">
-      <publishTime>10/19/2013 17:55:06</publishTime>
+      <publishTime>10/28/2013 12:01:43</publishTime>
     </File>
     <File Include="bin/IntercamberWeb.dll">
-      <publishTime>10/19/2013 19:00:15</publishTime>
+      <publishTime>10/28/2013 12:01:43</publishTime>
     </File>
     <File Include="bin/IntercamberWeb.pdb">
-      <publishTime>10/19/2013 19:00:15</publishTime>
+      <publishTime>10/28/2013 12:01:43</publishTime>
     </File>
     <File Include="bin/it/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/it/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/it/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/ja/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/ja/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/ja/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/ko/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/ko/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/ko/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Core.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.Owin.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.SignalR.SystemWeb.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.OData.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.WebPages.OAuth.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/MvcJqGrid.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/Owin.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/ru/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/ru/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/ru/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Spatial.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Web.Http.OData.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>10/19/2013 16:17:40</publishTime>
+      <publishTime>10/28/2013 09:48:15</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/WebMatrix.Data.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/WebMatrix.WebData.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/zh-Hans/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/zh-Hans/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="bin/zh-Hant/Microsoft.Data.Edm.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/zh-Hant/Microsoft.Data.OData.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:16</publishTime>
     </File>
     <File Include="bin/zh-Hant/System.Spatial.resources.dll">
-      <publishTime>10/19/2013 16:17:41</publishTime>
+      <publishTime>10/28/2013 09:48:17</publishTime>
     </File>
     <File Include="Content/images/ui-bg_diagonals-thick_18_b81900_40x40.png">
       <publishTime>09/19/2013 11:30:24</publishTime>
@@ -327,7 +327,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>10/11/2013 19:01:02</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/19/2013 19:15:24</publishTime>
+      <publishTime>10/28/2013 11:50:18</publishTime>
     </File>
     <File Include="Content/themes/base/images/animated-overlay.gif">
       <publishTime>09/28/2013 00:56:05</publishTime>
@@ -530,6 +530,9 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
     <File Include="Images/Check.png">
       <publishTime>10/14/2013 09:44:20</publishTime>
     </File>
+    <File Include="Images/Delete.png">
+      <publishTime>04/02/2013 09:56:50</publishTime>
+    </File>
     <File Include="Images/Flags/en.png">
       <publishTime>09/16/2013 17:47:13</publishTime>
     </File>
@@ -543,37 +546,40 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/18/2013 21:04:15</publishTime>
     </File>
     <File Include="Images/Lock.png">
-      <publishTime>02/04/2013 09:56:50</publishTime>
+      <publishTime>04/02/2013 09:56:50</publishTime>
     </File>
     <File Include="Images/Logo/a.png">
-      <publishTime>05/10/2013 09:41:39</publishTime>
+      <publishTime>10/05/2013 09:41:39</publishTime>
     </File>
     <File Include="Images/Logo/b.png">
-      <publishTime>05/10/2013 09:44:30</publishTime>
+      <publishTime>10/05/2013 09:44:30</publishTime>
     </File>
     <File Include="Images/Logo/c.png">
-      <publishTime>05/10/2013 09:39:17</publishTime>
+      <publishTime>10/05/2013 09:39:17</publishTime>
     </File>
     <File Include="Images/Logo/e.png">
-      <publishTime>05/10/2013 09:37:13</publishTime>
+      <publishTime>10/05/2013 09:37:13</publishTime>
     </File>
     <File Include="Images/Logo/i.png">
-      <publishTime>05/10/2013 09:33:10</publishTime>
+      <publishTime>10/05/2013 09:33:10</publishTime>
     </File>
     <File Include="Images/Logo/m.png">
-      <publishTime>05/10/2013 09:42:52</publishTime>
+      <publishTime>10/05/2013 09:42:52</publishTime>
     </File>
     <File Include="Images/Logo/n.png">
-      <publishTime>05/10/2013 09:35:40</publishTime>
+      <publishTime>10/05/2013 09:35:40</publishTime>
     </File>
     <File Include="Images/Logo/r.png">
-      <publishTime>05/10/2013 09:38:15</publishTime>
+      <publishTime>10/05/2013 09:38:15</publishTime>
     </File>
     <File Include="Images/Logo/s.png">
-      <publishTime>05/10/2013 09:45:17</publishTime>
+      <publishTime>10/05/2013 09:45:17</publishTime>
     </File>
     <File Include="Images/Logo/t.png">
-      <publishTime>05/10/2013 09:36:20</publishTime>
+      <publishTime>10/05/2013 09:36:20</publishTime>
+    </File>
+    <File Include="Images/Mail.png">
+      <publishTime>10/22/2013 11:00:32</publishTime>
     </File>
     <File Include="Images/Maximize.png">
       <publishTime>09/27/2013 21:32:30</publishTime>
@@ -672,7 +678,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/25/2013 21:14:30</publishTime>
     </File>
     <File Include="Images/TitreIntercambers.png">
-      <publishTime>05/10/2013 09:28:21</publishTime>
+      <publishTime>10/05/2013 09:28:21</publishTime>
     </File>
     <File Include="Images/Workflow/Bubble.png">
       <publishTime>10/12/2013 19:43:04</publishTime>
@@ -864,28 +870,28 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/21/2013 10:51:03</publishTime>
     </File>
     <File Include="Scripts/qtip/imagesloaded.min.js">
-      <publishTime>09/10/2013 11:56:02</publishTime>
+      <publishTime>10/09/2013 11:56:02</publishTime>
     </File>
     <File Include="Scripts/qtip/jquery.qtip.css">
-      <publishTime>09/10/2013 11:56:02</publishTime>
+      <publishTime>10/09/2013 11:56:02</publishTime>
     </File>
     <File Include="Scripts/qtip/jquery.qtip.js">
-      <publishTime>09/10/2013 11:56:02</publishTime>
+      <publishTime>10/09/2013 11:56:02</publishTime>
     </File>
     <File Include="Scripts/qtip/jquery.qtip.min.css">
       <publishTime>10/11/2013 15:21:17</publishTime>
     </File>
     <File Include="Scripts/qtip/jquery.qtip.min.js">
-      <publishTime>09/10/2013 11:56:02</publishTime>
+      <publishTime>10/09/2013 11:56:02</publishTime>
     </File>
     <File Include="Views/Account/Login.cshtml">
       <publishTime>10/18/2013 14:43:04</publishTime>
     </File>
     <File Include="Views/Contact/MyPenpals.cshtml">
-      <publishTime>10/19/2013 15:43:21</publishTime>
+      <publishTime>10/26/2013 15:50:22</publishTime>
     </File>
     <File Include="Views/Contact/Search.cshtml">
-      <publishTime>10/19/2013 19:57:28</publishTime>
+      <publishTime>10/22/2013 10:56:01</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>10/19/2013 10:19:44</publishTime>
@@ -936,13 +942,16 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/14/2013 18:31:22</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/19/2013 19:16:02</publishTime>
+      <publishTime>10/21/2013 22:01:31</publishTime>
     </File>
     <File Include="Views/Shared/_LeftBarUserDetailPartial.cshtml">
-      <publishTime>10/19/2013 12:49:51</publishTime>
+      <publishTime>10/20/2013 12:10:22</publishTime>
+    </File>
+    <File Include="Views/Shared/_TableContactsPartial.cshtml">
+      <publishTime>10/26/2013 13:55:25</publishTime>
     </File>
     <File Include="Views/Talk/Discussion.cshtml">
-      <publishTime>10/16/2013 18:16:13</publishTime>
+      <publishTime>10/28/2013 11:59:42</publishTime>
     </File>
     <File Include="Views/Talk/Threads.cshtml">
       <publishTime>09/21/2013 21:17:54</publishTime>
@@ -954,7 +963,7 @@ en modifiant ce fichier MSBuild. Pour en savoir plus à ce sujet, consultez la p
       <publishTime>09/14/2013 18:31:22</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/19/2013 19:58:58</publishTime>
+      <publishTime>10/28/2013 12:01:44</publishTime>
     </File>
   </ItemGroup>
 </Project>

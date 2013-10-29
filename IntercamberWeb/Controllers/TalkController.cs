@@ -19,9 +19,10 @@ namespace CML.Intercamber.Web.Controllers
         {
             ViewBag.MyThreads = ThreadHelper.ThreadDetails;
             ViewBag.MyName = ConnectedUserHelper.ConnectedUser.FirstName;
+            ViewBag.MyId = ConnectedUserHelper.ConnectedUserId;
             var discussionThreadInfo = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId).FirstOrDefault(x => x.IdUser == id);
             if (discussionThreadInfo != null)
-                ViewBag.DestName = discussionThreadInfo.NameFormated;
+                ViewBag.DestName = discussionThreadInfo.Name;
             else
                 return RedirectToAction("Index", "Home");
 
@@ -39,8 +40,8 @@ namespace CML.Intercamber.Web.Controllers
 
             
             // mark discussion as read
-            List<ContactDetail> cd = ViewBag.MyContacts;
-            ContactDetail contact = cd.FirstOrDefault(x => x.IdUser == id && x.NumUnreadMessages > 0);
+            List<UsersDetail> cd = ViewBag.MyContacts;
+            UsersDetail contact = cd.FirstOrDefault(x => x.IdUser == id && x.NumUnreadMessages > 0);
             if (contact != null)
             {
                 ThreadUsersDao threadUsersDao = new ThreadUsersDao();
@@ -50,10 +51,17 @@ namespace CML.Intercamber.Web.Controllers
             return View();
         }
 
+        public const int NbMessagesPerHistoryRequest = 10;
+
+        /// <summary>
+        /// return latest NbMessagesPerHistoryRequest messages, before message id messageIdMax
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="messageIdMax"></param>
+        /// <returns></returns>
         [HttpPost]
-        public JsonResult ChatHistory(long? id)
+        public JsonResult ChatHistory(long? id, long? messageIdMax)
         {
-            IList<ChatMessage> res;
             ThreadMessagesDao dao = new ThreadMessagesDao();
             if (id == null || ThreadHelper.ThreadDetails.All(x => x.IdThread != id.Value))
                 return null;
@@ -61,15 +69,17 @@ namespace CML.Intercamber.Web.Controllers
             var threads = ThreadHelper.ThreadDetails.ToList().Where(x => x.IdThread == id).ToList();
             var idUserConnecte = ConnectedUserHelper.ConnectedUserId;
 
-            var historique = dao.ListThreadMessagesByParameters(id.Value);
-            res = historique.Select(x => new ChatMessage
+            var historique = dao.ListThreadMessagesByParameters(id.Value, messageIdMax, NbMessagesPerHistoryRequest);
+            IList<ChatMessage> res = historique.Select(x => new ChatMessage
             {
+                Id = x.IdMessage, 
                 Author = x.IdUser == idUserConnecte ? ConnectedUserHelper.ConnectedUser.FirstName : threads.Where(t => t.IdUser == x.IdUser).Select(t => t.FirstName).FirstOrDefault(), 
+                IdUser = x.IdUser, 
                 Message = x.Message, 
                 Date = x.DateMessage
             }).ToList();
 
-            return Json(res, JsonRequestBehavior.AllowGet);
+            return Json(new {d=res, ps=NbMessagesPerHistoryRequest}, JsonRequestBehavior.AllowGet);
         }
 
     }

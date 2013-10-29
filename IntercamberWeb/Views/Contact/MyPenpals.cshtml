@@ -1,18 +1,103 @@
-﻿@using System.ServiceModel.PeerResolvers
-@using MvcJqGrid
-@using MvcJqGrid.DataReaders
-@using MvcJqGrid.Enums
-
-@{
+﻿@{
     ViewBag.PageTitle = Resources.Intercamber.LeftBar_MyPenpals;
 }
 @section PageHead
 {
-    <script>
-        $(function() {
-            $("#buttonValidate").button();
+    <script type="text/javascript">
+        $(function () {
+            $(".jqbutton").button();
         });
 
+        // grid formatters 
+        function gridColumnValidate(cellvalue, options, rowobject) {
+            return "<img id=\"add" + cellvalue + "\" title=\"\" class='imgButton' src='/Images/Check.png' onclick=\"formValidate('" + cellvalue + "', '" + rowobject.Name.replace("\"", "").replace("'", "") + "')\" />";
+        }
+        function gridColumnRefuse(cellvalue, options, rowobject) {
+            return "<img id=\"add" + cellvalue + "\" title=\"\" class='imgButton' src='/Images/Delete.png' onclick=\"formRefuse('" + cellvalue + "', '" + rowobject.Name.replace("\"", "").replace("'", "") + "')\" />";
+        }
+        function gridColumnTalk(cellvalue, options, rowobject) {
+            return "<img id=\"add" + cellvalue + "\" title=\"\" class='imgButton' src='/Images/Mail.png' onclick=\"window.location='/Talk/Discussion/" + cellvalue + "'\" />";
+        }
+
+        var ttValidate = null, ttRefuse = null, tempIdUser = null;
+        var validateMessage = "@Resources.Intercamber.MyPenpals_ValidateRequest";
+        var refuseMessage = "@Html.Raw(Resources.Intercamber.MyPenpals_RefuseRequest.Replace(Environment.NewLine, "<br/>"))";
+
+        function doAction(actionType) {
+            var controller = null;
+            if (actionType == "val")
+                controller = "ValidateRequest";
+            else if (actionType == "ref")
+                controller = "RefuseRequest";
+            else
+                return;
+            $.ajax({
+                type: "POST",
+                url: "/Contact/" + controller,
+                contentType: "application/json; charset=utf-8",
+                data: "{'idUser':\"" + tempIdUser + "\"}",
+                dataType: "json",
+                success: function (result) {
+                    if (result == true) {
+                        if (actionType == "val")
+                            window.location = "MyPenpals";
+                        else
+                            $("#gridPendingRequests").jqGrid().setGridParam({ datatype: 'json', page: 1 }).trigger('reloadGrid');
+                    } else {
+                        alert("@Resources.Intercamber.SearchContacts_RequestSentError");
+                    }
+                },
+                error: function (result) {
+                    debugger;
+                }
+            });
+        }
+
+        function formValidate(idUser, userName) {
+            tempIdUser = idUser;
+            if (ttValidate == null) {
+                ttValidate = $('<div />');
+                ttValidate.qtip({
+                    show: { effect: false, modal: { on: true, blur: false } },
+                    content: $('#ttValidate'),
+                    position: { my: 'center', at: 'center', target: $(window), viewport: $(window), adjust: { method: "shift", x: 0, y: 0 }, effect: false },
+                    events: {
+                        show: function () {
+                            $(this).draggable();
+                            $(this).qtip('option', { 'content.title.button': 'true' });
+                        },
+                        hide: function () { $(this).qtip('option', { 'position.my': 'top left', 'position.target': [$(this).offset().left, $(this).offset().top] }); }
+                    },
+                    hide: false,
+                    style: { classes: "qtip-light qtip-rounded tipWidth", tip: false }
+                });
+            }
+            $("#validateText").html(validateMessage.replace("{0}", userName));
+            ttValidate.qtip('show');
+        }
+
+        function formRefuse(idUser, userName) {
+            tempIdUser = idUser;
+            if (ttRefuse == null) {
+                ttRefuse = $('<div />');
+                ttRefuse.qtip({
+                    show: { effect: false, modal: { on: true, blur: false } },
+                    content: $('#ttRefuse'),
+                    position: { my: 'center', at: 'center', target: $(window), viewport: $(window), adjust: { method: "shift", x: 0, y: 0 }, effect: false },
+                    events: {
+                        show: function () {
+                            $(this).draggable();
+                            $(this).qtip('option', { 'content.title.button': 'true' });
+                        },
+                        hide: function () { $(this).qtip('option', { 'position.my': 'top left', 'position.target': [$(this).offset().left, $(this).offset().top] }); }
+                    },
+                    hide: false,
+                    style: { classes: "qtip-light qtip-rounded tipWidth", tip: false }
+                });
+            }
+            $("#refuseText").html(refuseMessage.replace("{0}", userName));
+            ttRefuse.qtip('show');
+        }
     </script>
 }
 
@@ -25,41 +110,51 @@
     <div class="innerTitle ui-corner-all">
         @Resources.Intercamber.MyPenpals_PendingRequests
     </div>
-    <table id='gridPendingRequests'></table>
-        @(Html.Grid("gridPendingRequests")
-              .SetLoadOnce(false)
-              .AddColumn(new Column("Name"))
-              .AddColumn(new Column("LastName"))
-              .AddColumn(new Column("City"))
-              .SetAutoWidth(true)
-              .SetViewRecords(true)
-              .SetJsonReader(new JsonReader { RepeatItems = false, Id = "IdUser" })
-              .SetRowNum(5)
-              .SetRowList(new[] { 5, 10, 15 })
-              .SetPager("pager")
-              .SetUrl("/Contact/PendingRequestsData")
-              .SetDataType(DataType.Json)
-              )
-    
-    <br/>
-    <br/>
+    @Html.Partial("~/Views/Shared/_TableContactsPartial.cshtml", null, new ViewDataDictionary
+        {
+            { "GridName", "gridPendingRequests"}, 
+            { "GridUrl", "/Contact/PendingRequestsData"}, 
+            { "DisablePaging", true}, 
+            {
+                "CustomColumns", 
+                @"{name: 'IdUser', fixed: true, formatter: gridColumnValidate, label: '" + Resources.Intercamber.Validate + @"', resizable: false, sortable: false, width: 45, index: 'IdUser', align: 'center'}, 
+                {name: 'IdUser', fixed: true, formatter: gridColumnRefuse, label: '" + Resources.Intercamber.Refuse + @"', resizable: false, sortable: false,  width: 40, index: 'IdUser', align: 'center', }, "
+            },
+            { "populateOnLoad", true}
+        })
+    <br />
+    <br />
     <div class="innerTitle ui-corner-all">
         @Resources.Intercamber.MyPenpals_MyPenpals
     </div>
-    <table id='gridContacts'></table>
-        @(Html.Grid("gridContacts")
-              .SetLoadOnce(false)
-              .AddColumn(new Column("Name"))
-              .AddColumn(new Column("LastName"))
-              .AddColumn(new Column("City"))
-              .SetAutoWidth(true)
-              .SetViewRecords(true)
-              .SetJsonReader(new JsonReader { RepeatItems = false, Id = "IdUser" })
-              .SetRowNum(5)
-              .SetRowList(new[] { 5, 10, 15 })
-              .SetPager("pager")
-              .SetUrl("/Contact/PenpalsData")
-              .SetDataType(DataType.Json)
-              )
+    @Html.Partial("~/Views/Shared/_TableContactsPartial.cshtml", null, new ViewDataDictionary
+        {
+            { "GridName", "gridMyPenpals"}, 
+            { "GridUrl", "/Contact/MyPenpalsData"}, 
+            { "DisablePaging", true}, 
+            {
+                "CustomColumns", 
+                @"{name: 'IdUser', fixed: true, formatter: gridColumnTalk, label: '" + Resources.Intercamber.Talk + @"', resizable: false, sortable: false, width: 45, index: 'IdUser', align: 'center'}, "
+            },
+            { "populateOnLoad", true}
+        })
 
+    <div id="ttValidate" style="display: none">
+@*        <span class="okMsg">@Resources.Intercamber.MyPenpals_RequestValidated</span>*@
+        <span id="validateText"></span>
+        <div class="ttButtons">
+            <button class="jqbutton" onclick="doAction('val')">@Resources.Intercamber.Validate</button>
+            &nbsp;
+            <button class="jqbutton" onclick="ttValidate.qtip('hide');">@Resources.Intercamber.Cancel</button>
+        </div>
+    </div>
+    <div id="ttRefuse" style="display: none">
+        <span class="okMsg">@Resources.Intercamber.MyPenpals_RequestRefused</span>
+        <span id="refuseText"></span>
+        <div class="ttButtons">
+            <button class="jqbutton" onclick="doAction('ref')">@Resources.Intercamber.Refuse</button>
+            &nbsp;
+            <button class="jqbutton" onclick="ttRefuse.qtip('hide');">@Resources.Intercamber.Cancel</button>
+        </div>
+    </div>
 }

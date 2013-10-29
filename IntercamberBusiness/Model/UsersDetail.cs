@@ -1,5 +1,7 @@
 ﻿using System;
 using CML.Intercamber.Business.Helper;
+using CML.Intercamber.Web;
+using CML.Intercamber.Web.Helpers;
 
 namespace CML.Intercamber.Business.Model
 {
@@ -15,29 +17,51 @@ namespace CML.Intercamber.Business.Model
         public DateTime? BirthDate { get; set; }
         public string IdCountry { get; set; }
         public string City { get; set; }
+        public string SpokenLanguages { get; set; }
+        public string RequestMessage { get; set; }
+        public long NumUnreadMessages { get; set; }
 
         public string Name
         {
             get { return FirstName + " " + LastName; }
         }
 
-        public int? Age
+        public string Age
         {
             get
             {
                 if (BirthDate == null)
-                    return null;
-                return DateTimeHelper.Age(BirthDate.Value);
+                    return "?";
+                return DateTimeHelper.Age(BirthDate.Value).ToString();
             }
         }
 
-        public bool Connected;
+        public bool Connected
+        {
+            get
+            {
+                // TODO virer la dependance vers chathub & signalr
+                return ChatHub.ListUserConnected.Contains(IdUser);
+            }
+        }
 
         public string PresentationText
         {
             get
             {
-                return "Presentation text writen by " + Name + "<br>His photo will also be visible here";
+                return (string.IsNullOrEmpty(RequestMessage) ? "" : "Contact request: " + RequestMessage + "<br/>") + 
+                    "Presentation text writen by " + Name + "<br>His photo will also be visible here";
+            }
+        }
+
+        public string Location
+        {
+            get
+            {
+                // TODO virer le dependance vers les resources 
+                if (string.IsNullOrEmpty(City))
+                    return ResourcesHelper.GetString("Countries_" + IdCountry);
+                return City + " (" + ResourcesHelper.GetString("Countries_" + IdCountry) + ")";
             }
         }
     }

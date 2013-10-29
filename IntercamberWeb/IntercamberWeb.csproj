@@ -335,6 +335,7 @@
     <Content Include="Images\AddContact.png" />
     <Content Include="Images\BgGrains.png" />
     <Content Include="Images\Check.png" />
+    <Content Include="Images\Delete.png" />
     <Content Include="Images\ico-disconnect.gif" />
     <Content Include="Images\Flags\en.png" />
     <Content Include="Images\Flags\es.png" />
@@ -350,6 +351,7 @@
     <Content Include="Images\Logo\r.png" />
     <Content Include="Images\Logo\s.png" />
     <Content Include="Images\Logo\t.png" />
+    <Content Include="Images\Mail.png" />
     <Content Include="Images\Maximize.png" />
     <Content Include="Images\Minimize.png" />
     <Content Include="Images\NoAvatar.png" />

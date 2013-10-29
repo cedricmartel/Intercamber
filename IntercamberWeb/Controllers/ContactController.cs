@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using CML.Intercamber.Business;
 using CML.Intercamber.Business.Dao;
+using CML.Intercamber.Business.Model;
 using CML.Intercamber.Web.Helpers;
 using MvcJqGrid;
 
@@ -11,7 +12,7 @@ namespace CML.Intercamber.Web.Controllers
     //[InitializeSimpleMembership]
     public class ContactController : BaseController
     {
-
+        #region page search contacts
         public ActionResult Search()
         {
             var allLanguages = LanguageHelper.AllLanguages;
@@ -22,36 +23,18 @@ namespace CML.Intercamber.Web.Controllers
             if (ConnectedUserHelper.connectedUserLearnLanguages != null && ConnectedUserHelper.connectedUserLearnLanguages.Count > 0)
                 firstLanguage = allLanguages.FirstOrDefault(x => x.IdLanguage == ConnectedUserHelper.connectedUserLearnLanguages[0]);
             ViewBag.PreferedCountry = firstLanguage != null ? firstLanguage.PreferedCountry : "";
-            ViewBag.ContactsTableDataUrl = "/Contact/SearchData";
-
             return View();
         }
 
 
-        public ActionResult MyPenpals()
-        {
-            // TODO 
-
-            return View();
-        }
 
         public JsonResult SearchData(GridSettings gridSettings, string country, string language)
         {
             if (country == null || language == null)
                 return Json(null);
 
-            var connectedUsers = ChatHub.ListUserConnected;
             UsersDao dao = new UsersDao();
             var res = dao.SearchUsers(gridSettings, ConnectedUserHelper.ConnectedUserId, country, language, ConnectedUserHelper.connectedUserSpokenLanguages);
-
-            // fill country & connected status
-            foreach (var contact in res.rows)
-            {
-                var contactCountry = contact.IdCountry;
-                if (!string.IsNullOrEmpty(contactCountry))
-                    contact.City += " (" + ResourcesHelper.GetString("Countries_" + contactCountry) + ")";
-                contact.Connected = connectedUsers.Contains(contact.IdUser);
-            }
 
             return Json(res, JsonRequestBehavior.AllowGet);
         }
@@ -73,9 +56,64 @@ namespace CML.Intercamber.Web.Controllers
 
             return Json(resInsert);
         }
+        #endregion
+
+        #region page my penpals
+        public ActionResult MyPenpals()
+        {
+            return View();
+        }
+        
+        public JsonResult PendingRequestsData(GridSettings gridSettings)
+        {
+            var myContactsRequests = ContactRequestsHelper.ContactRequestDetails(ConnectedUserHelper.ConnectedUserId);
+            var res = new GridData<UsersDetail>
+            {
+                page = 1, // number of requested page
+                records = myContactsRequests.Count, // total records from query 
+                total = 1, // total pages of query 
+                rows = myContactsRequests
+            };
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ValidateRequest(long idUser)
+        {
+            var reqDao = new ContactRequestsDao();
+            bool resInsert = reqDao.ValidateRefuseContactRequest(idUser, ConnectedUserHelper.ConnectedUserId, true);
+            ContactsHelper.RefreshCache(idUser);
+            ContactsHelper.RefreshCache(ConnectedUserHelper.ConnectedUserId);
+            ContactRequestsHelper.RefreshCache(ConnectedUserHelper.ConnectedUserId);
+
+            return Json(resInsert);
+        }
+
+        [HttpPost]
+        public JsonResult RefuseRequest(long idUser)
+        {
+            var reqDao = new ContactRequestsDao();
+            bool resRefuse = reqDao.ValidateRefuseContactRequest(idUser, ConnectedUserHelper.ConnectedUserId, false);
+            ContactRequestsHelper.RefreshCache(ConnectedUserHelper.ConnectedUserId);
+            return Json(resRefuse);
+        }
+
+        public JsonResult MyPenpalsData(GridSettings gridSettings)
+        {
+            var myPenpals = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId);
+            var res = new GridData<UsersDetail>
+            {
+                page = 1, // number of requested page
+                records = myPenpals.Count, // total records from query 
+                total = 1, // total pages of query 
+                rows = myPenpals
+            };
 
 
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
 
+        #endregion 
     }
 
 }

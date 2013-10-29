@@ -348,4 +348,38 @@
   <data name="Disconnected" xml:space="preserve">
     <value>Disconnected</value>
   </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
+  <data name="MyPenpals_RefuseRequest" xml:space="preserve">
+    <value>Are you sure you want to delete {0}'s contact request?
+(requester will not be informed)</value>
+  </data>
+  <data name="MyPenpals_ValidateRequest" xml:space="preserve">
+    <value>Do you want to validate {0}'s contact request?</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="MyPenpals_RequestRefused" xml:space="preserve">
+    <value>Request has been deleted</value>
+  </data>
+  <data name="MyPenpals_RequestValidated" xml:space="preserve">
+    <value>Request has been validated</value>
+  </data>
+  <data name="Talk" xml:space="preserve">
+    <value>Talk</value>
+  </data>
+  <data name="Discussion_LoadMoreMessages" xml:space="preserve">
+    <value>Load more messages ...</value>
+  </data>
+  <data name="Discussion_WriteaMessage" xml:space="preserve">
+    <value>Write a message ...</value>
+  </data>
+  <data name="Discussion_Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
 </root>

@@ -10,9 +10,9 @@ namespace CML.Intercamber.Web.Helpers
 
 
         // contacts
-        public static IList<ContactRequestDetail> ContactRequestDetails(long idUser)
+        public static List<UsersDetail> ContactRequestDetails(long idUser)
         {
-            IList<ContactRequestDetail> data = SessionHelper.GetSessionItem(SessionHelper.SessionKeyContactRequests) as List<ContactRequestDetail>;
+            List<UsersDetail> data = SessionHelper.GetSessionItem(SessionHelper.SessionKeyContactRequests) as List<UsersDetail>;
             if (data == null)
             {
                 var dao = new ContactRequestsDao();

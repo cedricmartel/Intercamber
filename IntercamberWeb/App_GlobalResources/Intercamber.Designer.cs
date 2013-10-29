@@ -232,11 +232,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Load more messages ....
+        /// </summary>
+        internal static string Discussion_LoadMoreMessages {
+            get {
+                return ResourceManager.GetString("Discussion_LoadMoreMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Send.
+        /// </summary>
+        internal static string Discussion_Send {
+            get {
+                return ResourceManager.GetString("Discussion_Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Talking with .
         /// </summary>
         internal static string Discussion_TalkWith {
             get {
                 return ResourceManager.GetString("Discussion_TalkWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Write a message ....
+        /// </summary>
+        internal static string Discussion_WriteaMessage {
+            get {
+                return ResourceManager.GetString("Discussion_WriteaMessage", resourceCulture);
             }
         }
         
@@ -502,11 +529,57 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to delete {0}&apos;s contact request?
+        ///(requester will not be informed).
+        /// </summary>
+        internal static string MyPenpals_RefuseRequest {
+            get {
+                return ResourceManager.GetString("MyPenpals_RefuseRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request has been deleted.
+        /// </summary>
+        internal static string MyPenpals_RequestRefused {
+            get {
+                return ResourceManager.GetString("MyPenpals_RequestRefused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Request has been validated.
+        /// </summary>
+        internal static string MyPenpals_RequestValidated {
+            get {
+                return ResourceManager.GetString("MyPenpals_RequestValidated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Do you want to validate {0}&apos;s contact request?.
+        /// </summary>
+        internal static string MyPenpals_ValidateRequest {
+            get {
+                return ResourceManager.GetString("MyPenpals_ValidateRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Next.
         /// </summary>
         internal static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -534,6 +607,15 @@ namespace Resources {
         internal static string Project_PageName {
             get {
                 return ResourceManager.GetString("Project_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Refuse.
+        /// </summary>
+        internal static string Refuse {
+            get {
+                return ResourceManager.GetString("Refuse", resourceCulture);
             }
         }
         
@@ -718,6 +800,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Talk.
+        /// </summary>
+        internal static string Talk {
+            get {
+                return ResourceManager.GetString("Talk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Toolbox.
         /// </summary>
         internal static string Toolbox_PageName {
@@ -750,6 +841,15 @@ namespace Resources {
         internal static string Vocabulary_PageName {
             get {
                 return ResourceManager.GetString("Vocabulary_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

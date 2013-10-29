@@ -7,23 +7,27 @@ namespace CML.Intercamber.Business.Dao
 {
     public class ThreadMessagesDao
     {
-        public List<ThreadMessages> ListThreadMessagesByParameters(long idThread)
+        public List<ThreadMessages> ListThreadMessagesByParameters(long idThread, long? messagesBefore, int nbMessages)
         {
             List<ThreadMessages> res;
             using (var context = new IntercamberEntities())
             {
-                res = context.ThreadMessages.Where(x => x.IdThread == idThread).ToList();
+                var req = context.ThreadMessages.Where(x => x.IdThread == idThread);
+                if (messagesBefore != null)
+                    req = req.Where(x => x.IdMessage < messagesBefore.Value);
+                res = req.OrderByDescending(x => x.IdMessage).Take(nbMessages).ToList();
             }
             return res;
         }
 
-        public void InsertThreadMessages(ThreadMessages obj)
+        public long InsertThreadMessages(ThreadMessages obj)
         {
             using (var context = new IntercamberEntities())
             {
                 context.ThreadMessages.Add(obj);
                 context.SaveChanges();
             }
+            return obj.IdMessage;
         }
 
         public List<UnreadMessagesCounter> UnreadMessagesCount(long idUser)

@@ -25,14 +25,15 @@ namespace CML.Intercamber.Web
         /// <param name="idThread"></param>
         /// <param name="name">sender display name</param>
         /// <param name="message"></param>
-        public void SendMessage(long idContact, long idThread, string name, string message)
+        /// <returns>new message id</returns>
+        public long? SendMessage(long idContact, long idThread, string name, string message)
         {
             // verify rights on room 
             if (!CanTalkInThread(idThread))
-                return;
+                return null;
             // save message 
             ThreadMessagesDao dao = new ThreadMessagesDao();
-            dao.InsertThreadMessages(new ThreadMessages
+            long idMessage = dao.InsertThreadMessages(new ThreadMessages
             {
                 DateMessage = DateTime.Now,
                 IdThread = idThread,
@@ -42,7 +43,8 @@ namespace CML.Intercamber.Web
             });
             // send message to anybody in thread but sender
             foreach (var thread in ThreadHelper.ThreadDetails.Where(x => x.IdThread == idThread))
-                Clients.Group(thread.IdUser.ToString()).addMessage(ConnectedUserHelper.ConnectedUserId, idThread, name, message, DateTime.Now);
+                Clients.Group(thread.IdUser.ToString()).addMessage(idMessage, ConnectedUserHelper.ConnectedUserId, idThread, name, ConnectedUserHelper.ConnectedUserId, message, DateTime.Now);
+            return idMessage;
         }
 
         #endregion

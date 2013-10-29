@@ -171,6 +171,14 @@ textarea
 {
     border: 2px solid #A9C6DF;
 }
+.jqSimpleButton {
+    font-size: 12px;
+    padding: 0;
+}
+.ui-button-text {
+    padding: 1px 5px 1px 5px !important;
+    border-radius: 4px !important;
+}
 
 /* MENU */
 .titleDiv
@@ -231,7 +239,7 @@ ul#menu > li
     border: 1px solid #CCCCCC;
     position: fixed;
     z-index: 10000;
-    right: 18px;
+    right: 12px;
     bottom: 0;
     width: 180px;
     height: 20px;
@@ -296,4 +304,19 @@ ul#menu > li
     text-align: center;
     font-size: 16px;
     color: #3D556C;
+    background-color: #DEECF8;
+}
+
+.ttButtons {
+    padding: 10px 0 5px 0;
+    text-align: center;
+}
+
+.okMsg {
+    background-color: #D3FFDE;
+    width: 100%;
+    display: inline-block;
+    font-weight: bold;
+    padding: 3px;
+    margin-bottom: 5px;
 }

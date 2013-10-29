@@ -9,6 +9,14 @@
 
 @section PageContent {
     <style>
+        textarea
+        {
+            resize: none;
+            border: medium none;
+            font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+            font-size: 12px;
+        }
+
         .dateItem
         {
             font-style: italic;
@@ -17,105 +25,227 @@
             background-color: #EEEEEE;
             display: block;
         }
+
+        .loadmore
+        {
+            cursor: pointer;
+            text-align: center;
+            font-style: italic;
+            font-size: 11px;
+            display: inline-block;
+            width: 100%;
+            border: 1px solid #D1D2D4;
+        }
+
+            .loadmore:hover
+            {
+                background-color: #DEECF8;
+            }
+
+        .msgInput1
+        {
+            border-width: 1px 1px medium;
+            border-style: solid solid none;
+            border-color: rgb(204, 204, 204) rgb(204, 204, 204) -moz-use-text-color;
+        }
+
+        .corrector
+        {
+            width: 100%;
+        }
+
+        .correctorInput
+        {
+            width: 100%;
+            color: #00156e;
+        }
+
+        .correctorOk
+        {
+        }
+
+        .correctorKo
+        {
+        }
     </style>
     <script type="text/javascript">
         var currentThreadId = @(ViewBag.IdThread ?? "null");
         var idContactDiscussion = @(ViewBag.IdContact ?? "null");
         var myName = "@(ViewBag.MyName.Replace("\"", ""))";
+        var myId = @ViewBag.MyId;
         var currentDate = null;
         var firstLog = true;
 
         $(function() {
             window.hubReady.done(function() {
-                $('#sendmessage').click(function() {
-                    var msg = $('#message').val();
-                    window.connectedHub.server.sendMessage(idContactDiscussion, currentThreadId, myName, msg);
-                    printMessage(myName, msg, new Date);
-                    $('#message').val('').focus();
-                });
+                $('#sendmessage').click(sendTypedMsg);
                 if (currentThreadId != null)
-                    loadChat(currentThreadId);
+                    loadChat(currentThreadId, null);
             });
+            $("#message").keydown(keyMessage);
+            $("button").button();
         });
 
-        function loadChat(id) {
+        function keyMessage(e) {
+            if (e.keyCode == 13) {
+                if ($('#cbEnter').attr('checked')) {
+                    sendTypedMsg();
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        function sendTypedMsg() {
+            var msg = $('#message').val();
+            var idMess = window.connectedHub.server.sendMessage(idContactDiscussion, currentThreadId, myName, msg);
+            printMessage(idMess, myName, myId, msg, new Date, true);
+            $('#message').val('').focus();
+        }
+
+        function loadChat(id, idLastMess) {
             currentThreadId = id;
-            $("#discussion").empty();
+            //$("#discussion").empty();
             // load chat history 
             $.ajax({
                 type: "POST",
                 url: "/Talk/ChatHistory",
                 contentType: "application/json; charset=utf-8",
-                data: "{'id':\"" + currentThreadId + "\"}",
+                data: "{'id':\"" + currentThreadId + "\", 'messageIdMax':" + idLastMess + "}",
                 dataType: "json",
                 success: function(result) {
-                    for (var i = 0; i < result.length; i++) {
-                        var r = result[i];
-                        printMessage(r.Author, r.Message, r.Date);
+                    $(".loadmore").remove();
+                    $(".initialDate").remove();
+                    for (var i = 0; i < result.d.length; i++) {
+                        var r = result.d[i];
+                        printMessage(r.Id, r.Author, r.IdUser, r.Message, r.Date, false);
                     }
+                    if(result.d.length > 0 && currentDate != null)
+                        $('#discussion').prepend("<span class='dateItem initialDate'>" + (new Date(currentDate)).toLocaleDateString() + "</span>");
+                    if (result.ps == result.d.length && result.d.length > 0)
+                        $('#discussion').prepend("<span class='loadmore' onclick=\"loadChat(currentThreadId,"+result.d[result.d.length - 1].Id+")\">@Resources.Intercamber.Discussion_LoadMoreMessages</span>");
+                    initCorrections();
                     scrollToDiscussionBottom();
                 },
                 error: function(result) {
                     debugger;
                 }
             });
+    }
+
+    function encodeText(txt) {
+        return txt.replace("<", "").replace(">", "");
+    }
+
+    function addMessage(id, name, userId, message, date) {
+        printMessage(id, name, userId, message, date, true);
+        initCorrections();
+        scrollToDiscussionBottom();
+    }
+
+    function scrollToDiscussionBottom() {
+        var discussionDiv = $('#discussion');
+        discussionDiv.scrollTop(discussionDiv[0].scrollHeight);
+    }
+    
+    function initCorrections() {
+        var ttTarget = $(".msg[sender!=u"+myId+"]");
+        $('<div />').qtip({
+            content: 'Click to correct text', 
+            position: { target: 'event', effect: false },
+            show: { target: ttTarget, effect: false },
+            hide: { target: ttTarget }, 
+            style: { classes: "qtip-light" },
+        });
+        ttTarget.css("cursor", "pointer");
+        ttTarget.click(loadCorrector);
+    }
+    
+    function loadCorrector() {
+        $(".corrector").remove();
+        var dt = $(this);
+        dt.after("<div class='corrector'><span id='correctorBtn'>" +
+            "<button class='jqSimpleButton correctorOk'><img src='/Images/Check.png' /></button>" +
+            "<button class='jqSimpleButton correctorKo'><img src='/Images/Delete.png' /></button></span>" +
+            "<input type='text' class='correctorInput' /></div>");
+        $("button").button();
+        var txt = dt.find(".msgTxt");
+        var headWidth = dt.find('.msgHead').width();
+        var margin = headWidth - $("#correctorBtn").width() - 3;
+        $(".correctorInput").width($("#talkDiv").width() - headWidth - 40).val(txt.html()).css("margin-left", margin).focus();
+        $(".correctorKo").click(function() {
+            $(".corrector").remove();
+        });
+        $(".correctorOk").click(function() {
+            alert("work in progress");
+        });
+    }
+
+    function printMessage(id, name, sender, message, date, appendBottom) {
+        var res = "";
+        if (typeof(date) == "string")
+            date = instanciateDotNetDate(date);
+        var dTime = new Date(date);
+        dTime.setHours(0, 0, 0, 0);
+        dTime = dTime.getTime();
+        res += "<div id='m"+id+"' sender=\"u"+sender+"\" class=\"msg\"'><span class='msgHead'>" + date.toLocaleTimeString() + ' <strong> ' + name + "</strong>:&nbsp;</span><span class='msgTxt'>" + message + '</span></div>';
+        var dateRes = "";
+        if (currentDate == null || dTime != currentDate) {
+            if(currentDate != null)
+                dateRes += "<span class='dateItem'>" + (new Date(currentDate)).toLocaleDateString() + "</span>";
+            currentDate = dTime;
+            firstLog = true;
         }
-
-        function encodeText(txt) {
-            return txt.replace("<", "").replace(">", "");
-        }
-
-        function addMessage(name, message, date) {
-            printMessage(name, message, date);
-            scrollToDiscussionBottom();
-        }
-
-        function scrollToDiscussionBottom() {
-            var discussionDiv = $('#discussion');
-            discussionDiv.scrollTop(discussionDiv[0].scrollHeight);
-        }
-
-        function printMessage(name, message, date) {
-            if (typeof(date) == "string")
-                date = instanciateDotNetDate(date);
-            var dTime = (new Date(date));
-            dTime.setHours(0, 0, 0, 0);
-            dTime = dTime.getTime();
-            if (currentDate == null || dTime != currentDate) {
-
-                $('#discussion').append((firstLog ? '' : '<br/>') + "<span class='dateItem'>" + date.toLocaleDateString() + "</span>");
-                currentDate = dTime;
-                firstLog = true;
-            }
-            $('#discussion').append((firstLog ? '' : '<br/>') + date.toLocaleTimeString() + ' <strong> ' + name + '</strong>:&nbsp;' + message + '');
-            firstLog = false;
-
-        }
+            
+        firstLog = false;
+        if(appendBottom)
+            $("#discussion").append(dateRes + res);
+        else
+            $("#discussion").prepend(res + dateRes);
+    }
         
-        function resizeComplement() {
-            // resize of chat: leave 200px right, fullheight
-            var discussionDiv = $('#discussion');
-            discussionDiv.height($(".calcHeight").height() - 110);
-            discussionDiv.width($(".pageContent").width() - $(".infoBar").width() - 200);
-            $("#talkDiv").height(discussionDiv.height + $('#discussionInput').height());
-        }
+    function resizeComplement() {
+        var h = $(window).height() - $('#titleTd').height() - $("#menuTd").height();
+        if (h < 400) h = 400;
+        var discussionDiv = $('#discussion');
+        discussionDiv.height(h - $("#discussionInput").height() - $(".intermediaryTitle").height() - 50);
+        $("#talkDiv").height(discussionDiv.height() + $('#discussionInput').height());
+    }
+        
+    function cbEnterChange() {
+        var cbChecked = $('#cbEnter').attr('checked');
+        if (cbChecked)
+            $("#sendmessage").hide();
+        else
+            $("#sendmessage").show();
+        $('#message').focus();
+    }
     </script>
 
     <div class="intermediaryTitle">@Resources.Intercamber.Discussion_TalkWith @ViewBag.DestName<br />
         <br />
     </div>
 
-    <table id="talkDiv " style="margin-left: 20px; border: 2px solid #F8B74D; min-width: 600px;" class="ui-corner-all">
+    <table id="talkDiv" style="border: 2px solid #F8B74D; width: 100%" class="ui-corner-all">
         <tr>
             <td style="border-bottom: 2px solid #F8B74D;">
-                <div id="discussion" style="padding:5px; min-height: 30px; width: 600px; overflow: auto"></div>
+                <div id="discussion" style="padding: 5px; min-height: 30px; overflow: auto"></div>
             </td>
         </tr>
         <tr id="discussionInput">
-            <td >
-                <input type="text" style="width: 85%" id="message" />
-                <input type="button" id="sendmessage" value="Send" /></td>
+            <td style="vertical-align: top">
+                <div>
+                    <textarea rows="2" style="width: 100%" id="message" aria-label="@Resources.Intercamber.Discussion_WriteaMessage" placeholder="@Resources.Intercamber.Discussion_WriteaMessage"></textarea>
+                </div>
+                <div style="text-align: right;">
+                    <input type="checkbox" id="cbEnter" checked="checked" onclick="cbEnterChange()" />
+                    <label for="cbEnter">Press Enter to send</label>
+                    <span>
+                        <button id="sendmessage" value="Send" style="display: none; padding: 0 5px; margin-left: 10px;" class="jqSimpleButton" >
+                            <img src="/Images/Mail.png" />&nbsp;@Resources.Intercamber.Discussion_Send</button>
+                    </span>
+                </div>
+            </td>
         </tr>
     </table>
-
 }

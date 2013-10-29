@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using CML.Intercamber.Business.Model;
 
 namespace CML.Intercamber.Business.Dao
@@ -40,24 +39,36 @@ namespace CML.Intercamber.Business.Dao
         /// <summary>
         /// All contacts requests that target user idUserConnected, or made by idUserConnected, and not responded yet
         /// </summary>
-        public List<ContactRequestDetail> ListContactRequests(long idUserConnected)
+        public List<UsersDetail> ListContactRequests(long idUserConnected)
         {
-            List<ContactRequestDetail> res;
+            List<UsersDetail> res;
             using (var context = new IntercamberEntities())
             {
                 res = (from x in context.ContactRequests
-                    join u in context.Users on x.IdUserRequester equals u.IdUser
-                    where x.IdUserAsk == idUserConnected && x.DateDismissed == null && x.DateValidated == null
-                    select new
-                       {
-                           FirstName = u.FirstName,
-                           LastName = u.LastName,
-                           SpokenLanguages = u.UsersSpokenLanguages.Select(y => y.IdLanguage)
-                       }).ToList().Select(x => new ContactRequestDetail
+                       join u in context.Users on x.IdUserRequester equals u.IdUser
+                       where x.IdUserAsk == idUserConnected && x.DateDismissed == null && x.DateValidated == null
+                       select new
+                          {
+                              u.IdUser,
+                              u.FirstName,
+                              u.LastName,
+                              u.BirthDate,
+                              u.IdCountry,
+                              u.IdGender,
+                              u.City,
+                              SpokenLanguages = u.UsersSpokenLanguages.Select(y => y.IdLanguage),
+                              RequestMessage = x.Message
+                          }).ToList().Select(x => new UsersDetail
                     {
+                        IdUser = x.IdUser,
                         FirstName = x.FirstName,
-                        LastName = x.LastName, 
-                        SpokenLanguages = string.Join(",", x.SpokenLanguages)
+                        LastName = x.LastName,
+                        BirthDate = x.BirthDate,
+                        IdCountry = x.IdCountry,
+                        IdGender = x.IdGender,
+                        City = x.City,
+                        SpokenLanguages = string.Join(",", x.SpokenLanguages),
+                        RequestMessage = x.RequestMessage
                     }).ToList();
             }
             return res;
@@ -66,19 +77,17 @@ namespace CML.Intercamber.Business.Dao
         /// <summary>
         /// if isValidated == true then update contactRequest with validated, and insert into contacts, else update contactRequest
         /// </summary>
-        /// <param name="idContactRequest"></param>
-        /// <param name="isValidated"></param>
-        public void ValidateRefuseContactRequest(long idContactRequest, bool isValidated)
+        public bool ValidateRefuseContactRequest(long idUserRequester, long idUserConnected, bool isValidated)
         {
             using (var context = new IntercamberEntities())
             {
-                var r = context.ContactRequests.FirstOrDefault(x => x.IdContactRequest == idContactRequest);
+                var r = context.ContactRequests.FirstOrDefault(x => x.IdUserRequester == idUserRequester && x.IdUserAsk == idUserConnected);
                 if (r == null)
-                    return;
+                    return false;
                 if (isValidated)
                 {
                     r.DateValidated = DateTime.Now;
-                    Contacts c1 = new Contacts {IdUser = r.IdUserRequester, IdUserContact = r.IdUserAsk, DateAdd = DateTime.Now};
+                    Contacts c1 = new Contacts { IdUser = r.IdUserRequester, IdUserContact = r.IdUserAsk, DateAdd = DateTime.Now };
                     Contacts c2 = new Contacts { IdUser = r.IdUserAsk, IdUserContact = r.IdUserRequester, DateAdd = DateTime.Now };
                     context.Contacts.Add(c1);
                     context.Contacts.Add(c2);
@@ -89,6 +98,7 @@ namespace CML.Intercamber.Business.Dao
                 }
                 context.SaveChanges();
             }
+            return true;
         }
     }
 }
