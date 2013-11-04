@@ -23,8 +23,8 @@ namespace CML.Intercamber.Business
         public string IdLanguage { get; set; }
         public string PreferedCountry { get; set; }
     
+        public virtual Countries Countries { get; set; }
         public virtual ICollection<UsersLearnLanguages> UsersLearnLanguages { get; set; }
         public virtual ICollection<UsersSpokenLanguages> UsersSpokenLanguages { get; set; }
-        public virtual Countries Countries { get; set; }
     }
 }

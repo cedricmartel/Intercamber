@@ -90,9 +90,9 @@ $(function () {
         $('#onlineUsers').text(message);
     };
     
-    window.connectedHub.client.addMessage = function (idContact, idThread, name, message, date) {
+    window.connectedHub.client.addMessage = function (idMessage, idContact, idThread, name, message, date) {
         if (idThread == window.currentThreadId && typeof (addMessage) == "function")
-            addMessage(encodeText(name), encodeText(message), date);
+            addMessage(idMessage, encodeText(name), idContact, encodeText(message), date);
         else if (idContact != window.myId) {
             // alert new message
             incrementUnreadMessages(idContact);
@@ -101,11 +101,19 @@ $(function () {
     window.connectedHub.client.refreshOnlineStatus = function (idUser, isOnline) {
         $("#contactCnx" + idUser).attr("src", isOnline ? "/Images/Online.png" : "/Images/Offline.png");
     };
+    window.connectedHub.client.notifyCorrection = function(idMessage, messageCorrected) {
+        if (typeof(notifyCorrection) == "function")
+            notifyCorrection(idMessage, messageCorrected);
+    };
 
     // window size 
     $(window).resize(resizeApp);
     resizeApp();
 });
+
+function encodeText(txt) {
+    return txt.replace("<", "").replace(">", "");
+}
 
 function PositionnerSousMenu(position, elements) {
     var options = {
@@ -129,12 +137,13 @@ function resizeApp() {
     $(".calcHeight").height(h);
     $(".pageContent").height(h - 20);
 
-    var totWidth = $(window).width();
-    //var leftBar = $(".contactsContent");
-    var reservedWidth = 0; // leftBar.length > 0 ? $(leftBar[0]).width() + 10 : 0;
-    var leftPos = (totWidth - 1024 - reservedWidth) / 2;
-    $("#centpourcent").css("left", leftPos > 0 ? leftPos : 0);   
-
+    if (typeof disableAutoWidth == 'undefined') {
+        var totWidth = $(window).width();
+        //var leftBar = $(".contactsContent");
+        var reservedWidth = 0; // leftBar.length > 0 ? $(leftBar[0]).width() + 10 : 0;
+        var leftPos = (totWidth - 1024 - reservedWidth) / 2;
+        $("#centpourcent").css("left", leftPos > 0 ? leftPos : 0);
+    }
     if (typeof (resizeComplement) == "function")
         resizeComplement();
 }

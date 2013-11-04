@@ -30,6 +30,18 @@ namespace CML.Intercamber.Business.Dao
             return obj.IdMessage;
         }
 
+        public void CorrectThreadMessage(long idMessage, string correctionString)
+        {
+            using (var context = new IntercamberEntities())
+            {
+                var message = context.ThreadMessages.Where(x => x.IdMessage == idMessage).FirstOrDefault();
+                if (message == null)
+                    return;
+                message.MessageCorrection = correctionString;
+                context.SaveChanges();
+            }
+        }
+
         public List<UnreadMessagesCounter> UnreadMessagesCount(long idUser)
         {
             List<UnreadMessagesCounter> res;

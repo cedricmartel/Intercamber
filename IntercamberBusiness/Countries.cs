@@ -16,14 +16,14 @@ namespace CML.Intercamber.Business
     {
         public Countries()
         {
-            this.Users = new HashSet<Users>();
             this.Languages = new HashSet<Languages>();
+            this.Users = new HashSet<Users>();
         }
     
         public string IdCountry { get; set; }
         public bool Enabled { get; set; }
     
-        public virtual ICollection<Users> Users { get; set; }
         public virtual ICollection<Languages> Languages { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

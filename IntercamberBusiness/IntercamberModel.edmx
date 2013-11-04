@@ -195,6 +195,7 @@
           <Property Name="IdCountry" Type="varchar" MaxLength="2" />
           <Property Name="City" Type="nvarchar" MaxLength="128" />
           <Property Name="DisplayInContactRequests" Type="bit" Nullable="false" />
+          <Property Name="PresentationText" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="UsersLearnLanguages">
           <Key>
@@ -417,6 +418,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
+          <AssociationSet Name="FK_Languages_Countries" Association="IntercamberModel.FK_Languages_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Languages" EntitySet="Languages" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_Countries" Association="IntercamberModel.FK_Users_Countries">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Users" EntitySet="Users" />
@@ -453,10 +458,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersSpokenLanguages" EntitySet="UsersSpokenLanguages" />
           </AssociationSet>
-          <AssociationSet Name="FK_Languages_Countries" Association="IntercamberModel.FK_Languages_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Languages" EntitySet="Languages" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ContactRequests">
           <Key>
@@ -489,8 +490,8 @@
           </Key>
           <Property Type="String" Name="IdCountry" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="Enabled" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Countries" ToRole="Users" />
           <NavigationProperty Name="Languages" Relationship="IntercamberModel.FK_Languages_Countries" FromRole="Countries" ToRole="Languages" />
+          <NavigationProperty Name="Users" Relationship="IntercamberModel.FK_Users_Countries" FromRole="Countries" ToRole="Users" />
         </EntityType>
         <EntityType Name="Establishments">
           <Key>
@@ -516,10 +517,10 @@
             <PropertyRef Name="IdLanguage" />
           </Key>
           <Property Type="String" Name="IdLanguage" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PreferedCountry" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Type="String" Name="PreferedCountry" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Countries" Relationship="IntercamberModel.FK_Languages_Countries" FromRole="Languages" ToRole="Countries" />
           <NavigationProperty Name="UsersLearnLanguages" Relationship="IntercamberModel.FK_UsersLearnLanguages_Languages" FromRole="Languages" ToRole="UsersLearnLanguages" />
           <NavigationProperty Name="UsersSpokenLanguages" Relationship="IntercamberModel.FK_UsersSpokenLanguages_Languages" FromRole="Languages" ToRole="UsersSpokenLanguages" />
-          <NavigationProperty Name="Countries" Relationship="IntercamberModel.FK_Languages_Countries" FromRole="Languages" ToRole="Countries" />
         </EntityType>
         <EntityType Name="Profils">
           <Key>
@@ -591,6 +592,7 @@
           <Property Type="String" Name="IdCountry" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="City" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="DisplayInContactRequests" Nullable="false" />
+          <Property Type="String" Name="PresentationText" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ContactRequests" Relationship="IntercamberModel.FK_ContactRequests_Users_Ask" FromRole="Users" ToRole="ContactRequests" />
           <NavigationProperty Name="ContactRequests1" Relationship="IntercamberModel.FK_ContactRequests_Users_Requested" FromRole="Users" ToRole="ContactRequests" />
           <NavigationProperty Name="Contacts" Relationship="IntercamberModel.FK_Contacts_Users" FromRole="Users" ToRole="Contacts" />
@@ -668,6 +670,18 @@
             </Principal>
             <Dependent Role="Contacts">
               <PropertyRef Name="IdUserContact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Languages_Countries">
+          <End Type="IntercamberModel.Countries" Role="Countries" Multiplicity="1" />
+          <End Type="IntercamberModel.Languages" Role="Languages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="IdCountry" />
+            </Principal>
+            <Dependent Role="Languages">
+              <PropertyRef Name="PreferedCountry" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -776,18 +790,6 @@
             </Principal>
             <Dependent Role="UsersSpokenLanguages">
               <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Languages_Countries">
-          <End Type="IntercamberModel.Countries" Role="Countries" Multiplicity="1" />
-          <End Type="IntercamberModel.Languages" Role="Languages" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="IdCountry" />
-            </Principal>
-            <Dependent Role="Languages">
-              <PropertyRef Name="PreferedCountry" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -908,6 +910,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="IntercamberModel.Users">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="PresentationText" ColumnName="PresentationText" />
                 <ScalarProperty Name="DisplayInContactRequests" ColumnName="DisplayInContactRequests" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />

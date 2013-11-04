@@ -41,6 +41,7 @@ namespace CML.Intercamber.Business
         public string IdCountry { get; set; }
         public string City { get; set; }
         public bool DisplayInContactRequests { get; set; }
+        public string PresentationText { get; set; }
     
         public virtual ICollection<ContactRequests> ContactRequests { get; set; }
         public virtual ICollection<ContactRequests> ContactRequests1 { get; set; }

@@ -12,6 +12,7 @@ namespace CML.Intercamber.Web.Controllers
 {
     public class BaseController : Controller
     {
+
         protected override IAsyncResult BeginExecuteCore(AsyncCallback c, object state)
         {
             string cultureName = null;
@@ -30,6 +31,8 @@ namespace CML.Intercamber.Web.Controllers
                 cultureCookie.HttpOnly = false; // Not accessible by JS.
                 cultureCookie.Expires = DateTime.Now.AddYears(1);
             }
+            if(string.IsNullOrEmpty(cultureName))
+                cultureName = "en";
 
             // Validates the culture name.
             //cultureName = CultureHelper.GetImplementedCulture(cultureName);
@@ -44,14 +47,15 @@ namespace CML.Intercamber.Web.Controllers
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
+            ViewBag.UiLanguage = LanguageHelper.UiLanguage;
+
             // load chat contacts
             if (Request.IsAuthenticated)
             {
-                var contactInfos = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId);
-                
-                // TODO gérer un cache pour les messages non lus
-                ThreadMessagesDao messagesDao = new ThreadMessagesDao();
-                var unreadMessagesInfos = messagesDao.UnreadMessagesCount(ConnectedUserHelper.ConnectedUserId);
+                ViewBag.MyContacts = UnreadMessageHelper.ListUnreadMessages();
+
+                var contactInfos = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId);                
+                var unreadMessagesInfos = UnreadMessageHelper.ListUnreadMessages();
                 contactInfos.ForEach(x =>
                 {
                     x.NumUnreadMessages = unreadMessagesInfos.Where(y => y.IdUser == x.IdUser).Select(y => y.NbMessages).FirstOrDefault();

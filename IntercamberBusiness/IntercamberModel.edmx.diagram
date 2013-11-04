@@ -5,24 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="09c46aa8ab684e4da0ae746fe41dc3f8" Name="Diagramme1">
-        <EntityTypeShape EntityType="IntercamberModel.ContactRequests" Width="1.5" PointX="8.1642128900458157" PointY="1.38982346718657" />
-        <EntityTypeShape EntityType="IntercamberModel.Contacts" Width="1.5" PointX="8.6223756133682912" PointY="26.983981592107554" />
-        <EntityTypeShape EntityType="IntercamberModel.Countries" Width="1.5" PointX="8.9656965010639738" PointY="28.065163863853162" />
-        <EntityTypeShape EntityType="IntercamberModel.Establishments" Width="1.5" PointX="3.1133206892354979" PointY="0.38785137254179053" />
-        <EntityTypeShape EntityType="IntercamberModel.Hobbies" Width="1.5" PointX="0.047689726598416325" PointY="29.048136903461131" />
-        <EntityTypeShape EntityType="IntercamberModel.Languages" Width="1.5" PointX="6.1685812595154061" PointY="10.654683669402582" />
-        <EntityTypeShape EntityType="IntercamberModel.Profils" Width="1.5" PointX="8.12220075173406" PointY="23.420052285967419" />
-        <EntityTypeShape EntityType="IntercamberModel.ThreadMessages" Width="1.5" PointX="5.2999601295683352" PointY="27.656377939347355" />
-        <EntityTypeShape EntityType="IntercamberModel.Threads" Width="1.5" PointX="5.03420857574521" PointY="22.931174884983886" />
-        <EntityTypeShape EntityType="IntercamberModel.ThreadUsers" Width="1.5" PointX="5.6359974507410069" PointY="16.388000585319475" />
-        <EntityTypeShape EntityType="IntercamberModel.UserActivities" Width="1.5" PointX="1.35365653659853" PointY="19.128849455681095" />
-        <EntityTypeShape EntityType="IntercamberModel.Users" Width="1.5" PointX="10.104141644250667" PointY="12.916813305074728" />
-        <EntityTypeShape EntityType="IntercamberModel.UsersLearnLanguages" Width="1.5" PointX="1.9758581453821893" PointY="27.966325713305885" />
-        <EntityTypeShape EntityType="IntercamberModel.UsersSpokenLanguages" Width="1.5" PointX="9.5959786780159817" PointY="21.881010602172935" />
+        <EntityTypeShape EntityType="IntercamberModel.ContactRequests" Width="1.5" PointX="5.3855517885580433" PointY="17.393746324532547" />
+        <EntityTypeShape EntityType="IntercamberModel.Contacts" Width="1.5" PointX="1.7329402927928326" PointY="3.4474732891877524" />
+        <EntityTypeShape EntityType="IntercamberModel.Countries" Width="1.5" PointX="5.0965910801182455" PointY="31.687627345178104" />
+        <EntityTypeShape EntityType="IntercamberModel.Establishments" Width="1.5" PointX="4.173325657925254" PointY="26.3601473692619" />
+        <EntityTypeShape EntityType="IntercamberModel.Hobbies" Width="1.5" PointX="3.5083326229398755" PointY="22.358114059249925" />
+        <EntityTypeShape EntityType="IntercamberModel.Languages" Width="1.5" PointX="6.0881696111001871" PointY="17.284552969636653" />
+        <EntityTypeShape EntityType="IntercamberModel.Profils" Width="1.5" PointX="9.30863915817283" PointY="31.825549080886667" />
+        <EntityTypeShape EntityType="IntercamberModel.ThreadMessages" Width="1.5" PointX="6.9040773040168348" PointY="9.2645140035378351" />
+        <EntityTypeShape EntityType="IntercamberModel.Threads" Width="1.5" PointX="3.2266522847240102" PointY="10.379599888985791" />
+        <EntityTypeShape EntityType="IntercamberModel.ThreadUsers" Width="1.5" PointX="11.528115927953328" PointY="17.774969004921136" />
+        <EntityTypeShape EntityType="IntercamberModel.UserActivities" Width="1.5" PointX="1.224710086930874" PointY="7.48926541557967" />
+        <EntityTypeShape EntityType="IntercamberModel.Users" Width="1.5" PointX="4.1094024926933477" PointY="9.9101181523455857" />
+        <EntityTypeShape EntityType="IntercamberModel.UsersLearnLanguages" Width="1.5" PointX="10.656267983213192" PointY="28.242806015649254" />
+        <EntityTypeShape EntityType="IntercamberModel.UsersSpokenLanguages" Width="1.5" PointX="3.1921937722676406" PointY="21.747967193717123" />
         <AssociationConnector Association="IntercamberModel.FK_ContactRequests_Users_Ask" />
         <AssociationConnector Association="IntercamberModel.FK_ContactRequests_Users_Requested" />
         <AssociationConnector Association="IntercamberModel.FK_Contacts_Users" />
         <AssociationConnector Association="IntercamberModel.FK_Contacts_Users1" />
+        <AssociationConnector Association="IntercamberModel.FK_Languages_Countries" />
         <AssociationConnector Association="IntercamberModel.FK_Users_Countries" />
         <AssociationConnector Association="IntercamberModel.FK_UsersLearnLanguages_Languages" />
         <AssociationConnector Association="IntercamberModel.FK_UsersSpokenLanguages_Languages" />
@@ -32,7 +33,6 @@
         <AssociationConnector Association="IntercamberModel.FK_UserActivities_Users" />
         <AssociationConnector Association="IntercamberModel.FK_usersLearnLanguages_Users" />
         <AssociationConnector Association="IntercamberModel.FK_UsersSpokenLanguages_UsersSpokenLanguages" />
-        <AssociationConnector Association="IntercamberModel.FK_Languages_Countries" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

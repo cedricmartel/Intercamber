@@ -32,7 +32,7 @@ namespace CML.Intercamber.Business.Dao
         public GridData<UsersDetail> SearchUsers(GridSettings gridSettings, long userId, string country, string spokenLanguage, List<string> learnLanguages)
         {
             List<UsersDetail> res;
-            int totalRecords = 0;
+            int totalRecords;
             int totalPages = 0;
             using (var context = new IntercamberEntities())
             {
@@ -42,6 +42,7 @@ namespace CML.Intercamber.Business.Dao
                                 && learnLanguages.Any(x => u.UsersLearnLanguages.Any(y => y.IdLanguage == x))
                                 && u.IdCountry == country
                                 && !context.Contacts.Any(x => x.IdUser == userId && x.IdUserContact == u.IdUser)
+                                && u.DisplayInContactRequests
                            select new UsersDetail
                            {
                                IdUser = u.IdUser,
@@ -50,12 +51,13 @@ namespace CML.Intercamber.Business.Dao
                                BirthDate = u.BirthDate,
                                IdCountry = u.IdCountry,
                                IdGender = u.IdGender,
+                               PresentationText = u.PresentationText, 
                                City = u.City
                            })
                        .OrderBy(x => x.IdUser);
                 totalRecords = req.Count();
                 if(gridSettings.PageSize > 0)
-                    totalPages = (int)Math.Ceiling((decimal)totalRecords/(decimal)gridSettings.PageSize);
+                    totalPages = (int)Math.Ceiling((decimal)totalRecords/gridSettings.PageSize);
                 res = req.Skip(gridSettings.PageSize * (gridSettings.PageIndex - 1))
                        .Take(gridSettings.PageSize)
                        .ToList();
@@ -70,6 +72,24 @@ namespace CML.Intercamber.Business.Dao
             };
         }
 
+        public Users UpdateUser(Users userToUpdate)
+        {
+            using (var context = new IntercamberEntities())
+            {
+                var dbItem = context.Users.FirstOrDefault(x => x.IdUser == userToUpdate.IdUser);
+                if (dbItem == null)
+                    return null;
+                dbItem.FirstName = userToUpdate.FirstName;
+                dbItem.LastName = userToUpdate.LastName;
+                dbItem.IdCountry = userToUpdate.IdCountry;
+                dbItem.City = userToUpdate.City;
+                dbItem.DisplayInContactRequests = userToUpdate.DisplayInContactRequests;
+                dbItem.BirthDate = userToUpdate.BirthDate;
+                dbItem.PresentationText = userToUpdate.PresentationText;
+                context.SaveChanges();
+                return dbItem;
+            }
+        }
 
     }
 }

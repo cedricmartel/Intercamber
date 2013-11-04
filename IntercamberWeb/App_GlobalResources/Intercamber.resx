@@ -382,4 +382,55 @@
   <data name="Discussion_Send" xml:space="preserve">
     <value>Send</value>
   </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth date</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="MyDiscussions_LastMessageReceived" xml:space="preserve">
+    <value>Last msg received</value>
+  </data>
+  <data name="MyDiscussions_LastMessageSent" xml:space="preserve">
+    <value>Last msg sent</value>
+  </data>
+  <data name="MyDiscussions_NumberMessagesReceived" xml:space="preserve">
+    <value>Nb msg received</value>
+  </data>
+  <data name="MyDiscussions_NumberMessagesSent" xml:space="preserve">
+    <value>Nb msg sent</value>
+  </data>
+  <data name="MyDiscussions_Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Profil_ChangePhoto" xml:space="preserve">
+    <value>Change my photo</value>
+  </data>
+  <data name="Profil_VisibleConcactSearch" xml:space="preserve">
+    <value>Visible in contact search</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="NoPresentation" xml:space="preserve">
+    <value>No details yet :(</value>
+  </data>
+  <data name="Profil_DescribeYourself" xml:space="preserve">
+    <value>Describe yourself</value>
+  </data>
 </root>

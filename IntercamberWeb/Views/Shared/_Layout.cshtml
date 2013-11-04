@@ -1,6 +1,4 @@
-﻿@using System.Threading
-@using CML.Intercamber.Business.Model
-@using CML.Intercamber.Web
+﻿@using CML.Intercamber.Web
 @using CML.Intercamber.Web.Helpers
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,11 +36,11 @@
                     <img src="~/Images/TitreIntercambers.png" />
                     <span class="languageSelector">
                         <a href="/Account/ChangeLanguage?id=fr">
-                            <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("fr") ? "imgButtonSelected" : "")" src="~/Images/Flags/fr.png" /></a>
+                            <img class="imgButton @(ViewBag.UiLanguage == "fr" ? "imgButtonSelected" : "")" src="~/Images/Flags/fr.png" /></a>
                         <a href="/Account/ChangeLanguage?id=es">
-                            <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("es") ? "imgButtonSelected" : "")" src="~/Images/Flags/es.png" /></a>
+                            <img class="imgButton @(ViewBag.UiLanguage == "es" ? "imgButtonSelected" : "")" src="~/Images/Flags/es.png" /></a>
                         <a href="/Account/ChangeLanguage?id=en">
-                            <img class="imgButton @(Thread.CurrentThread.CurrentCulture.ToString().StartsWith("en") ? "imgButtonSelected" : "")" src="~/Images/Flags/en.png" /></a>
+                            <img class="imgButton @(ViewBag.UiLanguage == "en" ? "imgButtonSelected" : "")" src="~/Images/Flags/en.png" /></a>
                         <br />
                         <span id="onlineUsers"></span>
                     </span>
@@ -120,7 +118,7 @@
         </table>
 
         <div id="footerLeft" class="footerLeft">
-            ©Intercamber v0.2, 2013
+            ©Intercamber v0.2.1, 2013
         </div>
     </div>
     @if (Request.IsAuthenticated)

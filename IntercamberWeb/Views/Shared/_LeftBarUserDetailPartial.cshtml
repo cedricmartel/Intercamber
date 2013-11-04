@@ -19,7 +19,7 @@
     <br />
 
     <div align="left">
-        <span class="leftButton">
+        <span class="leftButton" onclick="document.location='/Profile/MyProfile';" id="leftButtonProfile">
             <span class="infoBarTitle" style="">@Resources.Intercamber.LeftBar_MyProfile</span>
             <span style="">
                 @*LeftBar_CumulatedIn
@@ -28,7 +28,7 @@
         </span>
         <br />
         <br />
-        <span class="leftButton" onclick="document.location='/Contact/MyPenpals';">
+        <span class="leftButton" onclick="document.location='/Contact/MyPenpals';" id="leftButtonPenpals">
             <span class="infoBarTitle">@Resources.Intercamber.LeftBar_MyPenpals</span>
             <br />
             <span class="buttonSimpleText">
@@ -37,7 +37,7 @@
         </span>
         <br />
         <br />
-        <span class="leftButton">
+        <span class="leftButton" onclick="document.location='/Talk/MyDiscussions';"  id="leftButtonDiscussions">
             <span class="infoBarTitle">@Resources.Intercamber.LeftBar_MyDiscussions</span>
             @*LeftBar_NNewMessages
             LeftBar_0NewMessages*@

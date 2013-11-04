@@ -11,6 +11,9 @@ namespace CML.Intercamber.Web.Models
         [JsonProperty(PropertyName = "msg")]
         public string Message { get; set;  }
 
+        [JsonProperty(PropertyName = "cor")]
+        public string Correction { get; set; }
+
         [JsonProperty(PropertyName = "usr")]
         public string Author { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Windows.Markup;
 using CML.Intercamber.Business.Helper;
-using CML.Intercamber.Web;
-using CML.Intercamber.Web.Helpers;
 
 namespace CML.Intercamber.Business.Model
 {
@@ -21,6 +20,23 @@ namespace CML.Intercamber.Business.Model
         public string RequestMessage { get; set; }
         public long NumUnreadMessages { get; set; }
 
+        private string presentationText;
+
+        public string PresentationText
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(presentationText))
+                    return presentationText;
+                return null;
+            }
+            set
+            {
+                presentationText = value;
+            }
+        }
+
+
         public string Name
         {
             get { return FirstName + " " + LastName; }
@@ -36,33 +52,9 @@ namespace CML.Intercamber.Business.Model
             }
         }
 
-        public bool Connected
-        {
-            get
-            {
-                // TODO virer la dependance vers chathub & signalr
-                return ChatHub.ListUserConnected.Contains(IdUser);
-            }
-        }
+        public bool Connected { get; set; }
 
-        public string PresentationText
-        {
-            get
-            {
-                return (string.IsNullOrEmpty(RequestMessage) ? "" : "Contact request: " + RequestMessage + "<br/>") + 
-                    "Presentation text writen by " + Name + "<br>His photo will also be visible here";
-            }
-        }
+        public string Location { get; set;  }
 
-        public string Location
-        {
-            get
-            {
-                // TODO virer le dependance vers les resources 
-                if (string.IsNullOrEmpty(City))
-                    return ResourcesHelper.GetString("Countries_" + IdCountry);
-                return City + " (" + ResourcesHelper.GetString("Countries_" + IdCountry) + ")";
-            }
-        }
     }
 }

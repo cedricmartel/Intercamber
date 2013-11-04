@@ -14,6 +14,7 @@ namespace CML.Intercamber.Web.Helpers
         public const string SessionKeyContactRequests = "ContactRequests";
         public const string SessionKeyCountries = "Countries";
         public const string SessionKeyLanguages = "Languages";
+        public const string UnreadMessageCount = "UnreadMessageCount";
 
         // object for stocking sessions data (.net sessions object is not viable)
         public static readonly Dictionary<string, Dictionary<string, object>> StaticSession = new Dictionary<string, Dictionary<string, object>>();

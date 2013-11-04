@@ -60,12 +60,8 @@
             color: #00156e;
         }
 
-        .correctorOk
-        {
-        }
-
-        .correctorKo
-        {
+        .correction {
+            color: #ff4500;
         }
     </style>
     <script type="text/javascript">
@@ -74,6 +70,7 @@
         var myName = "@(ViewBag.MyName.Replace("\"", ""))";
         var myId = @ViewBag.MyId;
         var currentDate = null;
+        var firstDate = null;
         var firstLog = true;
 
         $(function() {
@@ -99,7 +96,7 @@
         function sendTypedMsg() {
             var msg = $('#message').val();
             var idMess = window.connectedHub.server.sendMessage(idContactDiscussion, currentThreadId, myName, msg);
-            printMessage(idMess, myName, myId, msg, new Date, true);
+            printMessage(idMess, myName, myId, msg, null, new Date, true);
             $('#message').val('').focus();
         }
 
@@ -118,7 +115,7 @@
                     $(".initialDate").remove();
                     for (var i = 0; i < result.d.length; i++) {
                         var r = result.d[i];
-                        printMessage(r.Id, r.Author, r.IdUser, r.Message, r.Date, false);
+                        printMessage(r.Id, r.Author, r.IdUser, r.Message, r.Correction, r.Date, false);
                     }
                     if(result.d.length > 0 && currentDate != null)
                         $('#discussion').prepend("<span class='dateItem initialDate'>" + (new Date(currentDate)).toLocaleDateString() + "</span>");
@@ -133,14 +130,11 @@
             });
     }
 
-    function encodeText(txt) {
-        return txt.replace("<", "").replace(">", "");
-    }
-
     function addMessage(id, name, userId, message, date) {
-        printMessage(id, name, userId, message, date, true);
+        printMessage(id, name, userId, message, null, instanciateDotNetDate(date), true);
         initCorrections();
         scrollToDiscussionBottom();
+        window.connectedHub.server.markAsRead(currentThreadId);
     }
 
     function scrollToDiscussionBottom() {
@@ -160,40 +154,66 @@
         ttTarget.css("cursor", "pointer");
         ttTarget.click(loadCorrector);
     }
-    
+
     function loadCorrector() {
         $(".corrector").remove();
         var dt = $(this);
+        var idMessage = dt.attr("id").replace("m", "");
         dt.after("<div class='corrector'><span id='correctorBtn'>" +
             "<button class='jqSimpleButton correctorOk'><img src='/Images/Check.png' /></button>" +
             "<button class='jqSimpleButton correctorKo'><img src='/Images/Delete.png' /></button></span>" +
-            "<input type='text' class='correctorInput' /></div>");
+            "<textarea rows='2' class='correctorInput' style='border:1px solid lightgray;'></textarea></div>");
         $("button").button();
-        var txt = dt.find(".msgTxt");
+        var corr = dt.find(".correction");
+        var txt = corr.length > 0 ? corr : dt.find(".msgTxt");
+        var txtContent = txt.html();
         var headWidth = dt.find('.msgHead').width();
         var margin = headWidth - $("#correctorBtn").width() - 3;
-        $(".correctorInput").width($("#talkDiv").width() - headWidth - 40).val(txt.html()).css("margin-left", margin).focus();
+        $(".correction").remove();
+        $(".correctorInput").width($("#talkDiv").width() - headWidth - 40).val(txtContent).css("margin-left", margin).focus();
         $(".correctorKo").click(function() {
+            addMessageCorrection(idMessage, txtContent);
             $(".corrector").remove();
         });
         $(".correctorOk").click(function() {
-            alert("work in progress");
+            debugger;
+            var txtFeed = $(".correctorInput").val();
+            $.ajax({
+                type: "POST",
+                url: "/Talk/AddTranslation",
+                contentType: "application/json; charset=utf-8",
+                data: "{'idThread':\"" + currentThreadId + "\", 'idMessage': \""+idMessage+"\", 'correction':\"" + txtFeed.replace("\"", "\\\"") + "\"}",
+                dataType: "json",
+                success: function(result) {
+                    addMessageCorrection(idMessage, txtFeed);
+                    $(".corrector").remove();
+                    window.connectedHub.server.sendMessageCorrection(currentThreadId, idMessage, txtFeed);
+                },
+                error: function(result) {
+                    debugger;
+                }
+            });
         });
     }
 
-    function printMessage(id, name, sender, message, date, appendBottom) {
+    function printMessage(id, name, sender, message, correction, date, appendBottom) {
         var res = "";
         if (typeof(date) == "string")
             date = instanciateDotNetDate(date);
         var dTime = new Date(date);
         dTime.setHours(0, 0, 0, 0);
         dTime = dTime.getTime();
+        if (firstDate == null)
+            firstDate = dTime;
         res += "<div id='m"+id+"' sender=\"u"+sender+"\" class=\"msg\"'><span class='msgHead'>" + date.toLocaleTimeString() + ' <strong> ' + name + "</strong>:&nbsp;</span><span class='msgTxt'>" + message + '</span></div>';
         var dateRes = "";
-        if (currentDate == null || dTime != currentDate) {
+        if ((!appendBottom && (currentDate == null || dTime != currentDate)) || (appendBottom && firstDate != dTime)) {
             if(currentDate != null)
                 dateRes += "<span class='dateItem'>" + (new Date(currentDate)).toLocaleDateString() + "</span>";
-            currentDate = dTime;
+            if(!appendBottom)
+                currentDate = dTime;
+            else
+                firstDate = dTime;
             firstLog = true;
         }
             
@@ -202,6 +222,39 @@
             $("#discussion").append(dateRes + res);
         else
             $("#discussion").prepend(res + dateRes);
+        if (correction != null && correction != "")
+            addMessageCorrection(id, correction);
+    }
+    
+    function addMessageCorrection(id, correction) {
+        var dc = $("#c" + id);
+        if (dc == null || dc.length == 0) {
+            var dd = $("#m" + id);
+            if (dd == null || dd.length == 0) return;
+            //var msgHead = $(dd.find(".msgHead")[0]).html();
+            //var message = $(dd.find(".msgTxt")[0]).html();
+            printCorrectionFormated(dd, id, correction);
+        } else
+            dc.html(correction);
+    }
+    
+            
+    function notifyCorrection(id, correction) {
+        addMessageCorrection(id, correction);
+        var el = $("#c" + id);
+        el.qtip({
+            content: "<b>New correction</b>",
+            show: { effect: false },
+            position: { at: "center right", my: "center left" },
+            style: { classes: "qtip-blue" },
+            hide: { event: false, fixed: true }
+        }).qtip('show');
+        setTimeout(function () { el.qtip('destroy'); }, 5000);
+    }
+    
+    function printCorrectionFormated(parentEl, id, correction) {
+        var pad = $(parentEl.find(".msgHead")[0]).width();
+        parentEl.append("<div id='c" + id + "' class='correction' style='padding-left:"+pad+"px'>" + correction+"</div>");
     }
         
     function resizeComplement() {
@@ -241,7 +294,7 @@
                     <input type="checkbox" id="cbEnter" checked="checked" onclick="cbEnterChange()" />
                     <label for="cbEnter">Press Enter to send</label>
                     <span>
-                        <button id="sendmessage" value="Send" style="display: none; padding: 0 5px; margin-left: 10px;" class="jqSimpleButton" >
+                        <button id="sendmessage" value="Send" style="display: none; padding: 0 5px; margin-left: 10px;" class="jqSimpleButton">
                             <img src="/Images/Mail.png" />&nbsp;@Resources.Intercamber.Discussion_Send</button>
                     </span>
                 </div>

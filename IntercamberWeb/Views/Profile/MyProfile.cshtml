@@ -1,0 +1,124 @@
+﻿@using CML.Intercamber.Business
+@using CML.Intercamber.Web.Helpers
+@model Users
+@{
+    ViewBag.PageTitle = Resources.Intercamber.LeftBar_MyProfile;
+}
+
+@section PageHead
+{
+    <script src="/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="/Scripts/ckeditor/adapters/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".jqbutton").button();
+            $("#leftButtonProfile").addClass("ui-menu-sel");
+            $("#BirthDate").datepicker({
+                showOn: "button",
+                buttonImage: "/Images/Calendar.png",
+                buttonImageOnly: true,
+                dateFormat: "dd/mm/yy"  // TODO utiliser la locale de l'utilisateur 
+            });
+
+            var editorConfig = {
+                toolbar: [
+                    { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline', 'Strike', '-', 'RemoveFormat'] },
+                    { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align'], items: ['BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'] },
+                    { name: 'links', items: ['Link', 'Unlink'] },
+                    { name: 'styles', items: ['Styles', 'FontSize'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor'] }
+                ],
+                removePlugins: 'elementspath',
+                resize_enabled: false,
+                language: "@ViewBag.UiLanguage",
+                htmlEncodeOutput: true,
+                enterMode: CKEDITOR.ENTER_BR, 
+        };
+            CKEDITOR.replace('PresentationText', editorConfig);
+        });
+    </script>
+    <style>
+        .cellTitle
+        {
+            text-align: right;
+            padding-right: 5px;
+        }
+    </style>
+}
+
+@section PageLeftBar {
+    @Html.Partial("~/Views/Shared/_LeftBarUserDetailPartial.cshtml")
+}
+
+@section PageContent {
+    <div class="innerTitle ui-corner-all">
+        @Resources.Intercamber.LeftBar_MyProfile
+    </div>
+    <br />
+    <br />
+    @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <table style="width: 100%; padding: 6px;">
+            <tr>
+                <td class="cellTitle" style="width: 80px">@Resources.Intercamber.FirstName</td>
+                <td style="width: 200px;">
+                    <input type="text" name="FirstName" id="FirstName" value="@Model.FirstName"/>
+                </td>
+                <td class="cellTitle" style="width: 80px;">@Resources.Intercamber.LastName</td>
+                <td>
+                    <input type="text" name="LastName" id="LastName" value="@Model.LastName"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="cellTitle">@Resources.Intercamber.Country</td>
+                <td>
+                    <select name="IdCountry" id="IdCountry">
+                        @foreach (Countries c in ViewBag.ContactCountries)
+                        {
+                            <option value="@c.IdCountry" @Html.Raw(c.IdCountry == Model.IdCountry ? "selected='selected'" : "")>@ResourcesHelper.GetString("Countries_" + c.IdCountry)</option>
+                        }
+                    </select>
+                </td>
+                <td class="cellTitle">@Resources.Intercamber.City</td>
+                <td>
+                    <input type="text" name="City" id="City" value="@Model.City"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="cellTitle">@Resources.Intercamber.BirthDate</td>
+                <td>
+                    <input type="text" name="BirthDate" id="BirthDate" value="@(Model.BirthDate == null ? "" : Model.BirthDate.Value.ToString("dd/MM/yyyy"))" />
+                </td>
+                <td></td>
+                <td>
+                    <input type="checkbox" name="DisplayInContactRequests" id="DisplayInContactRequests" @Html.Raw(Model.DisplayInContactRequests ? "checked" : "") value="true" data-val="true"/>
+                    <label for="DisplayInContactRequests">@Resources.Intercamber.Profil_VisibleConcactSearch</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="cellTitle">
+                    @Resources.Intercamber.Profil_DescribeYourself
+                </td>
+                <td colspan="3">
+                    <textarea id="PresentationText" name="PresentationText">@Html.Raw(Model.PresentationText)</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align: center;">
+                    <br />
+
+                    <label for="photo" id="btnChangePhoto" class="jqbutton" onclick="alert('work in progress'); return false;">@Resources.Intercamber.Profil_ChangePhoto</label>
+                    
+                    <input id="photo" name="photo" type="file" style="display: none;">
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="submit" id="btnSave" class="jqbutton">
+                        <img style="vertical-align: top; margin-top: 3px;" src="/Images/Save.png" />
+                        @Resources.Intercamber.SaveChanges
+                    </button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button id="btnCancel" class="jqbutton" onclick="document.location='/Profile/Edit';">@Resources.Intercamber.Cancel</button>
+                </td>
+            </tr>
+        </table>
+    }
+}

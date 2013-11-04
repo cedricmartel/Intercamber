@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Birth date.
+        /// </summary>
+        internal static string BirthDate {
+            get {
+                return ResourceManager.GetString("BirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cancel.
         /// </summary>
         internal static string Cancel {
@@ -120,6 +129,15 @@ namespace Resources {
         internal static string Chat_PageName {
             get {
                 return ResourceManager.GetString("Chat_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à City.
+        /// </summary>
+        internal static string City {
+            get {
+                return ResourceManager.GetString("City", resourceCulture);
             }
         }
         
@@ -223,6 +241,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Country.
+        /// </summary>
+        internal static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Disconnected.
         /// </summary>
         internal static string Disconnected {
@@ -277,6 +304,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à First name.
+        /// </summary>
+        internal static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à My contacts.
         /// </summary>
         internal static string Home_MyContacts {
@@ -327,6 +363,15 @@ namespace Resources {
         internal static string Languages_sp {
             get {
                 return ResourceManager.GetString("Languages_sp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Last name.
+        /// </summary>
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         
@@ -511,6 +556,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Last msg received.
+        /// </summary>
+        internal static string MyDiscussions_LastMessageReceived {
+            get {
+                return ResourceManager.GetString("MyDiscussions_LastMessageReceived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Last msg sent.
+        /// </summary>
+        internal static string MyDiscussions_LastMessageSent {
+            get {
+                return ResourceManager.GetString("MyDiscussions_LastMessageSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nb msg received.
+        /// </summary>
+        internal static string MyDiscussions_NumberMessagesReceived {
+            get {
+                return ResourceManager.GetString("MyDiscussions_NumberMessagesReceived", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nb msg sent.
+        /// </summary>
+        internal static string MyDiscussions_NumberMessagesSent {
+            get {
+                return ResourceManager.GetString("MyDiscussions_NumberMessagesSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Started.
+        /// </summary>
+        internal static string MyDiscussions_Started {
+            get {
+                return ResourceManager.GetString("MyDiscussions_Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à My penpals.
         /// </summary>
         internal static string MyPenpals_MyPenpals {
@@ -584,6 +674,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à No details yet :(.
+        /// </summary>
+        internal static string NoPresentation {
+            get {
+                return ResourceManager.GetString("NoPresentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Online users: {0}.
         /// </summary>
         internal static string NumberOnlineUsers {
@@ -593,11 +692,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Online.
+        /// </summary>
+        internal static string Online {
+            get {
+                return ResourceManager.GetString("Online", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Change my photo.
+        /// </summary>
+        internal static string Profil_ChangePhoto {
+            get {
+                return ResourceManager.GetString("Profil_ChangePhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Describe yourself.
+        /// </summary>
+        internal static string Profil_DescribeYourself {
+            get {
+                return ResourceManager.GetString("Profil_DescribeYourself", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à My profile.
         /// </summary>
         internal static string Profil_PageName {
             get {
                 return ResourceManager.GetString("Profil_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Visible in contact search.
+        /// </summary>
+        internal static string Profil_VisibleConcactSearch {
+            get {
+                return ResourceManager.GetString("Profil_VisibleConcactSearch", resourceCulture);
             }
         }
         
@@ -625,6 +760,24 @@ namespace Resources {
         internal static string Reporting_PageName {
             get {
                 return ResourceManager.GetString("Reporting_PageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        internal static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save changes.
+        /// </summary>
+        internal static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
             }
         }
         

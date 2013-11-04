@@ -56,6 +56,7 @@ namespace CML.Intercamber.Business.Dao
                               u.IdCountry,
                               u.IdGender,
                               u.City,
+                              u.PresentationText, 
                               SpokenLanguages = u.UsersSpokenLanguages.Select(y => y.IdLanguage),
                               RequestMessage = x.Message
                           }).ToList().Select(x => new UsersDetail
@@ -66,6 +67,7 @@ namespace CML.Intercamber.Business.Dao
                         BirthDate = x.BirthDate,
                         IdCountry = x.IdCountry,
                         IdGender = x.IdGender,
+                        PresentationText = x.PresentationText, 
                         City = x.City,
                         SpokenLanguages = string.Join(",", x.SpokenLanguages),
                         RequestMessage = x.RequestMessage

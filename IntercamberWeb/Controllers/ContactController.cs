@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using CML.Intercamber.Business;
 using CML.Intercamber.Business.Dao;
 using CML.Intercamber.Business.Model;
 using CML.Intercamber.Web.Helpers;
+using CML.Intercamber.Web.Helpers.ModelHelper;
 using MvcJqGrid;
 
 namespace CML.Intercamber.Web.Controllers
@@ -34,7 +36,8 @@ namespace CML.Intercamber.Web.Controllers
                 return Json(null);
 
             UsersDao dao = new UsersDao();
-            var res = dao.SearchUsers(gridSettings, ConnectedUserHelper.ConnectedUserId, country, language, ConnectedUserHelper.connectedUserSpokenLanguages);
+            GridData<UsersDetail> res = dao.SearchUsers(gridSettings, ConnectedUserHelper.ConnectedUserId, country, language, ConnectedUserHelper.connectedUserSpokenLanguages);
+            res.rows.ForEach(UsersDetailHelper.FilDataInBean);
 
             return Json(res, JsonRequestBehavior.AllowGet);
         }
@@ -67,6 +70,7 @@ namespace CML.Intercamber.Web.Controllers
         public JsonResult PendingRequestsData(GridSettings gridSettings)
         {
             var myContactsRequests = ContactRequestsHelper.ContactRequestDetails(ConnectedUserHelper.ConnectedUserId);
+            myContactsRequests.ForEach(UsersDetailHelper.FilDataInBean);
             var res = new GridData<UsersDetail>
             {
                 page = 1, // number of requested page
@@ -101,6 +105,7 @@ namespace CML.Intercamber.Web.Controllers
         public JsonResult MyPenpalsData(GridSettings gridSettings)
         {
             var myPenpals = ContactsHelper.ContactDetails(ConnectedUserHelper.ConnectedUserId);
+            myPenpals.ForEach(UsersDetailHelper.FilDataInBean);
             var res = new GridData<UsersDetail>
             {
                 page = 1, // number of requested page

@@ -19,6 +19,7 @@
         }
     </style>
     <script type="text/javascript">
+        disableAutoWidth = true;
         $(function() {
             document.onkeypress = function(e) {
                 var key = window.event ? window.event.keyCode : e.which;
@@ -33,7 +34,7 @@
             $("#ConnectButton").button();
             $("#centpourcent").css("border-left", "0");
             $("#centpourcent").css("border-right", "0");
-            $("#centpourcent").css("width", "100%");
+            $("#centpourcent").css("width", "99.9%");
             $("#centpourcent").css("left", "0");
         });
 
@@ -47,7 +48,7 @@
     {
         @Html.AntiForgeryToken()
         <br />
-        <div align="center">
+        <div align="center" style="min-width:800px;">
             <table style="" width="100%" class="ui-corner-all loginDiv">
                 <tr>
                     <td valign="middle" align="right" width="80px">

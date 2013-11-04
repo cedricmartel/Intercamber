@@ -11,7 +11,7 @@
 </div>
 
 <script type="text/javascript">
-
+    
     function gridColumnConnected_@(ViewBag.GridName)(cellvalue, options, rowobject) {
         var connected = rowobject.Connected;
         return "<img src='/Images/" + (connected ? "Online.png" : "Offline.png") + "' title='" + (connected ? "@(Resources.Intercamber.Connected)" : "@(Resources.Intercamber.Disconnected)") + "'  />";
@@ -21,7 +21,10 @@
         var dest = $("#" + subgridId);
         dest.css("background-color", "white");
         dest.css("padding-left", "48px");
-        dest.html(userInfos.PresentationText);
+
+        var desc = userInfos.PresentationText;
+        if (desc == "") desc = "@Resources.Intercamber.NoPresentation";
+        dest.html(desc);
     }
 
     $(function () {

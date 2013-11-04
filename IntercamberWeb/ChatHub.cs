@@ -33,18 +33,42 @@ namespace CML.Intercamber.Web
                 return null;
             // save message 
             ThreadMessagesDao dao = new ThreadMessagesDao();
+            long sender = ConnectedUserHelper.ConnectedUserId;
+
             long idMessage = dao.InsertThreadMessages(new ThreadMessages
             {
                 DateMessage = DateTime.Now,
                 IdThread = idThread,
-                IdUser = ConnectedUserHelper.ConnectedUserId,
+                IdUser = sender,
                 Message = message,
                 MessageCorrection = null
             });
-            // send message to anybody in thread but sender
-            foreach (var thread in ThreadHelper.ThreadDetails.Where(x => x.IdThread == idThread))
-                Clients.Group(thread.IdUser.ToString()).addMessage(idMessage, ConnectedUserHelper.ConnectedUserId, idThread, name, ConnectedUserHelper.ConnectedUserId, message, DateTime.Now);
+            UnreadMessageHelper.IncrementUnreadMessagesCount(sender, idContact);
+
+            if (listUserConnected.Contains(idContact))
+            {
+                var hubContext = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+                hubContext.Clients.Group(idContact.ToString()).addMessage(idMessage, ConnectedUserHelper.ConnectedUserId, idThread, name, message, DateTime.Now);
+            }
+
             return idMessage;
+        }
+
+        public void markAsRead(long threadId)
+        {
+            if (!CanTalkInThread(threadId))
+                return;
+            var dao = new ThreadUsersDao();
+            dao.UpdateThreadRead(ConnectedUserHelper.ConnectedUserId, threadId, DateTime.Now);
+            UnreadMessageHelper.RefreshCache(ConnectedUserHelper.ConnectedUserId);
+        }
+
+        public void SendMessageCorrection(long idThread, long idMessage, string messageCorrected)
+        {
+            if (!CanTalkInThread(idThread))
+                return;
+            foreach (var thread in ThreadHelper.ThreadDetails.Where(x => x.IdThread == idThread && x.IdUser != ConnectedUserHelper.ConnectedUserId))
+                Clients.Group(thread.IdUser.ToString()).notifyCorrection(idMessage, messageCorrected);
         }
 
         #endregion
